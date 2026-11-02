@@ -10,3 +10,5 @@
 | D-006 | Pass device W 依 Imax 縮放：10 mA → 400 µm、50 mA → 2000 µm、100 mA → 4000 µm（L=0.18 µm） | 由 DEVICE_CHAR.md：Vsd=0.2 V、Vg≈0.9 V 時約 43 mA/mm，留 ~1.7× 餘裕 | 面積、閘極電容、dropout | 有效 |
 | D-007 | 負載用理想電流源（不是電阻） | LDO 量測常用電流負載；電阻負載會讓 R_out 變小、PM 變好，會美化結果 | 迴路增益、暫態 | 有效 |
 | D-008 | 最小負載（分壓器電流）取 200 µA（R1=R2=4 kΩ）；CL=100 pF 用 Cc=5 pF，CL=1 nF 用 Cc=20 pF | `s1_refA_sweep.py` 掃描：Imin=50 µA 時任何 Cc≤40 pF 在 CL=1 nF 下 PM≤41°；Imin=200 µA + 上述 Cc 讓最差 PM 達 66°(100 pF)/55°(1 nF)。代價是 Iq 增加約 150 µA。**這是工程取捨不是最佳化**，adaptive biasing 可降 Iq 但增加複雜度 | Iq、PM、暫態 | 有效 |
+| D-009 | **環境網路政策擋下學術網站**（doi.org、ieeexplore.ieee.org、api.crossref.org、arxiv.org、knowledgecommons.lakeheadu.ca、oaktrust.library.tamu.edu、mdpi.com、semanticscholar.org、openalex 等；proxy 回 403 CONNECT）。WebSearch 可用但有每回合共用額度（約 200 次，已被 subagent 用完一次）。因此：所有文獻的 fulltext_status 最多只能是「僅摘要（搜尋摘錄）」；DOI 只能標「未驗證（僅見於搜尋摘錄）」。**不因此推論電路細節** | 遵守證據規則 | literature.csv、Leduc 判定、深入分析的依據 | 有效；使用者可在環境 Network access 加入 Allowed domains 後重跑文獻階段 |
+| D-010 | Leduc 2025 判定：**未確認（僅摘要）**。摘要線索偏 C（"transient response is dictated by the digital portion"、核心創新是數位逼近演算法），但穩態電流由誰供應、DC 精度由誰決定、數位迴路穩態是否停止，摘要都沒寫 | 使用者規則：查不到全文就標未確認，不准猜 | 架構建議 | 有效 |
