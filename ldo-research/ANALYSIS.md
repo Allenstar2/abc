@@ -283,3 +283,10 @@ Z_out,cl ≈ 1 / (gm_c · gm_p · R_X)
 → 量測板**不要**在 Vout 腳放去耦電容（或設計時就把它納入補償）；這也影響 G1：監測 buffer 要能在不加板上電容的情況下驅動 pad＋探棒（審查者估 1 ns 邊沿需 3–10 mA 的 buffer 偏壓）[X/H，審查者 `r2_9_monitor.json`]。
 
 **高溫輕載漏電失效可能是 PTM 假象**：審查者發現 |Vthp| 增加 50 mV 時失效即消失（`r2_6_ptm_leak.json`、`r2_7_vth_real.json`）[X，審查者]。真實 0.18 µm PDK 的 PMOS |Vth| 與 DIBL 需以平台模型確認，**A1 失效情境 1 降級為「待 PDK 確認」**。
+
+## 附：第 3 輪審查後的 B 架構補充
+
+1. **照本報告同步器規則實作的 B**（2 級同步器＋÷3，`s20_fairB_sync.py`）[X]：5→95 mA、100 ns 邊沿 undershoot 180 mV（A 127 mV，+41%）；卸載後回到 ±1% 需 2.3 µs（A 0.145 µs）。
+2. **卸載自造下陷**：95→5 mA 後 Vout 先衝到 ~1.79 V，類比 pass 被推到全關（pg=1.8 V）、EA 飽和；數位仍依 DN 每 3 個時脈移除一片，最後一片關掉時類比迴路還沒從飽和回來，Vout 掉到 1.07 V（比穩態低 ~530 mV）[X，`sim/figs/x7_B_release_dip.png`]。第 3 輪 (c) 的電晶體級交叉檢查為 0.13–0.6 V。**設計規則 [D]**：DN 要再 AND「類比迴路不在飽和（例如 pg < VH_sat 或 Vout 已回到標稱 ±δ）」，或放慢 slice 關閉讓類比迴路跟上。
+3. **非同步 droop 路徑**（第 3 輪 (c)，行為模型＋電晶體級交叉檢查）：弛張振盪的機制是「同步減片自造的下陷重新觸發 droop」；充分的不振盪條件是「任何自己減片造成的暫態都不能觸發 droop」——實作上每次同步減片後遮蔽 droop 1 µs（10 個時脈的計數器）；行為模型 18 種設定 0/64 失效、100 ns undershoot 145→59 mV [X，審查者行為模型；電路級未驗證]。
+4. **NMOS-pass 子類**（第 3 輪 (c)，同 Vout 1.0 V 比較）：PSR = G_ol/(1+T)，PMOS-pass 的 Miller Cc 讓閘極跟著 Vout，使開迴路 Vin→Vout 在高頻約 0 dB；NMOS-pass 只剩 gds 與 Cgd/Cc 饋通 → 10 MHz 好 13.5–20 dB；但低頻 NMOS 的 G_ol 較大、T 較小 → 1 kHz 差 24–42 dB [X，審查者；D]。

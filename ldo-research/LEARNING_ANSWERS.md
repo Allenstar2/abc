@@ -86,7 +86,7 @@ REF-A −38.2 dB；REF-B（5 片導通）−18.8 dB，差 19 dB。導通的 slic
 10. Source follower 把 pg 節點的阻抗降到 ~1/gm_b（~1 kΩ），pg 極點推到 20–30 MHz。**不對稱**：PMOS SF 往下拉靠 SF 電晶體（強），往上拉只靠 50 µA 電流源（50 µA/7.9 pF ≈ 6.3 V/µs），所以卸載 overshoot 回復慢。
 11. 不行。REF-A 100 mA 時 TT 27 °C 下 Vin=1.674 V 已掉 1%，SS 125 °C 下 1.716 V 就掉（Vin 只降 4.7%）。若 Vout 改 1.4 V，最低 Vin 變 1.508/1.560 V，滿載迴路增益多 15 dB、PSRR@1 kHz 好 13 dB（`s17_spec_alt.py`）。要問教授 Vin 的來源、容差與 Vout 是否可調。
 12. 中頻（UGF 附近 1–3 MHz）最差，接近 0 dB；高頻靠 CL 分流，但滿載 gds_p/(2πCL) 轉折在 ~400 MHz，所以 10–100 MHz 都在 0 dB 附近。改善：增加 EA 增益與頻寬、feedforward ripple cancellation（Park 2014 的方向）、NMOS pass（需 charge pump）、加大 CL。
-13. 會。條件是窗口電流 > 一片電流（加比較器 offset 與溫漂餘裕），否則約一半負載範圍會 limit cycle（H3、X3a）；若加了 d 級同步器，還要每 d+1 個時脈才更新（`s13`）。另外每次切換是一次 12 mA 的快速負載步階，造成 34–83 mV 尖峰（依 slice 邊沿）。
+13. 會。條件是窗口電流 > 一片電流（加比較器 offset 與溫漂餘裕），否則約一半負載範圍會 limit cycle（H3、X3a）；若加了 d 級同步器，還要每 d+1 個時脈才更新（`s13`）；另外卸載時類比迴路飽和下仍移除 slice 會自造 ~530 mV 下陷（`s20`），DN 要等類比迴路脫離飽和。另外每次切換是一次 12 mA 的快速負載步階，造成 34–83 mV 尖峰（依 slice 邊沿）。
 14. **未確認**。只讀到摘要：有「transient response is dictated by the digital portion」與數位逼近演算法等偏 C 線索，但穩態誰供電、DC 精度誰決定、數位穩態是否停止都沒寫。要讀全文或 Leduc 的碩士論文才能判定。
 15. 用閘級：雙向 thermometer shift register 每位元＝1 DFF＋3 AND2＋1 OR3（本次 XSPICE 就是這個結構）；比較器用連續比較器＋2 級 DFF 同步器，**而且 shift register 要每 3 個時脈才更新一次**（否則同步器延遲會造成 limit cycle：`s13` 電路級 2 級同步器 26/31 負載點振盪 → 加 ÷3 後 0/31）；時脈從外部輸入。驗證：LTspice 電晶體級跑代表性情境（加片、減片、hold、上電）。XSPICE 沒有 metastability 與 setup/hold 違規，要另外用電晶體級檢查。
 16. 只能看趨勢。lmin=lmax=0.18 µm 代表 L≠0.18 µm 是外插；本次量到 gm/gds 隨 L 增加（NMOS 12→59→97）方向合理，但 Vth 對 L 不單調（0.41→0.50→0.45 V）。而且沒有 corner、沒有 mismatch 模型。下線前一定要換成平台的 PDK 重做。
