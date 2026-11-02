@@ -26,7 +26,8 @@ def digital_block(p):
             prev_u, prev_d = lu, ld
         sync_block = "* 比較器輸出同步器（{} 級 DFF）\n".format(p["sync"]) + "\n".join(lines)
     else:
-        sync_block = ".model bufd d_buffer(rise_delay=1e-11 fall_delay=1e-11)\nAbu up0 up bufd\nAbd dn0 dn bufd"
+        sync_block = "* 無同步器"
+    legacy = p.get("sync", 0) == 0 and p.get("reg_div", 1) == 1   # 與最初版本（X3a–X3e）完全相同的 netlist
     s = [f"""
 Vclk clka 0 PULSE(0 1.8 {T/2} 0.1n 0.1n {T/2-0.1e-9} {T})
 Vclkr clkra 0 PULSE(0 1.8 {T/2+1e-9} 0.1n 0.1n {T*p['reg_div']/2-0.1e-9} {T*p['reg_div']})
@@ -52,7 +53,12 @@ Ahold [up dn] hold nor2
         s.append(f"Aa{i} [up q{i-1}] a{i} and2\nAb{i} [dn q{i+1}] b{i} and2\nAc{i} [hold q{i}] c{i} and2\n"
                  f"Ao{i} [a{i} b{i} c{i}] d{i} or3\nAf{i} d{i} clkr NULL NULL q{i} qb{i} dff1\n"
                  f"Adac{i} [qb{i}] [g{i}] dacb\nMs{i} vout g{i} vin vin PMOS W={p['Ws']}u L=0.18u\n")
-    return "\n".join(s)
+    txt = "\n".join(s)
+    if legacy:
+        txt = (txt.replace("Aadc [clka upa dna clkra] [clk up0 dn0 clkr] adcb", "Aadc [clka upa dna] [clk up dn] adcb")
+                  .replace(" clkr NULL NULL q", " clk NULL NULL q"))
+        txt = "\n".join(l for l in txt.splitlines() if not l.startswith("Vclkr "))
+    return txt
 
 
 def hybrid_netlist(p, load_src, tstop, tstep, name, save_codes=True):

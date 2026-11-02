@@ -60,17 +60,17 @@ adac3#branch_1_0                             0
 adac2#branch_1_0                             0
 adac1#branch_1_0                             0
 
- Reference value :  1.56000e-05
- Reference value :  3.22165e-05
- Reference value :  4.73316e-05
- Reference value :  6.21500e-05
- Reference value :  7.56511e-05
- Reference value :  9.05500e-05
- Reference value :  1.06700e-04
- Reference value :  1.21851e-04
- Reference value :  1.37886e-04
- Reference value :  1.55000e-04
- Reference value :  1.71866e-04
+ Reference value :  1.82475e-05
+ Reference value :  3.55521e-05
+ Reference value :  5.21017e-05
+ Reference value :  6.77501e-05
+ Reference value :  8.23083e-05
+ Reference value :  9.84465e-05
+ Reference value :  1.13500e-04
+ Reference value :  1.29950e-04
+ Reference value :  1.46686e-04
+ Reference value :  1.63601e-04
+ Reference value :  1.79751e-04
 No. of Data Rows : 82674
 ngspice-42 done
 Warning: Model issue on line 5 :
