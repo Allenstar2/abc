@@ -1,0 +1,14 @@
+* slice
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+VS s 0 1.8
+VD d 0 1.6
+VG g 0 0
+M1 d g s s PMOS W=130u L=0.18u
+.control
+op
+print -i(VS)
+dc VD 1.4 1.75 0.05
+print -i(VS)
+quit
+.endc
+.end

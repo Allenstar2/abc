@@ -1,0 +1,264 @@
+{
+ "X3a": [
+  {
+   "window": "wide(3–18mA)",
+   "fclk_MHz": 1.0,
+   "plateaus": [
+    {
+     "IL_mA": 20.0,
+     "code_final": 1,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5979335799999996
+    },
+    {
+     "IL_mA": 45.0,
+     "code_final": 3,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5977662000000001
+    },
+    {
+     "IL_mA": 70.0,
+     "code_final": 5,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 7.999999995789153e-05,
+     "vout_mean": 1.5976139037823838
+    },
+    {
+     "IL_mA": 95.0,
+     "code_final": 7,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.000830000000062725,
+     "vout_mean": 1.5974744745062834
+    }
+   ]
+  },
+  {
+   "window": "wide(3–18mA)",
+   "fclk_MHz": 10.0,
+   "plateaus": [
+    {
+     "IL_mA": 20.0,
+     "code_final": 1,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5979335799999996
+    },
+    {
+     "IL_mA": 45.0,
+     "code_final": 3,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5977662000000001
+    },
+    {
+     "IL_mA": 70.0,
+     "code_final": 5,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5976139
+    },
+    {
+     "IL_mA": 95.0,
+     "code_final": 7,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 3.0000000039720476e-05,
+     "vout_mean": 1.5974744215531913
+    }
+   ]
+  },
+  {
+   "window": "wide(3–18mA)",
+   "fclk_MHz": 50.0,
+   "plateaus": [
+    {
+     "IL_mA": 20.0,
+     "code_final": 1,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5979335799999996
+    },
+    {
+     "IL_mA": 45.0,
+     "code_final": 3,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5977662
+    },
+    {
+     "IL_mA": 70.0,
+     "code_final": 5,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5976139
+    },
+    {
+     "IL_mA": 95.0,
+     "code_final": 7,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 2.0000000100495186e-05,
+     "vout_mean": 1.5974744209024785
+    }
+   ]
+  },
+  {
+   "window": "narrow(8–14mA)",
+   "fclk_MHz": 1.0,
+   "plateaus": [
+    {
+     "IL_mA": 20.0,
+     "code_final": 0,
+     "code_toggles_last5us": 5,
+     "vout_pp_mV": 229.39358999999993,
+     "vout_mean": 1.5887406559389141
+    },
+    {
+     "IL_mA": 45.0,
+     "code_final": 3,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0001300000000981072,
+     "vout_mean": 1.5977662070169492
+    },
+    {
+     "IL_mA": 70.0,
+     "code_final": 5,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 7.999999995789153e-05,
+     "vout_mean": 1.5976139037823838
+    },
+    {
+     "IL_mA": 95.0,
+     "code_final": 7,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.000830000000062725,
+     "vout_mean": 1.5974744745062834
+    }
+   ]
+  },
+  {
+   "window": "narrow(8–14mA)",
+   "fclk_MHz": 10.0,
+   "plateaus": [
+    {
+     "IL_mA": 20.0,
+     "code_final": 0,
+     "code_toggles_last5us": 14,
+     "vout_pp_mV": 215.95359000000002,
+     "vout_mean": 1.5892030306507303
+    },
+    {
+     "IL_mA": 45.0,
+     "code_final": 3,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5977662000000001
+    },
+    {
+     "IL_mA": 70.0,
+     "code_final": 5,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5976139
+    },
+    {
+     "IL_mA": 95.0,
+     "code_final": 7,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 9.99999993922529e-06,
+     "vout_mean": 1.5974744204893616
+    }
+   ]
+  },
+  {
+   "window": "narrow(8–14mA)",
+   "fclk_MHz": 50.0,
+   "plateaus": [
+    {
+     "IL_mA": 20.0,
+     "code_final": 0,
+     "code_toggles_last5us": 21,
+     "vout_pp_mV": 190.77841000000006,
+     "vout_mean": 1.5864390238578199
+    },
+    {
+     "IL_mA": 45.0,
+     "code_final": 3,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5977662
+    },
+    {
+     "IL_mA": 70.0,
+     "code_final": 5,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.5976139
+    },
+    {
+     "IL_mA": 95.0,
+     "code_final": 7,
+     "code_toggles_last5us": 0,
+     "vout_pp_mV": 0.0,
+     "vout_mean": 1.59747442
+    }
+   ]
+  }
+ ],
+ "X3b": [
+  {
+   "arch": "REF-A (Wp=4mm)",
+   "edge_ns": 1.0,
+   "undershoot_mV": 498.93591000000015,
+   "overshoot_mV": 196.7520300000003
+  },
+  {
+   "arch": "REF-B fclk=10MHz",
+   "edge_ns": 1.0,
+   "undershoot_mV": 756.2453230000004,
+   "overshoot_mV": 190.70542999999952,
+   "code_after": 7
+  },
+  {
+   "arch": "REF-B fclk=50MHz",
+   "edge_ns": 1.0,
+   "undershoot_mV": 756.258514,
+   "overshoot_mV": 190.70542999999995,
+   "code_after": 7
+  },
+  {
+   "arch": "REF-A (Wp=4mm)",
+   "edge_ns": 100.0,
+   "undershoot_mV": 127.48957999999999,
+   "overshoot_mV": 176.63706000000002
+  },
+  {
+   "arch": "REF-B fclk=10MHz",
+   "edge_ns": 100.0,
+   "undershoot_mV": 313.07551,
+   "overshoot_mV": 188.20265000000003,
+   "code_after": 7
+  },
+  {
+   "arch": "REF-B fclk=50MHz",
+   "edge_ns": 100.0,
+   "undershoot_mV": 237.56657000000004,
+   "overshoot_mV": 181.72444999999993,
+   "code_after": 7
+  }
+ ],
+ "X3c": {
+  "REF-A_70mA": {
+   "1000": -38.2,
+   "100000": -25.6,
+   "1e+06": -6.7,
+   "1e+07": 0.6
+  },
+  "REF-B_70mA_code5": {
+   "1000": -18.8,
+   "100000": -13.3,
+   "1e+06": -0.5,
+   "1e+07": 0.8
+  }
+ }
+}

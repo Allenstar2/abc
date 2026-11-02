@@ -1,0 +1,47 @@
+* x3c_B
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+
+.subckt ldoA vin vout vref fb fbi
+Ibias vin bn 1e-05
+Mbn bn bn 0 0 NMOS W=4u L=1u
+Mt tail bn 0 0 NMOS W=8u L=1u
+M1 d1 fbi tail 0 NMOS W=20u L=1.0u
+M2 ea vref tail 0 NMOS W=20u L=1.0u
+M3 d1 d1 vin vin PMOS W=4u L=1.0u
+M4 ea d1 vin vin PMOS W=4u L=1.0u
+Mbn2 bp bn 0 0 NMOS W=4u L=1u
+Mbp bp bp vin vin PMOS W=4u L=1u
+Mcs pg bp vin vin PMOS W=20u L=1u
+Mb 0 ea pg pg PMOS W=20u L=0.18u
+Mp vout pg vin vin PMOS W=800u L=0.18u
+R1 vout fb 4000.0
+R2 fb 0 4000.0
+Cc vout ea 5e-12
+.ends
+
+VIN vin 0 DC 1.8 AC 1
+VREF vref 0 0.8
+X1 vin vout vref fb fb ldoA
+Ms1 vout g1 vin vin PMOS W=130u L=0.18u
+Vg1 g1 0 0
+Ms2 vout g2 vin vin PMOS W=130u L=0.18u
+Vg2 g2 0 0
+Ms3 vout g3 vin vin PMOS W=130u L=0.18u
+Vg3 g3 0 0
+Ms4 vout g4 vin vin PMOS W=130u L=0.18u
+Vg4 g4 0 0
+Ms5 vout g5 vin vin PMOS W=130u L=0.18u
+Vg5 g5 0 0
+Ms6 vout vin vin vin PMOS W=130u L=0.18u
+Ms7 vout vin vin vin PMOS W=130u L=0.18u
+Ms8 vout vin vin vin PMOS W=130u L=0.18u
+CL vout 0 1e-10
+IL vout 0 DC 0.07
+.control
+op
+print v(vout) v(x1.pg)
+ac dec 20 10 1e9
+wrdata /home/user/abc/ldo-research/sim/results/x3c_B.txt v(vout)
+quit
+.endc
+.end

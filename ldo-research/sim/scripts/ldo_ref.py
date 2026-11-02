@@ -49,7 +49,7 @@ R2 fb 0 {p['R2']}
 
 
 def header(p, title):
-    return f"* {title}\n.include {MODEL}\n.options temp={p['temp']} reltol=1e-4 abstol=1e-12 vntol=1e-7\n" + subckt(p)
+    return f"* {title}\n.include {p.get('model', MODEL)}\n.options temp={p['temp']} reltol=1e-4 abstol=1e-12 vntol=1e-7\n" + subckt(p)
 
 
 def loopgain(p, Iload, name, closed_psrr=True):
