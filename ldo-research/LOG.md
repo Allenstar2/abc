@@ -14,3 +14,4 @@
 - 2026-11-02 17:16:45 UTC — run_all.sh 在隔離副本完整重跑 1m53s，s2/x2/x3/s8 json 與 repo 版本位元相同。補 SRE 與 learn 步驟。REFERENCES.md 由 make_refs.py 產生；D03 補資料集 DOI。
 - 2026-11-02 17:18:13 UTC — 使用者新增需求：研究 HBM 與高速 SerDes 用的 LDO（明天要看）。因同時上限 4 個 subagent（目前 3 個審查在跑），先開 agent5（HBM）；SerDes 等空位再開。網路仍擋學術網站，新文獻同樣僅摘要。我自己先做一個可模擬的連結：0.18µm ring VCO 的 Kvdd 與 REF-A PSRR → 供電漣波造成的 jitter/spur。
 - 2026-11-02 17:19:44 UTC — 第 1 輪 (b) 完成並修正 23 項；開 agent6（SerDes）。REVIEW_LOG.md 建立。
+- 2026-11-02 17:21:30 UTC — X5（SerDes 連結）：7 級 ring f0=764 MHz、Kvdd=440 MHz/V、平均 0.43 mA。Vin 10 mV@1 MHz：無 LDO 峰值 TIE 925 ps（解析 916），經 REF-A 335 ps（解析 339），手算 vs 模擬差 ≈1%。REF-A PSRR@1 MHz 只有 −8.6 dB、@10 MHz +1.3 dB（放大）。

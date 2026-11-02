@@ -1,0 +1,23 @@
+* x5 direct
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options reltol=1e-4
+VDD vdd 0 SIN(1.6 0.01 1000000.0 2e-06)
+.subckt inv a y vdd
+Mn y a 0 0 NMOS W=1u L=0.18u
+Mp y a vdd vdd PMOS W=2.5u L=0.18u
+Cn y 0 30f
+.ends
+Xr0 n0 n1 vdd inv
+Xr1 n1 n2 vdd inv
+Xr2 n2 n3 vdd inv
+Xr3 n3 n4 vdd inv
+Xr4 n4 n5 vdd inv
+Xr5 n5 n6 vdd inv
+Xr6 n6 n0 vdd inv
+.ic v(n0)=0
+.control
+tran 5p 7.000000000000001e-06 0 10p uic
+wrdata /home/user/abc/ldo-research/sim/results/x5_direct.txt v(n0) v(vdd)
+quit
+.endc
+.end

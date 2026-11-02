@@ -1,0 +1,45 @@
+* x5 ldo
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options reltol=1e-4
+
+.subckt ldoA vin vout vref fb fbi
+Ibias vin bn 1e-05
+Mbn bn bn 0 0 NMOS W=4u L=1u
+Mt tail bn 0 0 NMOS W=8u L=1u
+M1 d1 fbi tail 0 NMOS W=20u L=1.0u
+M2 ea vref tail 0 NMOS W=20u L=1.0u
+M3 d1 d1 vin vin PMOS W=4u L=1.0u
+M4 ea d1 vin vin PMOS W=4u L=1.0u
+Mbn2 bp bn 0 0 NMOS W=4u L=1u
+Mbp bp bp vin vin PMOS W=4u L=1u
+Mcs pg bp vin vin PMOS W=20u L=1u
+Mb 0 ea pg pg PMOS W=20u L=0.18u
+Mp vout pg vin vin PMOS W=4000u L=0.18u
+R1 vout fb 4000.0
+R2 fb 0 4000.0
+Cc vout ea 5e-12
+.ends
+
+VIN vin 0 SIN(1.8 0.01 1000000.0 2e-06)
+VREF vref 0 0.8
+X1 vin vdd vref fb fb ldoA
+CL vdd 0 1e-10
+.subckt inv a y vdd
+Mn y a 0 0 NMOS W=1u L=0.18u
+Mp y a vdd vdd PMOS W=2.5u L=0.18u
+Cn y 0 30f
+.ends
+Xr0 n0 n1 vdd inv
+Xr1 n1 n2 vdd inv
+Xr2 n2 n3 vdd inv
+Xr3 n3 n4 vdd inv
+Xr4 n4 n5 vdd inv
+Xr5 n5 n6 vdd inv
+Xr6 n6 n0 vdd inv
+.ic v(n0)=0
+.control
+tran 5p 7.000000000000001e-06 0 10p uic
+wrdata /home/user/abc/ldo-research/sim/results/x5_ldo.txt v(n0) v(vdd)
+quit
+.endc
+.end

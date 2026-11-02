@@ -17,6 +17,8 @@ echo "[5d] 規格敏感度 Imax×CL"; python3 s8_sensitivity.py | tee ../results
 echo "[6] 粗略 corner/溫度趨勢";                    python3 s6_corners.py > ../results/run_s6.txt
 echo "[8] 實驗 X4：首選架構的 SRE";               python3 s9_sre.py | tee ../results/run_s9.txt
 echo "[8b] SRE 參數掃描";                          python3 s9b_sre_sweep.py | tee ../results/run_s9b.txt
+echo "[8c] 實驗 X5：VCO 供電漣波→jitter";             python3 s10_vco_supply.py | tee ../results/run_s10.txt
+echo "[8d] 補充查核";                              python3 s11_misc_checks.py > ../results/run_s11.txt
 echo "[9] LEARNING 實驗";                          python3 learn.py all > ../results/run_learn.txt
 if [ -d ../../ext/DLDO-survey ]; then
   echo "[7] DLDO 資料集統計";                        python3 s7_dataset_stats.py | tee ../results/run_s7.txt
