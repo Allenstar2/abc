@@ -1,0 +1,17 @@
+{
+ "B_fair_nosync": {
+  "undershoot_mV": 153.7,
+  "overshoot_mV": 186.0,
+  "recovery_1pct_us": 0.798
+ },
+ "B_fair_sync2_div3": {
+  "undershoot_mV": 179.8,
+  "overshoot_mV": 187.8,
+  "recovery_1pct_us": 2.301
+ },
+ "A": {
+  "undershoot_mV": 127.4,
+  "overshoot_mV": 168.3,
+  "recovery_1pct_us": 0.145
+ }
+}

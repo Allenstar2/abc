@@ -1,0 +1,98 @@
+[
+ {
+  "Vout": 1.6,
+  "edge_ns": 1.0,
+  "undershoot_mV": 742.2,
+  "overshoot_mV": 206.4,
+  "overshoot_pct": 12.9,
+  "v_peak": 1.8
+ },
+ {
+  "Vout": 1.6,
+  "edge_ns": 10.0,
+  "undershoot_mV": 449.6,
+  "overshoot_mV": 206.4,
+  "overshoot_pct": 12.9,
+  "v_peak": 1.8
+ },
+ {
+  "Vout": 1.6,
+  "edge_ns": 100.0,
+  "undershoot_mV": 235.5,
+  "overshoot_mV": 205.6,
+  "overshoot_pct": 12.8,
+  "v_peak": 1.799
+ },
+ {
+  "Vout": 1.6,
+  "edge_ns": 1000.0,
+  "undershoot_mV": 111.0,
+  "overshoot_mV": 131.1,
+  "overshoot_pct": 8.2,
+  "v_peak": 1.724
+ },
+ {
+  "Vout": 1.4,
+  "edge_ns": 1.0,
+  "undershoot_mV": 743.0,
+  "overshoot_mV": 404.0,
+  "overshoot_pct": 28.9,
+  "v_peak": 1.799
+ },
+ {
+  "Vout": 1.4,
+  "edge_ns": 10.0,
+  "undershoot_mV": 453.3,
+  "overshoot_mV": 403.8,
+  "overshoot_pct": 28.8,
+  "v_peak": 1.799
+ },
+ {
+  "Vout": 1.4,
+  "edge_ns": 100.0,
+  "undershoot_mV": 240.7,
+  "overshoot_mV": 318.4,
+  "overshoot_pct": 22.7,
+  "v_peak": 1.714
+ },
+ {
+  "Vout": 1.4,
+  "edge_ns": 1000.0,
+  "undershoot_mV": 116.0,
+  "overshoot_mV": 125.4,
+  "overshoot_pct": 9.0,
+  "v_peak": 1.521
+ },
+ {
+  "Vout": 1.2,
+  "edge_ns": 1.0,
+  "undershoot_mV": 746.1,
+  "overshoot_mV": 602.1,
+  "overshoot_pct": 50.2,
+  "v_peak": 1.799
+ },
+ {
+  "Vout": 1.2,
+  "edge_ns": 10.0,
+  "undershoot_mV": 458.2,
+  "overshoot_mV": 600.7,
+  "overshoot_pct": 50.1,
+  "v_peak": 1.797
+ },
+ {
+  "Vout": 1.2,
+  "edge_ns": 100.0,
+  "undershoot_mV": 246.7,
+  "overshoot_mV": 298.2,
+  "overshoot_pct": 24.8,
+  "v_peak": 1.495
+ },
+ {
+  "Vout": 1.2,
+  "edge_ns": 1000.0,
+  "undershoot_mV": 121.1,
+  "overshoot_mV": 119.3,
+  "overshoot_pct": 9.9,
+  "v_peak": 1.316
+ }
+]

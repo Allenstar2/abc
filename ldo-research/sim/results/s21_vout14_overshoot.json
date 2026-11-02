@@ -1,0 +1,30 @@
+{
+ "1.6": {
+  "1ns": {
+   "undershoot": 742.2,
+   "overshoot": 206.4
+  },
+  "10ns": {
+   "undershoot": 449.6,
+   "overshoot": 206.4
+  },
+  "100ns": {
+   "undershoot": 235.5,
+   "overshoot": 205.6
+  }
+ },
+ "1.4": {
+  "1ns": {
+   "undershoot": 743.0,
+   "overshoot": 404.0
+  },
+  "10ns": {
+   "undershoot": 453.3,
+   "overshoot": 403.8
+  },
+  "100ns": {
+   "undershoot": 240.7,
+   "overshoot": 318.4
+  }
+ }
+}

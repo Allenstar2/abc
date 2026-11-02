@@ -1,0 +1,164 @@
+[
+ {
+  "IL_mA": 10.0,
+  "vin_low": 1.7,
+  "edge_ns": 100.0,
+  "vout_pre": 1.601,
+  "vout_in_dip": 1.6007,
+  "pg_in_dip": 1.303,
+  "overshoot_after_mV": 53.5
+ },
+ {
+  "IL_mA": 10.0,
+  "vin_low": 1.7,
+  "edge_ns": 1000.0,
+  "vout_pre": 1.601,
+  "vout_in_dip": 1.6007,
+  "pg_in_dip": 1.303,
+  "overshoot_after_mV": 6.2
+ },
+ {
+  "IL_mA": 10.0,
+  "vin_low": 1.7,
+  "edge_ns": 10000.0,
+  "vout_pre": 1.601,
+  "vout_in_dip": 1.6007,
+  "pg_in_dip": 1.303,
+  "overshoot_after_mV": 0.6
+ },
+ {
+  "IL_mA": 10.0,
+  "vin_low": 1.65,
+  "edge_ns": 100.0,
+  "vout_pre": 1.601,
+  "vout_in_dip": 1.5997,
+  "pg_in_dip": 1.218,
+  "overshoot_after_mV": 95.5
+ },
+ {
+  "IL_mA": 10.0,
+  "vin_low": 1.65,
+  "edge_ns": 1000.0,
+  "vout_pre": 1.601,
+  "vout_in_dip": 1.5997,
+  "pg_in_dip": 1.218,
+  "overshoot_after_mV": 9.3
+ },
+ {
+  "IL_mA": 10.0,
+  "vin_low": 1.65,
+  "edge_ns": 10000.0,
+  "vout_pre": 1.601,
+  "vout_in_dip": 1.5997,
+  "pg_in_dip": 1.218,
+  "overshoot_after_mV": 0.9
+ },
+ {
+  "IL_mA": 10.0,
+  "vin_low": 1.6,
+  "edge_ns": 100.0,
+  "vout_pre": 1.601,
+  "vout_in_dip": 1.5884,
+  "pg_in_dip": 0.829,
+  "overshoot_after_mV": 184.1
+ },
+ {
+  "IL_mA": 10.0,
+  "vin_low": 1.6,
+  "edge_ns": 1000.0,
+  "vout_pre": 1.601,
+  "vout_in_dip": 1.5885,
+  "pg_in_dip": 0.825,
+  "overshoot_after_mV": 12.5
+ },
+ {
+  "IL_mA": 10.0,
+  "vin_low": 1.6,
+  "edge_ns": 10000.0,
+  "vout_pre": 1.601,
+  "vout_in_dip": 1.5887,
+  "pg_in_dip": 0.817,
+  "overshoot_after_mV": 1.2
+ },
+ {
+  "IL_mA": 100.0,
+  "vin_low": 1.7,
+  "edge_ns": 100.0,
+  "vout_pre": 1.5932,
+  "vout_in_dip": 1.5877,
+  "pg_in_dip": 0.843,
+  "overshoot_after_mV": 81.2
+ },
+ {
+  "IL_mA": 100.0,
+  "vin_low": 1.7,
+  "edge_ns": 1000.0,
+  "vout_pre": 1.5932,
+  "vout_in_dip": 1.5877,
+  "pg_in_dip": 0.843,
+  "overshoot_after_mV": 11.7
+ },
+ {
+  "IL_mA": 100.0,
+  "vin_low": 1.7,
+  "edge_ns": 10000.0,
+  "vout_pre": 1.5932,
+  "vout_in_dip": 1.5877,
+  "pg_in_dip": 0.843,
+  "overshoot_after_mV": 1.0
+ },
+ {
+  "IL_mA": 100.0,
+  "vin_low": 1.65,
+  "edge_ns": 100.0,
+  "vout_pre": 1.5932,
+  "vout_in_dip": 1.5586,
+  "pg_in_dip": 0.671,
+  "overshoot_after_mV": 106.8
+ },
+ {
+  "IL_mA": 100.0,
+  "vin_low": 1.65,
+  "edge_ns": 1000.0,
+  "vout_pre": 1.5932,
+  "vout_in_dip": 1.5586,
+  "pg_in_dip": 0.671,
+  "overshoot_after_mV": 21.7
+ },
+ {
+  "IL_mA": 100.0,
+  "vin_low": 1.65,
+  "edge_ns": 10000.0,
+  "vout_pre": 1.5932,
+  "vout_in_dip": 1.5586,
+  "pg_in_dip": 0.671,
+  "overshoot_after_mV": 1.5
+ },
+ {
+  "IL_mA": 100.0,
+  "vin_low": 1.6,
+  "edge_ns": 100.0,
+  "vout_pre": 1.5932,
+  "vout_in_dip": 1.5074,
+  "pg_in_dip": 0.63,
+  "overshoot_after_mV": 109.1
+ },
+ {
+  "IL_mA": 100.0,
+  "vin_low": 1.6,
+  "edge_ns": 1000.0,
+  "vout_pre": 1.5932,
+  "vout_in_dip": 1.5074,
+  "pg_in_dip": 0.63,
+  "overshoot_after_mV": 34.2
+ },
+ {
+  "IL_mA": 100.0,
+  "vin_low": 1.6,
+  "edge_ns": 10000.0,
+  "vout_pre": 1.5932,
+  "vout_in_dip": 1.5074,
+  "pg_in_dip": 0.63,
+  "overshoot_after_mV": 2.0
+ }
+]

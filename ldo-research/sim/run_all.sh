@@ -27,6 +27,7 @@ echo "[8i] Rz 角落穩健度";                          python3 s16_rz_robust.p
 echo "[8j] 規格替代 Vout 1.4 V";                     python3 s17_spec_alt.py > ../results/run_s17.txt
 echo "[8k] 板上 Vout 電容對穩定度";                 python3 s18_offchip_cap.py | tee ../results/run_s18.txt
 echo "[8l] 補充可重現數字";                          python3 s19_repro_misc.py | tee ../results/run_s19.txt
+echo "[8m] 照規則加同步器的公平 B（s20）、Vout 1.4 V 過衝（s21）"; python3 s20_fairB_sync.py | tee ../results/run_s20.txt; python3 s21_vout14_overshoot.py | tee ../results/run_s21.txt
 echo "[9] LEARNING 實驗";                          python3 learn.py all > ../results/run_learn.txt
 if [ -d ../../ext/DLDO-survey ]; then
   echo "[7] DLDO 資料集統計";                        python3 s7_dataset_stats.py | tee ../results/run_s7.txt

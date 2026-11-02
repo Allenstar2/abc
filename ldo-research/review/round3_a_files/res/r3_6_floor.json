@@ -1,0 +1,50 @@
+[
+ {
+  "pass_type": "NMOS SF, ideal gate",
+  "W_um": 4000,
+  "edge_ns": 1.0,
+  "Vg": 1.339,
+  "undershoot_mV": 256.4,
+  "static_dV_mV": 256.4
+ },
+ {
+  "pass_type": "NMOS SF, ideal gate",
+  "W_um": 4000,
+  "edge_ns": 0.1,
+  "Vg": 1.339,
+  "undershoot_mV": 256.4,
+  "static_dV_mV": 256.4
+ },
+ {
+  "pass_type": "NMOS SF, ideal gate",
+  "W_um": 8000,
+  "edge_ns": 1.0,
+  "Vg": 1.316,
+  "undershoot_mV": 228.6,
+  "static_dV_mV": 228.6
+ },
+ {
+  "pass_type": "NMOS SF, ideal gate",
+  "W_um": 8000,
+  "edge_ns": 0.1,
+  "Vg": 1.316,
+  "undershoot_mV": 228.6,
+  "static_dV_mV": 228.6
+ },
+ {
+  "pass_type": "NMOS SF, ideal gate",
+  "W_um": 16000,
+  "edge_ns": 1.0,
+  "Vg": 1.293,
+  "undershoot_mV": 210.6,
+  "static_dV_mV": 210.6
+ },
+ {
+  "pass_type": "NMOS SF, ideal gate",
+  "W_um": 16000,
+  "edge_ns": 0.1,
+  "Vg": 1.293,
+  "undershoot_mV": 210.6,
+  "static_dV_mV": 210.6
+ }
+]

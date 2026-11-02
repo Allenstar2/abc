@@ -1,0 +1,71 @@
+[
+ {
+  "overshoot_mV": 188.3,
+  "v_peak": 1.7904,
+  "v_final": 1.6021,
+  "t_rec_16mV_ns": 192.8,
+  "t_rec_32mV_ns": 154.0,
+  "arch": "A (4 mm)",
+  "edge_ns": 1.0,
+  "undershoot_mV": 498.9
+ },
+ {
+  "overshoot_mV": 188.8,
+  "v_peak": 1.7901,
+  "v_final": 1.6013,
+  "t_rec_16mV_ns": 897.6,
+  "t_rec_32mV_ns": 858.6,
+  "arch": "fair B (10 MHz)",
+  "edge_ns": 1.0,
+  "undershoot_mV": 552.9,
+  "code_before_release": 7,
+  "code_end": 0,
+  "t_code_settle_ns": 650.8
+ },
+ {
+  "overshoot_mV": 168.2,
+  "v_peak": 1.7702,
+  "v_final": 1.6021,
+  "t_rec_16mV_ns": 137.6,
+  "t_rec_32mV_ns": 97.6,
+  "arch": "A (4 mm)",
+  "edge_ns": 100.0,
+  "undershoot_mV": 127.5
+ },
+ {
+  "overshoot_mV": 186.0,
+  "v_peak": 1.7873,
+  "v_final": 1.6013,
+  "t_rec_16mV_ns": 798.3,
+  "t_rec_32mV_ns": 758.3,
+  "arch": "fair B (10 MHz)",
+  "edge_ns": 100.0,
+  "undershoot_mV": 153.7,
+  "code_before_release": 7,
+  "code_end": 0,
+  "t_code_settle_ns": 651.8
+ },
+ {
+  "overshoot_mV": 36.6,
+  "v_peak": 1.6387,
+  "v_final": 1.6021,
+  "t_rec_16mV_ns": 32.1,
+  "t_rec_32mV_ns": 3.0,
+  "arch": "A (4 mm)",
+  "edge_ns": 1000.0,
+  "undershoot_mV": 27.4
+ },
+ {
+  "overshoot_mV": 55.3,
+  "v_peak": 1.6566,
+  "v_final": 1.6013,
+  "t_rec_16mV_ns": 9.3,
+  "t_rec_32mV_ns": -14.3,
+  "arch": "fair B (10 MHz)",
+  "edge_ns": 1000.0,
+  "undershoot_mV": 32.9,
+  "code_before_release": 7,
+  "code_end": 0,
+  "t_code_settle_ns": 952.3
+ }
+]

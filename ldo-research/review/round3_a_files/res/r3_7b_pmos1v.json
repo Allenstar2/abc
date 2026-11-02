@@ -1,0 +1,108 @@
+[
+ {
+  "arch": "A1 PMOS, Vout 1.0 V",
+  "Wp_um": 1000,
+  "pm_0_1_10_100mA": [
+   60.3,
+   81.4,
+   86.5,
+   87.5
+  ],
+  "psrr_100mA": {
+   "1000": -37.0,
+   "100000": -30.3,
+   "1e+06": -11.5,
+   "1e+07": 0.1,
+   "1e+08": 1.2
+  },
+  "step_0to100mA": {
+   "1ns": {
+    "undershoot_mV": 846.9,
+    "overshoot_mV": 808.2
+   },
+   "100ns": {
+    "undershoot_mV": 380.0,
+    "overshoot_mV": 453.1
+   },
+   "1000ns": {
+    "undershoot_mV": 96.7,
+    "overshoot_mV": 118.1
+   }
+  },
+  "minVin_100mA": 1.71
+ },
+ {
+  "arch": "A1 PMOS, Vout 1.0 V",
+  "Wp_um": 2000,
+  "pm_0_1_10_100mA": [
+   58.6,
+   80.8,
+   85.9,
+   86.6
+  ],
+  "psrr_100mA": {
+   "1000": -49.2,
+   "100000": -31.7,
+   "1e+06": -12.0,
+   "1e+07": 0.1,
+   "1e+08": 1.2
+  },
+  "step_0to100mA": {
+   "1ns": {
+    "undershoot_mV": 755.7,
+    "overshoot_mV": 802.2
+   },
+   "100ns": {
+    "undershoot_mV": 213.4,
+    "overshoot_mV": 303.5
+   },
+   "1000ns": {
+    "undershoot_mV": 97.8,
+    "overshoot_mV": 106.3
+   }
+  },
+  "minVin_100mA": 1.47
+ },
+ {
+  "arch": "A1 PMOS, Vout 1.0 V",
+  "Wp_um": 4000,
+  "pm_0_1_10_100mA": [
+   54.9,
+   78.8,
+   84.3,
+   84.8
+  ],
+  "psrr_100mA": {
+   "1000": -52.9,
+   "100000": -32.1,
+   "1e+06": -12.3,
+   "1e+07": 0.3,
+   "1e+08": 0.7
+  },
+  "step_0to100mA": {
+   "1ns": {
+    "undershoot_mV": 719.2,
+    "overshoot_mV": 784.4
+   },
+   "100ns": {
+    "undershoot_mV": 229.6,
+    "overshoot_mV": 271.8
+   },
+   "1000ns": {
+    "undershoot_mV": 105.3,
+    "overshoot_mV": 105.0
+   }
+  },
+  "minVin_100mA": 1.316
+ },
+ {
+  "arch": "A4 NMOS SF, Vout 1.0 V",
+  "Wn_um": 8000,
+  "minVin_100mA": 1.762
+ },
+ {
+  "arch": "A4 NMOS SF, Vout 1.0 V",
+  "Wn_um": 16000,
+  "minVin_100mA": 1.726
+ }
+]

@@ -1,0 +1,80 @@
+[
+ {
+  "overshoot_mV": 188.8,
+  "v_peak": 1.7901,
+  "v_final": 1.6013,
+  "t_rec_16mV_ns": 2499.1,
+  "t_rec_32mV_ns": 2459.6,
+  "arch": "fair B sync2+div3 (10 MHz)",
+  "edge_ns": 1.0,
+  "undershoot_mV": 552.9,
+  "code_at_95mA": 7,
+  "toggles_95mA_last3us": 0,
+  "toggles_5mA_last3us": 0
+ },
+ {
+  "overshoot_mV": 187.8,
+  "v_peak": 1.7892,
+  "v_final": 1.6013,
+  "t_rec_16mV_ns": 2301.1,
+  "t_rec_32mV_ns": 2258.3,
+  "arch": "fair B sync2+div3 (10 MHz)",
+  "edge_ns": 100.0,
+  "undershoot_mV": 179.8,
+  "code_at_95mA": 7,
+  "toggles_95mA_last3us": 0,
+  "toggles_5mA_last3us": 0
+ },
+ {
+  "overshoot_mV": 183.4,
+  "v_peak": 1.7847,
+  "v_final": 1.6013,
+  "t_rec_16mV_ns": 1701.1,
+  "t_rec_32mV_ns": 1657.5,
+  "arch": "fair B sync2+div3 (10 MHz)",
+  "edge_ns": 1000.0,
+  "undershoot_mV": 32.9,
+  "code_at_95mA": 7,
+  "toggles_95mA_last3us": 0,
+  "toggles_5mA_last3us": 0
+ },
+ {
+  "overshoot_mV": 188.8,
+  "v_peak": 1.7901,
+  "v_final": 1.6013,
+  "t_rec_16mV_ns": 655.6,
+  "t_rec_32mV_ns": 616.1,
+  "arch": "fair B sync2+div3 (50 MHz)",
+  "edge_ns": 1.0,
+  "undershoot_mV": 552.9,
+  "code_at_95mA": 7,
+  "toggles_95mA_last3us": 0,
+  "toggles_5mA_last3us": 0
+ },
+ {
+  "overshoot_mV": 187.9,
+  "v_peak": 1.7892,
+  "v_final": 1.6013,
+  "t_rec_16mV_ns": 638.3,
+  "t_rec_32mV_ns": 598.3,
+  "arch": "fair B sync2+div3 (50 MHz)",
+  "edge_ns": 100.0,
+  "undershoot_mV": 168.1,
+  "code_at_95mA": 7,
+  "toggles_95mA_last3us": 0,
+  "toggles_5mA_last3us": 0
+ },
+ {
+  "overshoot_mV": 77.0,
+  "v_peak": 1.6783,
+  "v_final": 1.6013,
+  "t_rec_16mV_ns": 68.3,
+  "t_rec_32mV_ns": 28.3,
+  "arch": "fair B sync2+div3 (50 MHz)",
+  "edge_ns": 1000.0,
+  "undershoot_mV": 32.9,
+  "code_at_95mA": 7,
+  "toggles_95mA_last3us": 0,
+  "toggles_5mA_last3us": 0
+ }
+]

@@ -1,0 +1,16 @@
+[
+ {
+  "bias_arrives_us": null,
+  "vout_before_bias": 1.6403,
+  "pg_before_bias": 1.592,
+  "vout_final": 1.6761,
+  "vout_max_after_bias": 1.6777
+ },
+ {
+  "bias_arrives_us": 30.0,
+  "vout_before_bias": 1.6403,
+  "pg_before_bias": 1.592,
+  "vout_final": 1.6061,
+  "vout_max_after_bias": 1.6508
+ }
+]

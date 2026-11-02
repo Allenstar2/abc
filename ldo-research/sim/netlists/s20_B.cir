@@ -1,0 +1,122 @@
+* s20_B
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options temp=27 reltol=1e-4 abstol=1e-12 vntol=1e-7
+
+.subckt ldoA vin vout vref fb fbi pg
+Ibias vin bn 1e-05
+Mbn bn bn 0 0 NMOS W=4u L=1u
+Mt tail bn 0 0 NMOS W=8u L=1u
+M1 d1 fbi tail 0 NMOS W=20u L=1.0u
+M2 ea vref tail 0 NMOS W=20u L=1.0u
+M3 d1 d1 vin vin PMOS W=4u L=1.0u
+M4 ea d1 vin vin PMOS W=4u L=1.0u
+Mbn2 bp bn 0 0 NMOS W=4u L=1u
+Mbp bp bp vin vin PMOS W=4u L=1u
+Mcs pg bp vin vin PMOS W=20u L=1u
+Mb 0 ea pg pg PMOS W=20u L=0.18u
+Mp vout pg vin vin PMOS W=2400u L=0.18u
+R1 vout fb 4000.0
+R2 fb 0 4000.0
+Cc vout ea 5e-12
+.ends
+
+VIN vin 0 DC 1.8
+VREF vref 0 0.8
+X1 vin vout vref fb fb pg ldoA
+CL vout 0 1e-10
+IL vout 0 PWL(0 0 1u 0 1.1u 5m 6e-06 5m 6.1e-06 95m 1.41e-05 95m 1.42e-05 5m)
+
+Vclk clka 0 PULSE(0 1.8 5e-08 0.1n 0.1n 4.99e-08 1e-07)
+Vclkr clkra 0 PULSE(0 1.8 5e-08 0.1n 0.1n 1.4989999999999999e-07 3e-07)
+Vvl vl 0 1.331
+Vvh vh 0 1.455
+Bup upa 0 V = 0.9*(1+tanh((V(vl)-V(pg))*2000))
+Bdn dna 0 V = 0.9*(1+tanh((V(pg)-V(vh))*2000))
+.model adcb adc_bridge(in_low=0.9 in_high=0.9 rise_delay=1e-09 fall_delay=1e-09)
+Aadc [clka upa dna clkra] [clk up0 dn0 clkr] adcb
+.model dff1 d_dff(clk_delay=2e-10 set_delay=2e-10 reset_delay=2e-10 ic=0 rise_delay=1e-10 fall_delay=1e-10)
+.model and2 d_and(rise_delay=5e-11 fall_delay=5e-11)
+.model or3 d_or(rise_delay=5e-11 fall_delay=5e-11)
+.model nor2 d_nor(rise_delay=5e-11 fall_delay=5e-11)
+.model one d_pullup
+.model zero d_pulldown
+Ahi q0 one
+Alo q9 zero
+* 比較器輸出同步器（2 級 DFF）
+Asu1 up0 clk NULL NULL upq1 NULL dff1
+Asd1 dn0 clk NULL NULL dnq1 NULL dff1
+Asu2 upq1 clk NULL NULL up NULL dff1
+Asd2 dnq1 clk NULL NULL dn NULL dff1
+Ahold [up dn] hold nor2
+.model dacb dac_bridge(out_low=0 out_high=1.8 out_undef=0.9 input_load=1e-12 t_rise=1e-09 t_fall=1e-09)
+
+Aa1 [up q0] a1 and2
+Ab1 [dn q2] b1 and2
+Ac1 [hold q1] c1 and2
+Ao1 [a1 b1 c1] d1 or3
+Af1 d1 clkr NULL NULL q1 qb1 dff1
+Adac1 [qb1] [g1] dacb
+Ms1 vout g1 vin vin PMOS W=130u L=0.18u
+
+Aa2 [up q1] a2 and2
+Ab2 [dn q3] b2 and2
+Ac2 [hold q2] c2 and2
+Ao2 [a2 b2 c2] d2 or3
+Af2 d2 clkr NULL NULL q2 qb2 dff1
+Adac2 [qb2] [g2] dacb
+Ms2 vout g2 vin vin PMOS W=130u L=0.18u
+
+Aa3 [up q2] a3 and2
+Ab3 [dn q4] b3 and2
+Ac3 [hold q3] c3 and2
+Ao3 [a3 b3 c3] d3 or3
+Af3 d3 clkr NULL NULL q3 qb3 dff1
+Adac3 [qb3] [g3] dacb
+Ms3 vout g3 vin vin PMOS W=130u L=0.18u
+
+Aa4 [up q3] a4 and2
+Ab4 [dn q5] b4 and2
+Ac4 [hold q4] c4 and2
+Ao4 [a4 b4 c4] d4 or3
+Af4 d4 clkr NULL NULL q4 qb4 dff1
+Adac4 [qb4] [g4] dacb
+Ms4 vout g4 vin vin PMOS W=130u L=0.18u
+
+Aa5 [up q4] a5 and2
+Ab5 [dn q6] b5 and2
+Ac5 [hold q5] c5 and2
+Ao5 [a5 b5 c5] d5 or3
+Af5 d5 clkr NULL NULL q5 qb5 dff1
+Adac5 [qb5] [g5] dacb
+Ms5 vout g5 vin vin PMOS W=130u L=0.18u
+
+Aa6 [up q5] a6 and2
+Ab6 [dn q7] b6 and2
+Ac6 [hold q6] c6 and2
+Ao6 [a6 b6 c6] d6 or3
+Af6 d6 clkr NULL NULL q6 qb6 dff1
+Adac6 [qb6] [g6] dacb
+Ms6 vout g6 vin vin PMOS W=130u L=0.18u
+
+Aa7 [up q6] a7 and2
+Ab7 [dn q8] b7 and2
+Ac7 [hold q7] c7 and2
+Ao7 [a7 b7 c7] d7 or3
+Af7 d7 clkr NULL NULL q7 qb7 dff1
+Adac7 [qb7] [g7] dacb
+Ms7 vout g7 vin vin PMOS W=130u L=0.18u
+
+Aa8 [up q7] a8 and2
+Ab8 [dn q9] b8 and2
+Ac8 [hold q8] c8 and2
+Ao8 [a8 b8 c8] d8 or3
+Af8 d8 clkr NULL NULL q8 qb8 dff1
+Adac8 [qb8] [g8] dacb
+Ms8 vout g8 vin vin PMOS W=130u L=0.18u
+
+.control
+tran 1e-09 2.42e-05 0 5e-09
+wrdata /home/user/abc/ldo-research/sim/results/s20_B_tr.txt v(vout) v(pg) v(g1) v(g2) v(g3) v(g4) v(g5) v(g6) v(g7) v(g8)
+quit
+.endc
+.end
