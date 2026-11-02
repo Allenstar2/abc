@@ -1,0 +1,28 @@
+up   d0 0 / 31 []
+up   d1 11 / 31 [np.float64(20.0), np.float64(23.0), np.float64(26.0), np.float64(44.0), np.float64(47.0), np.float64(50.0), np.float64(68.0), np.float64(71.0), np.float64(74.0), np.float64(92.0), np.float64(95.0)]
+up   d2 26 / 31 [np.float64(20.0), np.float64(23.0), np.float64(26.0), np.float64(29.0), np.float64(32.0), np.float64(35.0), np.float64(38.0), np.float64(41.0), np.float64(44.0), np.float64(47.0), np.float64(50.0), np.float64(53.0), np.float64(56.0), np.float64(59.0), np.float64(62.0), np.float64(65.0), np.float64(68.0), np.float64(71.0), np.float64(74.0), np.float64(77.0), np.float64(80.0), np.float64(83.0), np.float64(86.0), np.float64(89.0), np.float64(92.0), np.float64(95.0)]
+up   d3 26 / 31 [np.float64(20.0), np.float64(23.0), np.float64(26.0), np.float64(29.0), np.float64(32.0), np.float64(35.0), np.float64(38.0), np.float64(41.0), np.float64(44.0), np.float64(47.0), np.float64(50.0), np.float64(53.0), np.float64(56.0), np.float64(59.0), np.float64(62.0), np.float64(65.0), np.float64(68.0), np.float64(71.0), np.float64(74.0), np.float64(77.0), np.float64(80.0), np.float64(83.0), np.float64(86.0), np.float64(89.0), np.float64(92.0), np.float64(95.0)]
+up   d1_div2 0 / 31 []
+up   d2_div3 0 / 31 []
+up   d3_div4 0 / 31 []
+up   d2_div2 11 / 31 [np.float64(20.0), np.float64(23.0), np.float64(26.0), np.float64(44.0), np.float64(47.0), np.float64(50.0), np.float64(68.0), np.float64(71.0), np.float64(74.0), np.float64(92.0), np.float64(95.0)]
+hold 57..63 clocks d1 [11, 11, 11, 11, 11, 11, 11]
+hold 57..63 clocks d2 [26, 26, 26, 26, 26, 26, 26]
+down d0 0 / 31 []
+down d1 11 / 31 [np.float64(95.0), np.float64(92.0), np.float64(74.0), np.float64(71.0), np.float64(68.0), np.float64(50.0), np.float64(47.0), np.float64(44.0), np.float64(26.0), np.float64(23.0), np.float64(20.0)]
+down d2 26 / 31 [np.float64(95.0), np.float64(92.0), np.float64(89.0), np.float64(86.0), np.float64(83.0), np.float64(80.0), np.float64(77.0), np.float64(74.0), np.float64(71.0), np.float64(68.0), np.float64(65.0), np.float64(62.0), np.float64(59.0), np.float64(56.0), np.float64(53.0), np.float64(50.0), np.float64(47.0), np.float64(44.0), np.float64(41.0), np.float64(38.0), np.float64(35.0), np.float64(32.0), np.float64(29.0), np.float64(26.0), np.float64(23.0), np.float64(20.0)]
+down d2_div3 0 / 31 []
+IC   d0 {'frac_loads_any_LC': 0.0, 'frac_loads_all_LC': 0.0, 'mean_frac_ICs_LC': 0.0}
+IC   d1 {'frac_loads_any_LC': 0.6483790523690773, 'frac_loads_all_LC': 0.0, 'mean_frac_ICs_LC': 0.5956537228357678}
+IC   d2 {'frac_loads_any_LC': 0.8179551122194514, 'frac_loads_all_LC': 0.0, 'mean_frac_ICs_LC': 0.7434983968649804}
+IC   d2_div3 {'frac_loads_any_LC': 0.0, 'frac_loads_all_LC': 0.0, 'mean_frac_ICs_LC': 0.0}
+rcrit d0 1.0
+rcrit d1 2.0
+rcrit d2 3.0
+rcrit d3 4.0
+rcrit d1_div2 1.0
+rcrit d2_div3 1.0
+rcrit d2_div2 2.0
+rcrit d0_tau1 1.0
+rcrit d2_div3_tau1 1.0
+rcrit d2_div3_tau3 1.1

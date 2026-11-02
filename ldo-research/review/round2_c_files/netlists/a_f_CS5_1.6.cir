@@ -1,0 +1,42 @@
+* a_f_CS5_1.6
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options reltol=1e-4
+* 5-stage current-starved ring; bias from resistor to vdd
+Rb vdd nb 20k
+Mnb nb nb 0 0 NMOS W=2u L=0.5u
+Mn2 pb nb 0 0 NMOS W=2u L=0.5u
+Mpb pb pb vdd vdd PMOS W=5u L=0.5u
+Mpc0 xp0 pb vdd vdd PMOS W=5u L=0.5u
+Mps0 n1 n0 xp0 vdd PMOS W=2u L=0.18u
+Mns0 n1 n0 xn0 0 NMOS W=1u L=0.18u
+Mnc0 xn0 nb 0 0 NMOS W=2u L=0.5u
+Cl0 n1 0 20f
+Mpc1 xp1 pb vdd vdd PMOS W=5u L=0.5u
+Mps1 n2 n1 xp1 vdd PMOS W=2u L=0.18u
+Mns1 n2 n1 xn1 0 NMOS W=1u L=0.18u
+Mnc1 xn1 nb 0 0 NMOS W=2u L=0.5u
+Cl1 n2 0 20f
+Mpc2 xp2 pb vdd vdd PMOS W=5u L=0.5u
+Mps2 n3 n2 xp2 vdd PMOS W=2u L=0.18u
+Mns2 n3 n2 xn2 0 NMOS W=1u L=0.18u
+Mnc2 xn2 nb 0 0 NMOS W=2u L=0.5u
+Cl2 n3 0 20f
+Mpc3 xp3 pb vdd vdd PMOS W=5u L=0.5u
+Mps3 n4 n3 xp3 vdd PMOS W=2u L=0.18u
+Mns3 n4 n3 xn3 0 NMOS W=1u L=0.18u
+Mnc3 xn3 nb 0 0 NMOS W=2u L=0.5u
+Cl3 n4 0 20f
+Mpc4 xp4 pb vdd vdd PMOS W=5u L=0.5u
+Mps4 n0 n4 xp4 vdd PMOS W=2u L=0.18u
+Mns4 n0 n4 xn4 0 NMOS W=1u L=0.18u
+Mnc4 xn4 nb 0 0 NMOS W=2u L=0.5u
+Cl4 n0 0 20f
+VDD vdd 0 1.6
+.ic v(n0)=0
+.control
+tran 1e-11 2.1e-07 0 1e-11
+meas tran iavg avg i(VDD) from=6e-08 to=2.1e-07
+wrdata /tmp/claude-0/-home-user/24b1423c-959f-5794-9f98-bbcbade8908e/scratchpad/review_r2c/res/a_f_CS5_1.6.txt v(n0) v(vdd)
+quit
+.endc
+.end

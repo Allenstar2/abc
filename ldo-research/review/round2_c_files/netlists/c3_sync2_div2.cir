@@ -1,0 +1,106 @@
+* c3_sync2_div2
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options reltol=1e-4 abstol=1e-12 vntol=1e-7
+Ibias vin bn 10u
+Mbn bn bn 0 0 NMOS W=4u L=1u
+Mt tail bn 0 0 NMOS W=8u L=1u
+M1 d1 fb tail 0 NMOS W=20u L=1u
+M2 ea vref tail 0 NMOS W=20u L=1u
+M3 d1 d1 vin vin PMOS W=4u L=1u
+M4 ea d1 vin vin PMOS W=4u L=1u
+Mbn2 bp bn 0 0 NMOS W=4u L=1u
+Mbp bp bp vin vin PMOS W=4u L=1u
+Mcs pg bp vin vin PMOS W=20u L=1u
+Mb 0 ea pg pg PMOS W=20u L=0.18u
+Mp vout pg vin vin PMOS W=800u L=0.18u
+R1 vout fb 4000.0
+R2 fb 0 4000.0
+Cc vout ea 5e-12
+
+VIN vin 0 DC 1.8
+VREF vref 0 0.8
+CL vout 0 100p
+IL vout 0 PWL(0 0 1e-06 0 1.05e-06 0.005 7e-06 0.005 7.05e-06 0.008 1.3e-05 0.008 1.305e-05 0.011 1.9e-05 0.011 1.905e-05 0.014 2.5e-05 0.014 2.505e-05 0.017 3.1e-05 0.017 3.105e-05 0.02 3.7e-05 0.02 3.705e-05 0.023 4.3e-05 0.023 4.305e-05 0.026 4.9e-05 0.026 4.905e-05 0.029 5.5e-05 0.029 5.505e-05 0.032 6.1e-05 0.032 6.105e-05 0.035 6.7e-05 0.035 6.705e-05 0.038 7.3e-05 0.038 7.305e-05 0.041 7.9e-05 0.041 7.905e-05 0.044 8.5e-05 0.044 8.505e-05 0.047 9.1e-05 0.047 9.105e-05 0.05 9.7e-05 0.05 9.705e-05 0.053 0.000103 0.053 0.00010305 0.056 0.000109 0.056 0.00010905 0.059 0.000115 0.059 0.00011505 0.062 0.000121 0.062 0.00012105 0.065 0.000127 0.065 0.00012705 0.068 0.000133 0.068 0.00013305 0.071 0.000139 0.071 0.00013905 0.074 0.000145 0.074 0.00014505 0.077 0.000151 0.077 0.00015105 0.08 0.000157 0.08 0.00015705 0.083 0.000163 0.083 0.00016305 0.086 0.000169 0.086 0.00016905 0.089 0.000175 0.089 0.00017505 0.092 0.000181 0.092 0.00018105 0.095)
+* comparators: smooth B-source (gain ~1800 V/V around threshold) + adc_bridge (tpd 1 ns)
+Bup upa 0 V = 0.9*(1+tanh(2000*(1.155-V(pg))))
+Bdn dna 0 V = 0.9*(1+tanh(2000*(V(pg)-1.39)))
+Vck cka 0 PULSE(0 1.8 5e-08 0.1n 0.1n 4.99e-08 1e-07)
+Vckr ckra 0 PULSE(0 1.8 5e-08 0.1n 0.1n 9.99e-08 2e-07)
+.model brg adc_bridge(in_low=0.9 in_high=0.9 rise_delay=1e-9 fall_delay=1e-9)
+Abr [cka ckra upa dna] [clk ckr up0 dn0] brg
+.model ff d_dff(clk_delay=2e-10 set_delay=2e-10 reset_delay=2e-10 ic=0 rise_delay=1e-10 fall_delay=1e-10)
+.model g_and d_and(rise_delay=5e-11 fall_delay=5e-11)
+.model g_or d_or(rise_delay=5e-11 fall_delay=5e-11)
+.model g_nor d_nor(rise_delay=5e-11 fall_delay=5e-11)
+.model pu d_pullup
+.model pd d_pulldown
+Apu q0 pu
+Apd q9 pd
+.model drv dac_bridge(out_low=0 out_high=1.8 out_undef=0.9 input_load=1e-12 t_rise=1e-9 t_fall=1e-9)
+Asu1 up0 clk NULL NULL up1 NULL ff
+Asu2 up1 clk NULL NULL up NULL ff
+Asd1 dn0 clk NULL NULL dn1 NULL ff
+Asd2 dn1 clk NULL NULL dn NULL ff
+Ahold [up dn] hold g_nor
+Aa1 [up q0] za1 g_and
+Ab1 [dn q2] zb1 g_and
+Ac1 [hold q1] zc1 g_and
+Ao1 [za1 zb1 zc1] zd1 g_or
+Aq1 zd1 ckr NULL NULL q1 qn1 ff
+Adr1 [qn1] [g1] drv
+Ms1 vout g1 vin vin PMOS W=130u L=0.18u
+Aa2 [up q1] za2 g_and
+Ab2 [dn q3] zb2 g_and
+Ac2 [hold q2] zc2 g_and
+Ao2 [za2 zb2 zc2] zd2 g_or
+Aq2 zd2 ckr NULL NULL q2 qn2 ff
+Adr2 [qn2] [g2] drv
+Ms2 vout g2 vin vin PMOS W=130u L=0.18u
+Aa3 [up q2] za3 g_and
+Ab3 [dn q4] zb3 g_and
+Ac3 [hold q3] zc3 g_and
+Ao3 [za3 zb3 zc3] zd3 g_or
+Aq3 zd3 ckr NULL NULL q3 qn3 ff
+Adr3 [qn3] [g3] drv
+Ms3 vout g3 vin vin PMOS W=130u L=0.18u
+Aa4 [up q3] za4 g_and
+Ab4 [dn q5] zb4 g_and
+Ac4 [hold q4] zc4 g_and
+Ao4 [za4 zb4 zc4] zd4 g_or
+Aq4 zd4 ckr NULL NULL q4 qn4 ff
+Adr4 [qn4] [g4] drv
+Ms4 vout g4 vin vin PMOS W=130u L=0.18u
+Aa5 [up q4] za5 g_and
+Ab5 [dn q6] zb5 g_and
+Ac5 [hold q5] zc5 g_and
+Ao5 [za5 zb5 zc5] zd5 g_or
+Aq5 zd5 ckr NULL NULL q5 qn5 ff
+Adr5 [qn5] [g5] drv
+Ms5 vout g5 vin vin PMOS W=130u L=0.18u
+Aa6 [up q5] za6 g_and
+Ab6 [dn q7] zb6 g_and
+Ac6 [hold q6] zc6 g_and
+Ao6 [za6 zb6 zc6] zd6 g_or
+Aq6 zd6 ckr NULL NULL q6 qn6 ff
+Adr6 [qn6] [g6] drv
+Ms6 vout g6 vin vin PMOS W=130u L=0.18u
+Aa7 [up q6] za7 g_and
+Ab7 [dn q8] zb7 g_and
+Ac7 [hold q7] zc7 g_and
+Ao7 [za7 zb7 zc7] zd7 g_or
+Aq7 zd7 ckr NULL NULL q7 qn7 ff
+Adr7 [qn7] [g7] drv
+Ms7 vout g7 vin vin PMOS W=130u L=0.18u
+Aa8 [up q7] za8 g_and
+Ab8 [dn q9] zb8 g_and
+Ac8 [hold q8] zc8 g_and
+Ao8 [za8 zb8 zc8] zd8 g_or
+Aq8 zd8 ckr NULL NULL q8 qn8 ff
+Adr8 [qn8] [g8] drv
+Ms8 vout g8 vin vin PMOS W=130u L=0.18u
+.control
+tran 2n 0.000187 0 10n
+wrdata /tmp/claude-0/-home-user/24b1423c-959f-5794-9f98-bbcbade8908e/scratchpad/review_r2c/res/c3_sync2_div2.txt v(vout) v(pg) v(g1) v(g2) v(g3) v(g4) v(g5) v(g6) v(g7) v(g8)
+quit
+.endc
+.end

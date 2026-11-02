@@ -1,0 +1,38 @@
+* c0: latency of comparator -> register through a 2-FF synchronizer (XSPICE), same DFF/gate delays as REF-B model
+* clock edges (after 1 ns bridge delay) at 51 ns + n*100 ns; comparator input rises at 320 ns
+Vclk clka 0 PULSE(0 1.8 50n 0.1n 0.1n 49.9n 100n)
+Vclkr clkra 0 PULSE(0 1.8 51n 0.1n 0.1n 49.9n 100n)
+Vcmp upa 0 PWL(0 0 320n 0 320.1n 1.8)
+.model adcb adc_bridge(in_low=0.9 in_high=0.9 rise_delay=1e-9 fall_delay=1e-9)
+Aadc [clka upa clkra] [clk up0 clkr] adcb
+.model dff1 d_dff(clk_delay=2e-10 set_delay=2e-10 reset_delay=2e-10 ic=0 rise_delay=1e-10 fall_delay=1e-10)
+.model and2 d_and(rise_delay=5e-11 fall_delay=5e-11)
+.model or2 d_or(rise_delay=5e-11 fall_delay=5e-11)
+.model one d_pullup
+Ahi qlow one
+* 2-stage synchronizer on clk
+Asu1 up0 clk NULL NULL upq1 NULL dff1
+Asu2 upq1 clk NULL NULL up NULL dff1
+* one thermometer bit: d = up AND q(i-1)  (q(i-1)=1), via and2 + or2 like the shift-register cell
+Aa [up qlow] a1 and2
+Ao [a1 a1] d1 or2
+* (1) register clocked by skewed clkr = clk + 1 ns (as in author's netlist for sync>0)
+Areg_skew d1 clkr NULL NULL q_skew NULL dff1
+* (2) register clocked by clk (no skew) -> textbook 2-FF synchronizer + same-domain register
+Areg_ok d1 clk NULL NULL q_ok NULL dff1
+* (3) baseline: no synchronizer, register samples comparator directly on clk
+Ab [up0 qlow] b1 and2
+Abo [b1 b1] e1 or2
+Areg_none e1 clk NULL NULL q_none NULL dff1
+.model dacb dac_bridge(out_low=0 out_high=1.8 out_undef=0.9 t_rise=1e-11 t_fall=1e-11)
+Ad [q_skew q_ok q_none up] [v_skew v_ok v_none v_up] dacb
+.tran 0.05n 800n
+.control
+run
+meas tran t_none when v(v_none)=0.9 rise=1
+meas tran t_skew when v(v_skew)=0.9 rise=1
+meas tran t_ok when v(v_ok)=0.9 rise=1
+meas tran t_sync2out when v(v_up)=0.9 rise=1
+quit
+.endc
+.end

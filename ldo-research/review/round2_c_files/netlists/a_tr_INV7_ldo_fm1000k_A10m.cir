@@ -1,0 +1,40 @@
+* a_tr_INV7_ldo_fm1000k_A10m
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options reltol=1e-4
+Ibias vin bn 10u
+Mbn bn bn 0 0 NMOS W=4u L=1u
+Mt tail bn 0 0 NMOS W=8u L=1u
+M1 d1 fb tail 0 NMOS W=20u L=1u
+M2 ea vref tail 0 NMOS W=20u L=1u
+M3 d1 d1 vin vin PMOS W=4u L=1u
+M4 ea d1 vin vin PMOS W=4u L=1u
+Mbn2 bp bn 0 0 NMOS W=4u L=1u
+Mbp bp bp vin vin PMOS W=4u L=1u
+Mcs pg bp vin vin PMOS W=20u L=1u
+Mb 0 ea pg pg PMOS W=20u L=0.18u
+Mp vdd pg vin vin PMOS W=4000u L=0.18u
+R1 vdd fb 4000.0
+R2 fb 0 4000.0
+Cc vdd ea 5e-12
+VIN vin 0 DC 1.8 SIN(1.8 0.01 1000000.0 2e-06)
+VREF vref 0 0.8
+CL vdd 0 100p
+.subckt inv a y vdd
+Mn y a 0 0 NMOS W=1u L=0.18u
+Mp y a vdd vdd PMOS W=2.5u L=0.18u
+Cn y 0 30f
+.ends
+Xr0 n0 n1 vdd inv
+Xr1 n1 n2 vdd inv
+Xr2 n2 n3 vdd inv
+Xr3 n3 n4 vdd inv
+Xr4 n4 n5 vdd inv
+Xr5 n5 n6 vdd inv
+Xr6 n6 n0 vdd inv
+.ic v(n0)=0
+.control
+tran 5e-12 7.02e-06 0 5e-12
+wrdata /tmp/claude-0/-home-user/24b1423c-959f-5794-9f98-bbcbade8908e/scratchpad/review_r2c/res/a_tr_INV7_ldo_fm1000k_A10m.txt v(n0) v(vdd)
+quit
+.endc
+.end

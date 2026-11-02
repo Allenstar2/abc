@@ -1,0 +1,30 @@
+* b2_D1_1n_Cc8_Rz10k_T27_n+0_p+0_e1
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options temp=27 reltol=1e-4 abstol=1e-12 vntol=1e-7
+Ibias vin bn 10u
+Mbn bn bn 0 0 NMOS W=4u L=1u
+Mt tail bn 0 0 NMOS W=8u L=1u
+M1 d1 fb tail 0 NMOS W=20u L=1u
+M2 ea vref tail 0 NMOS W=20u L=1u
+M3 d1 d1 vin vin PMOS W=4u L=1u
+M4 ea d1 vin vin PMOS W=4u L=1u
+Mbn2 bp bn 0 0 NMOS W=4u L=1u
+Mbp bp bp vin vin PMOS W=4u L=1u
+Mcs pg bp vin vin PMOS W=20u L=1u
+Mb 0 ea pg pg PMOS W=20u L=0.18u
+Mp vout pg vin vin PMOS W=4000u L=0.18u
+R1 vout fb 4000.0
+R2 fb 0 4000.0
+Rz vout ncz 10000.0
+Cc ncz ea 8e-12
+
+VIN vin 0 DC 1.8
+VREF vref 0 0.8
+CL vout 0 1e-09
+IL vout 0 PWL(0 0.0 2e-06 0.0 2.001e-06 0.1 8.001e-06 0.1 8.002e-06 0.0)
+.control
+tran 5e-11 1.2002000000000001e-05 0 2e-10
+wrdata /tmp/claude-0/-home-user/24b1423c-959f-5794-9f98-bbcbade8908e/scratchpad/review_r2c/res/b2_D1_1n_Cc8_Rz10k_T27_n+0_p+0_e1.txt v(vout)
+quit
+.endc
+.end
