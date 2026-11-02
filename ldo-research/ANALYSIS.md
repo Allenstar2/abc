@@ -63,7 +63,7 @@ CL 加大 10 倍，Cc 也要大 10 倍（或 I_min 大 10 倍）。掃描結果�
 **大訊號暫態**（`s3_refA_char.py`、`s4_exp_edge.py`）：
 - 快邊沿時，Vout 以 ΔI/CL 下滑：100 pF、100 mA → 1 V/ns [D]。任何迴路都來不及，只能靠兩條「天然」快速耦合：Cc 把 Vout 的下降耦合到 ea（耦合比 ≈ Cc/(Cc+C1) ≈ 1），SF 的 PMOS 就強力把 pg 拉低；pass 本身的 Cgd 也直接把 pg 往下帶 [D]。
 - 結果：0→100 mA、1 ns 邊沿 undershoot 742 mV（100 pF）、497 mV（1 nF）[X]。
-- ~~慢邊沿反而 1 nF 比較差~~ **（第 1 輪審查推翻，見下方附錄與 REVIEW_LOG）**：純 Miller（無 Rz）時 100 ns 邊沿 236 mV（100 pF）vs 345 mV（1 nF）[X]，因為 1 nF 要 Cc=20 pF 才穩定、UGF 掉到 ~0.5 MHz。但加 nulling resistor（Cc=8 pF、Rz=10 kΩ）後，1 nF 最差 PM 62°，undershoot 431/185/80 mV（1 ns/100 ns/1 µs），**全面優於** 100 pF 的 REF-A（742/236/111 mV）[X，作者重現審查者結果]。
+- ~~慢邊沿反而 1 nF 比較差~~ **（第 1 輪審查推翻，見下方附錄與 REVIEW_LOG）**：純 Miller（無 Rz）時 100 ns 邊沿 236 mV（100 pF）vs 345 mV（1 nF）[X]，因為 1 nF 要 Cc=20 pF 才穩定、UGF 掉到 ~0.5 MHz。但加 nulling resistor（Cc=8 pF、Rz=10 kΩ）後，1 nF 最差 PM 62°，undershoot 431/185/80 mV（1 ns/100 ns/1 µs），**全面優於** 100 pF 的 REF-A（742/236/111 mV）[X，作者重現審查者結果]。**→ 第 2 輪審查再推翻：Rz=10 kΩ 在角落振盪，穩健的小 Rz 下 1 nF 只在 1 ns 邊沿占優（見附錄）。**
 - **起點電流很重要**：1 µs 邊沿、CL=100 pF，起點 0/1/10 mA → 111/52/21 mV [X]。輕載時 gm_p 小、pg 接近關斷，迴路既慢又要大幅擺動。
 - **Overshoot 被 Vin 夾住**：卸載時 pass 仍送 100 mA，Vout 以 1 V/ns 衝到 Vin（206 mV＝1.8−1.594）[X]。PMOS pass 不能吸電流，Vout 只能靠洩放電流放電：t ≈ CL·ΔV/I_bleed = 1 nF×0.2 V/200 µA = 1 µs [D]，與 1 nF 波形回到 ±1% 需 2.2 µs 一致（100 pF 只需 0.32 µs；`s11_misc_checks.py`）[X]。pg 往上拉只靠 SF 的 50 µA 電流源：50 µA / 7.9 pF ≈ 6.3 V/µs，擺 0.47 V（1.128→1.595 V）需 ~74 ns [D]。
 

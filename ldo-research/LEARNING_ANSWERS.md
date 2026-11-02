@@ -80,7 +80,7 @@ REF-A −38.2 dB；REF-B（5 片導通）−18.8 dB，差 19 dB。導通的 slic
 4. Triode。100 mA、Vsd=0.2 V：gm_p=347 mS、gds_p=260 mS，gm_p/gds_p=1.33。迴路增益 53→33.7 dB，PSRR@1 kHz −55→−33 dB。
 5. 定義：Vout 掉到「Vin 足夠高時的穩態值」的 99% 時的 Vin−Vout。REF-A 100 mA 時 94 mV、50 mA 時 48 mV；規格 200 mV → 餘裕約 100 mV，但沒有考慮 corner 與 pass 的金屬/封裝電阻（100 mA × 0.5 Ω = 50 mV [H]）。
 6. 必要：EA tail 20 µA、buffer ~50 µA、偏壓 20 µA；洩放 200 µA 是為了輕載穩定（Q4）。拿掉要換 adaptive bias（EA 電流隨負載）或其他補償；代價是設計複雜度與 adaptive 迴路自身的穩定性。
-7. 片上 NMOS 負載陣列＋inverter 驅動；邊沿目標 ~1 ns 與 100 ns 兩檔；外部負載因 bond wire L·di/dt（1 nH×100 mA/1 ns = 100 mV）與探棒電容，邊沿慢且會汙染 Vout。Vout 經片上 buffer 取出，另留直接 pad 對照（GAPS.md G1）。**量測板不能在 Vout 腳放去耦電容**：模擬 1 nF/10 nF 板上電容讓最差 PM 掉到 28.7°/18.2°（`s18_offchip_cap.py`）。看清 1 ns 邊沿的監測 buffer 需 3–10 mA 偏壓（審查者估）。
+7. 片上 NMOS 負載陣列＋inverter 驅動；邊沿目標 ~1 ns 與 100 ns 兩檔；外部負載因 bond wire L·di/dt（1 nH×100 mA/1 ns = 100 mV）與探棒電容，邊沿慢且會汙染 Vout。Vout 用直接 sense pad＋高阻抗主動探棒（第 3 輪審查模擬看到真值的 100–103%，片上 buffer 反而要 ≥3 mA 才有 97%），所以最小可行晶片不放監測 buffer。**量測板不能在 Vout 腳放去耦電容**：模擬 1 nF/10 nF 板上電容讓最差 PM 掉到 28.7°/18.2°（`s18_offchip_cap.py`）。（若真的要放監測 buffer，看清 1 ns 邊沿需 3–10 mA 偏壓，審查者估。）
 8. FoM 不含邊沿時間、起點電流、CL 定義不一致。例：同一顆 X. Wang CICC 2019，1 ns 邊沿 185 mV、10 ns 邊沿 88 mV（Seok 資料集）；本次 REF-A 同電路 0→100 mA 從 748 mV（0.1 ns）到 111 mV（1 µs），起點 10 mA 時只剩 21 mV。
 9. z = G2/Cc（RHP）：零載 144 MHz、滿載 10 GHz。只有 G2 很小（極輕載）或 Cc 很大時才會靠近 UGF；本設計零載只扣 ~1°。可加 nulling 電阻 Rz 移到 LHP。
 10. Source follower 把 pg 節點的阻抗降到 ~1/gm_b（~1 kΩ），pg 極點推到 20–30 MHz。**不對稱**：PMOS SF 往下拉靠 SF 電晶體（強），往上拉只靠 50 µA 電流源（50 µA/7.9 pF ≈ 6.3 V/µs），所以卸載 overshoot 回復慢。
@@ -93,4 +93,4 @@ REF-A −38.2 dB；REF-B（5 片導通）−18.8 dB，差 19 dB。導通的 slic
 17. PMOS pass 只能「送」電流不能「吸」電流。卸載時多餘的電流只能靠洩放或 pass 關斷後的漏電慢慢放電：1 nF × 0.2 V / 200 µA = 1 µs；而且 Vout 可能直接衝到 Vin（本次 100 pF 時 overshoot 被 Vin 夾在 206 mV）。
 18. 不一定。本次 class-B 電容耦合 SRE：小訊號完全不變（PM、PSRR 相同），最佳參數下 undershoot 只改善 8–15%，參數掃描中 100 ns 邊沿最差從 236 惡化到 348 mV（+48%，過度修正後振鈴；`x4b_sre_sweep.json`）；第一版偏壓還因 PTM PMOS 的 DIBL 讓偵測管靜態導通，整顆 LDO 失效（LOG.md）。
 19. 要做：PDK 的 TT/FF/SS/FS/SF × −40/27/125 °C × Vin 範圍；mismatch Monte Carlo（EA offset → Vout 精度；hybrid 比較器 offset → 窗口）；佈局後寄生（pass device 的金屬電阻、pg 節點電容）；ESD 與 latch-up。本次只做了 Vth ±50 mV、Tox ±5%、溫度三點的粗略擾動，沒有 mismatch、沒有佈局。
-20. 誠實說：架構本身不新。可能的小貢獻是 GAPS.md G1——在同一顆 0.18 µm capless LDO 上，用片上可程式負載與片上監測 buffer，系統化量測 ΔV 對邊沿時間、起點電流、取出方式的依賴，說明 FoM 排名如何被量測條件改變。已有人做過兩種邊沿的比較（X. Wang CICC 2019），所以要定位為「量測方法學的整理」。
+20. 誠實說：架構本身不新。可能的小貢獻是 GAPS.md G1——在同一顆 0.18 µm capless LDO 上，用片上可程式負載與直接 sense pad，系統化量測 ΔV 對邊沿時間、起點電流、取出方式的依賴，說明 FoM 排名如何被量測條件改變。已有人做過兩種邊沿的比較（X. Wang CICC 2019），所以要定位為「量測方法學的整理」。

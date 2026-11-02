@@ -74,7 +74,7 @@ HBM 與 SerDes 的 LDO 文獻同時在意兩件事：**droop/settling**（HBM �
 |---|---|---|---|
 | 無特定應用（一般 SoC） | A | 輕載穩定、暫態（片上負載、3 檔邊沿） | 負載/線性暫態、PSRR、Iq、dropout |
 | HBM 介面 | A（＋可選類比 feedforward trigger） | 中高頻 PSRR、burst 負載 | PSRR 曲線、burst droop |
-| SerDes/clock | A 的子類要換：**NMOS-pass**（第 3 輪 (c) 在同 Vout 1.0 V 下比較：10 MHz 好 13.5–20 dB、1 MHz 只在輕載好、**1 kHz 差 24–42 dB**；簡單 EA 時 Vout 上限約 1.0 V@10 mA，作者未重現），或用 charge pump 讓閘極到 2.1–2.4 V（氧化層耐壓問題）；若維持 PMOS pass，則加 PSR 增強（見 §6）；Imax 可降到數 mA–10 mA 以符合時脈 rail 的電流量級（注意：W 等比縮小時 PSRR 本身不變，`s8_sensitivity.json`；PSRR 要靠 PSR 技術或較大 dropout）[X/H] | 1–100 MHz PSRR、輸出雜訊（SD10：40 dB 至 10 MHz、50 nV/√Hz） | PSRR 曲線、ring oscillator spur/TIE（有/無 LDO 對照） |
+| SerDes/clock | A 的子類要換：**NMOS-pass**（第 3 輪 (c) 在同 Vout 1.0 V 下比較：10 MHz 好 13.5–20 dB、1 MHz 只在輕載好、**1 kHz 差 24–42 dB**；簡單 EA 時 Vout 上限約 1.0 V@10 mA，作者未重現），或用 charge pump 讓閘極到 2.1–2.3 V（V_GB 達 2.4 V，氧化層耐壓問題）；若維持 PMOS pass，則加 PSR 增強（見 §6）；Imax 可降到數 mA–10 mA 以符合時脈 rail 的電流量級（注意：W 等比縮小時 PSRR 本身不變，`s8_sensitivity.json`；PSRR 要靠 PSR 技術或較大 dropout）[X/H] | 1–100 MHz PSRR、輸出雜訊（SD10：40 dB 至 10 MHz、50 nV/√Hz） | PSRR 曲線、ring oscillator spur/TIE（有/無 LDO 對照） |
 
 ## 6. 若教授以 PSRR 為主要指標：PSR 增強技術（agent7，12 篇：PS01–PS12）與本次驗證
 
