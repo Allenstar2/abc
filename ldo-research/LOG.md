@@ -15,3 +15,4 @@
 - 2026-11-02 17:18:13 UTC — 使用者新增需求：研究 HBM 與高速 SerDes 用的 LDO（明天要看）。因同時上限 4 個 subagent（目前 3 個審查在跑），先開 agent5（HBM）；SerDes 等空位再開。網路仍擋學術網站，新文獻同樣僅摘要。我自己先做一個可模擬的連結：0.18µm ring VCO 的 Kvdd 與 REF-A PSRR → 供電漣波造成的 jitter/spur。
 - 2026-11-02 17:19:44 UTC — 第 1 輪 (b) 完成並修正 23 項；開 agent6（SerDes）。REVIEW_LOG.md 建立。
 - 2026-11-02 17:21:30 UTC — X5（SerDes 連結）：7 級 ring f0=764 MHz、Kvdd=440 MHz/V、平均 0.43 mA。Vin 10 mV@1 MHz：無 LDO 峰值 TIE 925 ps（解析 916），經 REF-A 335 ps（解析 339），手算 vs 模擬差 ≈1%。REF-A PSRR@1 MHz 只有 −8.6 dB、@10 MHz +1.3 dB（放大）。
+- 2026-11-02 17:28:43 UTC — agent5（HBM）完成：12 篇＋13 補充來源（專利/廠商/二手，只在 notes）。HBM 介面專用 LDO 只找到首爾大學三篇（HB05–07，皆僅摘要）。HBM rail 0.4–1.2 V，1.6 V 不是 HBM rail。結論：不改變 A 首選，改變的是評估方式（中高頻 PSRR、burst 負載）。開 agent7（中高頻 PSRR 增強）。literature.csv 66 列。
