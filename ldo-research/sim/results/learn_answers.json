@@ -1,0 +1,410 @@
+{
+ "Q1": {
+  "Cc=5pF": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 66.4,
+     "UGF_MHz": 2.45,
+     "DC_dB": 53.0
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 83.0,
+     "UGF_MHz": 2.64,
+     "DC_dB": 55.9
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 87.9,
+     "UGF_MHz": 1.6,
+     "DC_dB": 33.7
+    }
+   ],
+   "tr": {
+    "undershoot_mV": 235.5,
+    "overshoot_mV": 205.6
+   }
+  },
+  "Cc=2pF": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 43.0,
+     "UGF_MHz": 5.25,
+     "DC_dB": 53.0
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 72.0,
+     "UGF_MHz": 6.62,
+     "DC_dB": 55.9
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 82.9,
+     "UGF_MHz": 3.94,
+     "DC_dB": 33.7
+    }
+   ],
+   "tr": {
+    "undershoot_mV": 229.1,
+    "overshoot_mV": 202.0
+   }
+  },
+  "Cc=10pF": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 77.2,
+     "UGF_MHz": 1.27,
+     "DC_dB": 53.0
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 86.5,
+     "UGF_MHz": 1.32,
+     "DC_dB": 55.9
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 89.5,
+     "UGF_MHz": 0.8,
+     "DC_dB": 33.7
+    }
+   ],
+   "tr": {
+    "undershoot_mV": 280.1,
+    "overshoot_mV": 206.0
+   }
+  }
+ },
+ "Q2": {
+  "Wp=2000um": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 68.8,
+     "UGF_MHz": 2.45,
+     "DC_dB": 53.1
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 84.2,
+     "UGF_MHz": 2.64,
+     "DC_dB": 55.5
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 92.9,
+     "UGF_MHz": 0.87,
+     "DC_dB": 22.6
+    }
+   ],
+   "tr": {
+    "undershoot_mV": 283.9,
+    "overshoot_mV": 214.7
+   },
+   "dropout_mV": 183.9
+  },
+  "Wp=4000um": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 66.4,
+     "UGF_MHz": 2.45,
+     "DC_dB": 53.0
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 83.0,
+     "UGF_MHz": 2.64,
+     "DC_dB": 55.9
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 87.9,
+     "UGF_MHz": 1.6,
+     "DC_dB": 33.7
+    }
+   ],
+   "tr": {
+    "undershoot_mV": 235.5,
+    "overshoot_mV": 205.6
+   },
+   "dropout_mV": 94.3
+  },
+  "Wp=8000um": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 61.2,
+     "UGF_MHz": 2.44,
+     "DC_dB": 52.7
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 80.2,
+     "UGF_MHz": 2.64,
+     "DC_dB": 56.0
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 84.1,
+     "UGF_MHz": 2.24,
+     "DC_dB": 43.4
+    }
+   ],
+   "tr": {
+    "undershoot_mV": 254.3,
+    "overshoot_mV": 201.2
+   },
+   "dropout_mV": 47.9
+  }
+ },
+ "Q3": {
+  "CL=100p,Cc=5p": [
+   {
+    "IL_mA": 0.0,
+    "PM": 66.4,
+    "UGF_MHz": 2.45,
+    "DC_dB": 53.0
+   },
+   {
+    "IL_mA": 1.0,
+    "PM": 83.0,
+    "UGF_MHz": 2.64,
+    "DC_dB": 55.9
+   },
+   {
+    "IL_mA": 100.0,
+    "PM": 87.9,
+    "UGF_MHz": 1.6,
+    "DC_dB": 33.7
+   }
+  ],
+  "CL=1n,Cc=5p(不改Cc)": [
+   {
+    "IL_mA": 0.0,
+    "PM": 29.8,
+    "UGF_MHz": 1.3,
+    "DC_dB": 53.0
+   },
+   {
+    "IL_mA": 1.0,
+    "PM": 58.4,
+    "UGF_MHz": 2.36,
+    "DC_dB": 55.9
+   },
+   {
+    "IL_mA": 100.0,
+    "PM": 87.0,
+    "UGF_MHz": 1.6,
+    "DC_dB": 33.7
+   }
+  ]
+ },
+ "Q4": {
+  "bleed=50uA": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 37.8,
+     "UGF_MHz": 1.76,
+     "DC_dB": 52.3
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 82.4,
+     "UGF_MHz": 2.65,
+     "DC_dB": 56.4
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 87.8,
+     "UGF_MHz": 1.6,
+     "DC_dB": 33.8
+    }
+   ],
+   "Iq_uA": 130.6
+  },
+  "bleed=200uA": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 66.4,
+     "UGF_MHz": 2.45,
+     "DC_dB": 53.0
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 83.0,
+     "UGF_MHz": 2.64,
+     "DC_dB": 55.9
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 87.9,
+     "UGF_MHz": 1.6,
+     "DC_dB": 33.7
+    }
+   ],
+   "Iq_uA": 286.7
+  },
+  "bleed=500uA": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 78.1,
+     "UGF_MHz": 2.57,
+     "DC_dB": 53.1
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 83.8,
+     "UGF_MHz": 2.63,
+     "DC_dB": 55.1
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 87.9,
+     "UGF_MHz": 1.59,
+     "DC_dB": 33.7
+    }
+   ],
+   "Iq_uA": 589.3
+  }
+ },
+ "Q5": {
+  "tail=10uA": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 76.0,
+     "UGF_MHz": 1.41,
+     "DC_dB": 53.5
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 86.0,
+     "UGF_MHz": 1.48,
+     "DC_dB": 56.3
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 89.1,
+     "UGF_MHz": 0.91,
+     "DC_dB": 34.4
+    }
+   ],
+   "tr": {
+    "undershoot_mV": 276.6,
+    "overshoot_mV": 207.9
+   }
+  },
+  "tail=20uA": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 66.4,
+     "UGF_MHz": 2.45,
+     "DC_dB": 53.0
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 83.0,
+     "UGF_MHz": 2.64,
+     "DC_dB": 55.9
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 87.9,
+     "UGF_MHz": 1.6,
+     "DC_dB": 33.7
+    }
+   ],
+   "tr": {
+    "undershoot_mV": 235.5,
+    "overshoot_mV": 205.6
+   }
+  },
+  "tail=40uA": {
+   "pm": [
+    {
+     "IL_mA": 0.0,
+     "PM": 53.9,
+     "UGF_MHz": 3.89,
+     "DC_dB": 51.9
+    },
+    {
+     "IL_mA": 1.0,
+     "PM": 78.2,
+     "UGF_MHz": 4.5,
+     "DC_dB": 55.0
+    },
+    {
+     "IL_mA": 100.0,
+     "PM": 86.0,
+     "UGF_MHz": 2.64,
+     "DC_dB": 32.7
+    }
+   ],
+   "tr": {
+    "undershoot_mV": 230.2,
+    "overshoot_mV": 201.4
+   }
+  }
+ },
+ "Q6": {
+  "I1=0mA": {
+   "undershoot_mV": 742.2,
+   "overshoot_mV": 206.4
+  },
+  "I1=1mA": {
+   "undershoot_mV": 626.7,
+   "overshoot_mV": 204.7
+  },
+  "I1=10mA": {
+   "undershoot_mV": 451.9,
+   "overshoot_mV": 188.7
+  }
+ },
+ "Q7": {
+  "edge=1ns": {
+   "undershoot_mV": 742.2,
+   "overshoot_mV": 206.4
+  },
+  "edge=100ns": {
+   "undershoot_mV": 235.5,
+   "overshoot_mV": 205.6
+  },
+  "edge=1000ns": {
+   "undershoot_mV": 111.0,
+   "overshoot_mV": 131.1
+  }
+ },
+ "Q8": {
+  "27C": {
+   "vout_noload": 1.6061,
+   "vpg": 1.595
+  },
+  "125C": {
+   "vout_noload": 1.614,
+   "vpg": 1.712
+  }
+ },
+ "Q9": {
+  "寬窗 3–18 mA": {
+   "code_toggles_last5us": 0,
+   "vout_pp_mV": 0.0
+  },
+  "窄窗 8–14 mA": {
+   "code_toggles_last5us": 14,
+   "vout_pp_mV": 215.8
+  }
+ },
+ "Q10": {
+  "REF-A 70mA PSRR@1kHz": -38.2,
+  "REF-B 碼5凍結 70mA PSRR@1kHz（見 sim/results/x3_hybrid.json X3c）": -18.8
+ }
+}

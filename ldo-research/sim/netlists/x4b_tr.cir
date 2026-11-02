@@ -1,0 +1,53 @@
+* x4b_tr
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options temp=27 reltol=1e-4 abstol=1e-12 vntol=1e-7
+
+.subckt ldoA vin vout vref fb fbi
+Ibias vin bn 1e-05
+Mbn bn bn 0 0 NMOS W=4u L=1u
+Mt tail bn 0 0 NMOS W=8u L=1u
+M1 d1 fbi tail 0 NMOS W=20u L=1.0u
+M2 ea vref tail 0 NMOS W=20u L=1.0u
+M3 d1 d1 vin vin PMOS W=4u L=1.0u
+M4 ea d1 vin vin PMOS W=4u L=1.0u
+Mbn2 bp bn 0 0 NMOS W=4u L=1u
+Mbp bp bp vin vin PMOS W=4u L=1u
+Mcs pg bp vin vin PMOS W=20u L=1u
+Mb 0 ea pg pg PMOS W=20u L=0.18u
+Mp vout pg vin vin PMOS W=4000u L=0.18u
+R1 vout fb 4000.0
+R2 fb 0 4000.0
+Cc vout ea 5e-12
+
+* --- SRE 下拉：Vout↓ → gz↓ → Mz on → gdn↑ → My on → pg↓
+Cf1 vout gz 2e-12
+* replica 偏壓：Mz 靜態電流 ≈ Irep（與製程/溫度無關的電流密度）
+Irz bz 0 2e-07
+Mrz bz bz vin vin PMOS W=8u L=0.5u
+Rbz gz bz 1000000.0
+Mz gdn gz vin vin PMOS W=8u L=0.5u
+Rpd gdn 0 200000.0
+My pg gdn 0 0 NMOS W=160u L=0.18u
+* --- SRE 上拉：Vout↑ → gx↑ → Mx on → gu↓ → Mup on → pg↑
+Cf2 vout gx 2e-12
+Irx vin bx 2e-07
+Mrx bx bx 0 0 NMOS W=4u L=0.5u
+Rbx gx bx 1000000.0
+Mx gu gx 0 0 NMOS W=4u L=0.5u
+Rpu gu vin 200000.0
+Mup pg gu vin vin PMOS W=40u L=0.18u
+.ends
+
+VIN vin 0 DC 1.8
+VREF vref 0 0.8
+X1 vin vout vref fb fb ldoA
+CL vout ncl 1e-10
+RESR ncl 0 1e-06
+IL vout 0 PWL(0 0 2e-06 0 3e-06 0.1 9e-06 0.1 1e-05 0)
+
+.control
+tran 2e-09 1.6000000000000003e-05 0 1e-08
+wrdata /home/user/abc/ldo-research/sim/results/x4b_tr_tr.txt v(vout) v(x1.pg) v(x1.ea)
+quit
+.endc
+.end

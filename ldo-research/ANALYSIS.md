@@ -79,7 +79,7 @@ PSRR_LF ≈ gds_p · R_o / (1 + T0)
 - 結論：**本規格的中高頻 PSR 天生差**（pass 在 triode、gds 大、CL 小）。若教授要求 1–10 MHz PSR，需 A5 類 feedforward 抵消（A01 Park 2014 的方向）[D]。
 
 **失效情境（具體）**：
-1. **高溫輕載失去調節**：「SF-like」（Vthn+50 mV、|Vthp|−50 mV）125 °C 時，零外部負載 Vout = 1.6525 V（+46 mV）[X]。4 mm 的 pass 漏電超過 200 µA 洩放電流，而 SF buffer 只能把 pg 拉到 ~1.65 V，關不掉 pass [D]。FF-like 125 °C 也有 +20 mV。修法：加大洩放（Iq↑）、改 buffer 讓 pg 能到 Vin、或 pass 用較長 L（犧牲面積）[D]。
+1. **高溫輕載失去調節**：「SF-like」（Vthn+50 mV、|Vthp|−50 mV）125 °C 時，零外部負載 Vout = 1.6525 V（+46 mV）[X]。此時 pg 已被拉到 1.759 V（離 Vin 只差 41 mV）、EA 輸出 1.643 V 已接近上限，但 4 mm 的 pass 在 Vsg≈41 mV 仍漏出約 0.2 mA，超過 200 µA 洩放電流 [X]（`s6_corners.py` 同條件重跑 OP）。FF-like 125 °C 也有 +20 mV。修法：加大洩放（Iq↑）、改 buffer 讓 pg 能到 Vin、或 pass 用較長 L（犧牲面積）[D]。
 2. **為了省 Iq 把洩放降到 50 µA**：CL=100 pF 時 PM 28°，CL=1 nF 時 PM ≤ 41° [X]。
 3. **1 ns 邊沿 100 mA 步階**：Vout 掉到 ~0.86 V（742 mV）[X]，對任何數位負載都是失效。
 
