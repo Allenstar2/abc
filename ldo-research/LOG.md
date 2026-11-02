@@ -31,3 +31,4 @@
 - 2026-11-02 19:03:07 UTC — 第 3 輪 (c) 完成：NMOS-pass 同 Vout 比較（10 MHz +13.5–20 dB、1 kHz −24–42 dB）；droop 遮蔽行為模型 59 mV；作者重現 B 卸載自造下陷 ~530 mV（s20）。3 輪審查結束，首選未變，不開第 4 輪。
 - 2026-11-02 19:08:01 UTC — run_all.sh 隔離副本完整重跑 4m05s，26 個 json 與 repo 位元相同。開 Stage 10 最終檢查 subagent。
 - 2026-11-02 19:19:39 UTC — Stage 10 最終檢查完成（143/166 一致），19＋4 項已修正。全部階段完成。
+- 2026-11-02 19:19:57 UTC — sim/results 原始波形（*_tr.txt、x5_*.txt 等，約 160 MB）移出 git 追蹤（.gitignore），可由 run_all.sh 重新產生；json/log 保留。早先 commit 的歷史中仍含這些檔案。

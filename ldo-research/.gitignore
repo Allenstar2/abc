@@ -2,3 +2,9 @@ ext/
 __pycache__/
 *.raw
 sim/results/tmp/
+# 原始波形與暫存數據（可由 sim/run_all.sh 重新產生；只追蹤 json、log 與小型 txt）
+sim/results/*_tr.txt
+sim/results/*_tmp*.txt
+sim/results/x5_direct.txt
+sim/results/x5_ldo.txt
+sim/results/x5_ring.txt
