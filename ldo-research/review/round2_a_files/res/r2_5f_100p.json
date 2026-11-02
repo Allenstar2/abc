@@ -1,0 +1,50 @@
+[
+ {
+  "design": "D1 100p/Cc5/Rz0",
+  "cond": "nominal",
+  "pm_min": 66.4,
+  "gm_min": 18.4
+ },
+ {
+  "design": "D1 100p/Cc5/Rz0",
+  "cond": "FF-40,Ibias+30%,Cncz10%,Cea+0.3p",
+  "pm_min": 63.8,
+  "gm_min": 18.4
+ },
+ {
+  "design": "D2 100p/Cc3/Rz5k",
+  "cond": "nominal",
+  "pm_min": 73.2,
+  "gm_min": 20.8
+ },
+ {
+  "design": "D2 100p/Cc3/Rz5k",
+  "cond": "FF-40,Ibias+30%,Cncz10%,Cea+0.3p",
+  "pm_min": 74.4,
+  "gm_min": 4.0
+ },
+ {
+  "design": "100p/Cc3/Rz10k",
+  "cond": "nominal",
+  "pm_min": 87.7,
+  "gm_min": 12.6
+ },
+ {
+  "design": "100p/Cc3/Rz10k",
+  "cond": "FF-40,Ibias+30%,Cncz10%,Cea+0.3p",
+  "pm_min": -12.5,
+  "gm_min": -3.4
+ },
+ {
+  "design": "100p/Cc5/Rz3k",
+  "cond": "nominal",
+  "pm_min": 79.0,
+  "gm_min": 26.8
+ },
+ {
+  "design": "100p/Cc5/Rz3k",
+  "cond": "FF-40,Ibias+30%,Cncz10%,Cea+0.3p",
+  "pm_min": 82.5,
+  "gm_min": 9.0
+ }
+]

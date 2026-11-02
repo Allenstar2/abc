@@ -76,15 +76,15 @@ REF-A −38.2 dB；REF-B（5 片導通）−18.8 dB，差 19 dB。導通的 slic
 
 1. **主極點在 EA 輸出（ea 節點）**。Cc 從 Vout 跨到 ea，被第二級增益 A2 = A_SF·gm_p·R_o 放大（Miller），p1 ≈ G_ea·G_o/[Cc(G2+G_o)]。capless 時 CL 只有 100 pF–1 nF，若讓輸出當主極點，滿載 UGF ≈ β·A_EA·gm_p/CL 會到 GHz 級，內部節點跟不上。
 2. 非主極點 p2 ≈ (G2+G_o)/CL，弱反轉 gm_p ≈ I/(nU_T)，最輕載時最低；GBW ≈ β·gm1/Cc 幾乎不隨負載變 → 輕載時 p2/GBW 最小。數字：零載 p2 = 7.8 MHz、GBW = 2.6 MHz；10 mA 時 p2 = 270 MHz。
-3. 要看補償。純 Miller（無 Rz）時 CL 大 → 要更大的 Cc → UGF 下降：100 ns 邊沿 236 mV（100 pF）vs 345 mV（1 nF）。但加 nulling resistor（1 nF：Cc=8 pF、Rz=10 kΩ）後，1 nF 是 431/185/80 mV（1 ns/100 ns/1 µs），全面優於 100 pF 的 742/236/111 mV。這是第 1 輪審查推翻我原本說法的例子（REVIEW_LOG.md）。追問陷阱：Rz 的可用範圍很窄，Rz 太大時中載 PM 會崩（20 kΩ → 43°）。
+3. 要看補償，而且要看角落。純 Miller（無 Rz）時 1 nF 要 Cc=20 pF，100 ns 邊沿 346 mV vs 100 pF 的 236 mV。第 1 輪審查用 Rz=10 kΩ 讓 1 nF 變成 431/185/80 mV（看似全面勝出），但第 2 輪審查發現 Rz=10 kΩ 在 FF −40 °C＋Ibias+30%＋Cc 底板寄生下 PM 掉到 −5°（振盪）。穩健的小 Rz（3 kΩ）下 1 nF 是 468/234/112 mV：只在 1 ns 快邊沿占優。結論：**加大 CL 只對快邊沿有幫助；補償選擇必須跑角落**（ANALYSIS 附錄、`s16_rz_robust.py`）。
 4. Triode。100 mA、Vsd=0.2 V：gm_p=347 mS、gds_p=260 mS，gm_p/gds_p=1.33。迴路增益 53→33.7 dB，PSRR@1 kHz −55→−33 dB。
 5. 定義：Vout 掉到「Vin 足夠高時的穩態值」的 99% 時的 Vin−Vout。REF-A 100 mA 時 94 mV、50 mA 時 48 mV；規格 200 mV → 餘裕約 100 mV，但沒有考慮 corner 與 pass 的金屬/封裝電阻（100 mA × 0.5 Ω = 50 mV [H]）。
 6. 必要：EA tail 20 µA、buffer ~50 µA、偏壓 20 µA；洩放 200 µA 是為了輕載穩定（Q4）。拿掉要換 adaptive bias（EA 電流隨負載）或其他補償；代價是設計複雜度與 adaptive 迴路自身的穩定性。
-7. 片上 NMOS 負載陣列＋inverter 驅動；邊沿目標 ~1 ns 與 100 ns 兩檔；外部負載因 bond wire L·di/dt（1 nH×100 mA/1 ns = 100 mV）與探棒電容，邊沿慢且會汙染 Vout。Vout 經片上 buffer 取出，另留直接 pad 對照（GAPS.md G1）。
+7. 片上 NMOS 負載陣列＋inverter 驅動；邊沿目標 ~1 ns 與 100 ns 兩檔；外部負載因 bond wire L·di/dt（1 nH×100 mA/1 ns = 100 mV）與探棒電容，邊沿慢且會汙染 Vout。Vout 經片上 buffer 取出，另留直接 pad 對照（GAPS.md G1）。**量測板不能在 Vout 腳放去耦電容**：模擬 1 nF/10 nF 板上電容讓最差 PM 掉到 28.7°/18.2°（`s18_offchip_cap.py`）。看清 1 ns 邊沿的監測 buffer 需 3–10 mA 偏壓（審查者估）。
 8. FoM 不含邊沿時間、起點電流、CL 定義不一致。例：同一顆 X. Wang CICC 2019，1 ns 邊沿 185 mV、10 ns 邊沿 88 mV（Seok 資料集）；本次 REF-A 同電路 0→100 mA 從 748 mV（0.1 ns）到 111 mV（1 µs），起點 10 mA 時只剩 21 mV。
 9. z = G2/Cc（RHP）：零載 144 MHz、滿載 10 GHz。只有 G2 很小（極輕載）或 Cc 很大時才會靠近 UGF；本設計零載只扣 ~1°。可加 nulling 電阻 Rz 移到 LHP。
 10. Source follower 把 pg 節點的阻抗降到 ~1/gm_b（~1 kΩ），pg 極點推到 20–30 MHz。**不對稱**：PMOS SF 往下拉靠 SF 電晶體（強），往上拉只靠 50 µA 電流源（50 µA/7.9 pF ≈ 6.3 V/µs），所以卸載 overshoot 回復慢。
-11. 不行。REF-A 100 mA 時 Vin=1.674 V 已掉 1%；1.62 V 時已在 dropout。要問教授 Vin 的來源與容差。
+11. 不行。REF-A 100 mA 時 TT 27 °C 下 Vin=1.674 V 已掉 1%，SS 125 °C 下 1.716 V 就掉（Vin 只降 4.7%）。若 Vout 改 1.4 V，最低 Vin 變 1.508/1.560 V，滿載迴路增益多 15 dB、PSRR@1 kHz 好 13 dB（`s17_spec_alt.py`）。要問教授 Vin 的來源、容差與 Vout 是否可調。
 12. 中頻（UGF 附近 1–3 MHz）最差，接近 0 dB；高頻靠 CL 分流，但滿載 gds_p/(2πCL) 轉折在 ~400 MHz，所以 10–100 MHz 都在 0 dB 附近。改善：增加 EA 增益與頻寬、feedforward ripple cancellation（Park 2014 的方向）、NMOS pass（需 charge pump）、加大 CL。
 13. 會。條件是窗口電流 > 一片電流（加比較器 offset 與溫漂餘裕），否則約一半負載範圍會 limit cycle（H3、X3a）；若加了 d 級同步器，還要每 d+1 個時脈才更新（`s13`）。另外每次切換是一次 12 mA 的快速負載步階，造成 34–83 mV 尖峰（依 slice 邊沿）。
 14. **未確認**。只讀到摘要：有「transient response is dictated by the digital portion」與數位逼近演算法等偏 C 線索，但穩態誰供電、DC 精度誰決定、數位穩態是否停止都沒寫。要讀全文或 Leduc 的碩士論文才能判定。

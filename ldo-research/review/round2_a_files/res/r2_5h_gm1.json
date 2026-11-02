@@ -1,0 +1,24 @@
+{
+ "TT27": {
+  "gm1_uS": 181.7,
+  "beta_gm1_Rz10k": 0.91,
+  "beta_gm1_Rz3k": 0.27,
+  "GM_pred_Rz10k_dB": 0.8,
+  "GM_pred_Rz3k_dB": 11.3
+ },
+ "FF-40_Ibias+30%": {
+  "gm1_uS": 265.9,
+  "beta_gm1_Rz10k": 1.33,
+  "beta_gm1_Rz3k": 0.4,
+  "GM_pred_Rz10k_dB": -2.5,
+  "GM_pred_Rz3k_dB": 8.0
+ },
+ "SS125_Ibias-30%": {
+  "gm1_uS": 114.0,
+  "beta_gm1_Rz10k": 0.57,
+  "beta_gm1_Rz3k": 0.17,
+  "GM_pred_Rz10k_dB": 4.9,
+  "GM_pred_Rz3k_dB": 15.3
+ },
+ "ring_pred_MHz_Rz10k_Cp0.8p": 19.9
+}

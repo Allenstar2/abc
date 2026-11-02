@@ -1,0 +1,98 @@
+[
+ {
+  "Cext": 0,
+  "design": "REF-A 100p/Cc5",
+  "pm_min_over_crossings": [
+   67.1,
+   83.3,
+   86.5,
+   87.9
+  ],
+  "n_crossings": [
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ {
+  "Cext": 1e-11,
+  "design": "REF-A 100p/Cc5",
+  "pm_min_over_crossings": [
+   65.5,
+   83.0,
+   86.4,
+   87.9
+  ],
+  "n_crossings": [
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ {
+  "Cext": 1e-09,
+  "design": "REF-A 100p/Cc5",
+  "pm_min_over_crossings": [
+   30.1,
+   57.6,
+   81.1,
+   86.9
+  ],
+  "n_crossings": [
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ {
+  "Cext": 1e-08,
+  "design": "REF-A 100p/Cc5",
+  "pm_min_over_crossings": [
+   18.7,
+   25.0,
+   50.5,
+   79.1
+  ],
+  "n_crossings": [
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ {
+  "Cext": 1e-07,
+  "design": "REF-A 100p/Cc5",
+  "pm_min_over_crossings": [
+   33.3,
+   20.8,
+   23.9,
+   45.7
+  ],
+  "n_crossings": [
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ {
+  "Cext": 1e-06,
+  "design": "REF-A 100p/Cc5",
+  "pm_min_over_crossings": [
+   72.6,
+   43.0,
+   30.6,
+   37.6
+  ],
+  "n_crossings": [
+   1,
+   1,
+   1,
+   1
+  ]
+ }
+]

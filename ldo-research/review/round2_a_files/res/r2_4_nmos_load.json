@@ -1,0 +1,46 @@
+{
+ "W_nmos_load_um": 138.7,
+ "I_load_at_Vout1p6_mA": {
+  "TT_27C": 100.0,
+  "TT_75C": 92.6,
+  "SS_27C": 94.9,
+  "SS_75C": 87.9,
+  "FF_27C": 105.2,
+  "FF_75C": 97.5,
+  "SF_27C": 94.5,
+  "SF_75C": 87.5,
+  "FS_27C": 105.5,
+  "FS_75C": 97.8
+ },
+ "I_vs_Vout_TT27_mA": {
+  "1.6": 100.0,
+  "1.4": 97.6,
+  "1.2": 95.2,
+  "1.0": 92.5,
+  "0.8": 88.6,
+  "0.6": 79.3
+ },
+ "step": [
+  {
+   "edge_ns": 1.0,
+   "ideal_undershoot_mV": 742.2,
+   "nmos_undershoot_mV": 715.2,
+   "nmos_I_at_vmin_mA": 90.7,
+   "nmos_I_final_mA": 99.9
+  },
+  {
+   "edge_ns": 10.0,
+   "ideal_undershoot_mV": 449.6,
+   "nmos_undershoot_mV": 466.8,
+   "nmos_I_at_vmin_mA": 48.5,
+   "nmos_I_final_mA": 99.9
+  },
+  {
+   "edge_ns": 100.0,
+   "ideal_undershoot_mV": 235.5,
+   "nmos_undershoot_mV": 225.1,
+   "nmos_I_at_vmin_mA": 72.8,
+   "nmos_I_final_mA": 99.9
+  }
+ ]
+}

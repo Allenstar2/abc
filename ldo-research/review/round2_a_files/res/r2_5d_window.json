@@ -1,0 +1,254 @@
+[
+ {
+  "Cc_pF": 8.0,
+  "Rz_k": 3.0,
+  "beta_gm1_Rz": 0.28,
+  "nominal_pm_gm": [
+   45.3,
+   30.5
+  ],
+  "parasitic_pm_gm": [
+   44.6,
+   16.1
+  ],
+  "SS125_passive_combo_pm_gm": [
+   36.4,
+   35.3
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   46.4,
+   11.1
+  ]
+ },
+ {
+  "Cc_pF": 8.0,
+  "Rz_k": 5.0,
+  "beta_gm1_Rz": 0.46,
+  "nominal_pm_gm": [
+   50.5,
+   25.1
+  ],
+  "parasitic_pm_gm": [
+   49.6,
+   10.1
+  ],
+  "SS125_passive_combo_pm_gm": [
+   38.7,
+   33.1
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   53.2,
+   5.3
+  ]
+ },
+ {
+  "Cc_pF": 8.0,
+  "Rz_k": 7.0,
+  "beta_gm1_Rz": 0.64,
+  "nominal_pm_gm": [
+   55.4,
+   21.0
+  ],
+  "parasitic_pm_gm": [
+   54.2,
+   6.5
+  ],
+  "SS125_passive_combo_pm_gm": [
+   40.9,
+   30.5
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   9.0,
+   2.0
+  ]
+ },
+ {
+  "Cc_pF": 8.0,
+  "Rz_k": 10.0,
+  "beta_gm1_Rz": 0.92,
+  "nominal_pm_gm": [
+   62.3,
+   16.5
+  ],
+  "parasitic_pm_gm": [
+   13.6,
+   2.9
+  ],
+  "SS125_passive_combo_pm_gm": [
+   44.2,
+   26.9
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   -3.9,
+   -1.1
+  ]
+ },
+ {
+  "Cc_pF": 12.0,
+  "Rz_k": 3.0,
+  "beta_gm1_Rz": 0.28,
+  "nominal_pm_gm": [
+   54.0,
+   31.1
+  ],
+  "parasitic_pm_gm": [
+   53.5,
+   15.1
+  ],
+  "SS125_passive_combo_pm_gm": [
+   43.5,
+   37.9
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   55.7,
+   10.1
+  ]
+ },
+ {
+  "Cc_pF": 12.0,
+  "Rz_k": 5.0,
+  "beta_gm1_Rz": 0.46,
+  "nominal_pm_gm": [
+   59.9,
+   25.4
+  ],
+  "parasitic_pm_gm": [
+   59.4,
+   9.4
+  ],
+  "SS125_passive_combo_pm_gm": [
+   46.2,
+   34.4
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   63.5,
+   4.8
+  ]
+ },
+ {
+  "Cc_pF": 12.0,
+  "Rz_k": 7.0,
+  "beta_gm1_Rz": 0.64,
+  "nominal_pm_gm": [
+   65.4,
+   21.3
+  ],
+  "parasitic_pm_gm": [
+   64.8,
+   6.0
+  ],
+  "SS125_passive_combo_pm_gm": [
+   48.8,
+   31.3
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   12.5,
+   1.8
+  ]
+ },
+ {
+  "Cc_pF": 12.0,
+  "Rz_k": 10.0,
+  "beta_gm1_Rz": 0.92,
+  "nominal_pm_gm": [
+   73.2,
+   16.6
+  ],
+  "parasitic_pm_gm": [
+   9.4,
+   2.3
+  ],
+  "SS125_passive_combo_pm_gm": [
+   52.6,
+   27.2
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   -2.7,
+   -0.8
+  ]
+ },
+ {
+  "Cc_pF": 16.0,
+  "Rz_k": 3.0,
+  "beta_gm1_Rz": 0.28,
+  "nominal_pm_gm": [
+   60.4,
+   31.4
+  ],
+  "parasitic_pm_gm": [
+   60.3,
+   14.5
+  ],
+  "SS125_passive_combo_pm_gm": [
+   49.1,
+   39.1
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   62.7,
+   9.6
+  ]
+ },
+ {
+  "Cc_pF": 16.0,
+  "Rz_k": 5.0,
+  "beta_gm1_Rz": 0.46,
+  "nominal_pm_gm": [
+   66.9,
+   25.6
+  ],
+  "parasitic_pm_gm": [
+   66.8,
+   9.0
+  ],
+  "SS125_passive_combo_pm_gm": [
+   52.1,
+   35.0
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   71.3,
+   4.6
+  ]
+ },
+ {
+  "Cc_pF": 16.0,
+  "Rz_k": 7.0,
+  "beta_gm1_Rz": 0.64,
+  "nominal_pm_gm": [
+   72.9,
+   21.4
+  ],
+  "parasitic_pm_gm": [
+   72.7,
+   5.5
+  ],
+  "SS125_passive_combo_pm_gm": [
+   54.9,
+   31.6
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   10.3,
+   1.9
+  ]
+ },
+ {
+  "Cc_pF": 16.0,
+  "Rz_k": 10.0,
+  "beta_gm1_Rz": 0.92,
+  "nominal_pm_gm": [
+   81.2,
+   16.6
+  ],
+  "parasitic_pm_gm": [
+   41.1,
+   2.0
+  ],
+  "SS125_passive_combo_pm_gm": [
+   59.1,
+   27.4
+  ],
+  "FFm40_Ibias+30%_parasitic_pm_gm": [
+   -1.4,
+   -0.4
+  ]
+ }
+]

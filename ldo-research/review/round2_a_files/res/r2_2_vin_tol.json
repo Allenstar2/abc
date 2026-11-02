@@ -1,0 +1,278 @@
+[
+ {
+  "corner": "TT",
+  "temp": 27,
+  "Wp_um": 4000,
+  "IL0": {
+   "vout_at_1p8": 1.6061,
+   "vin_min_1pct": 1.586,
+   "vout_at_1p71": 1.6059,
+   "vout_at_1p62": 1.6048
+  },
+  "IL50": {
+   "vout_at_1p8": 1.5971,
+   "vin_min_1pct": 1.634,
+   "vout_at_1p71": 1.5954,
+   "vout_at_1p62": 1.5734
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5932,
+   "vin_min_1pct": 1.684,
+   "vout_at_1p71": 1.5888,
+   "vout_at_1p62": 1.5282
+  }
+ },
+ {
+  "corner": "TT",
+  "temp": 27,
+  "Wp_um": 6000,
+  "IL0": {
+   "vout_at_1p8": 1.6065,
+   "vin_min_1pct": 1.586,
+   "vout_at_1p71": 1.6064,
+   "vout_at_1p62": 1.6053
+  },
+  "IL50": {
+   "vout_at_1p8": 1.5985,
+   "vin_min_1pct": 1.618,
+   "vout_at_1p71": 1.5975,
+   "vout_at_1p62": 1.5863
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5958,
+   "vin_min_1pct": 1.65,
+   "vout_at_1p71": 1.5933,
+   "vout_at_1p62": 1.5588
+  }
+ },
+ {
+  "corner": "TT",
+  "temp": 125,
+  "Wp_um": 4000,
+  "IL0": {
+   "vout_at_1p8": 1.614,
+   "vin_min_1pct": null,
+   "vout_at_1p71": 1.6131,
+   "vout_at_1p62": 1.6085
+  },
+  "IL50": {
+   "vout_at_1p8": 1.599,
+   "vin_min_1pct": 1.65,
+   "vout_at_1p71": 1.5962,
+   "vout_at_1p62": 1.5578
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5938,
+   "vin_min_1pct": 1.714,
+   "vout_at_1p71": 1.5826,
+   "vout_at_1p62": 1.4954
+  }
+ },
+ {
+  "corner": "TT",
+  "temp": 125,
+  "Wp_um": 6000,
+  "IL0": {
+   "vout_at_1p8": 1.6184,
+   "vin_min_1pct": null,
+   "vout_at_1p71": 1.6166,
+   "vout_at_1p62": 1.6094
+  },
+  "IL50": {
+   "vout_at_1p8": 1.6007,
+   "vin_min_1pct": 1.628,
+   "vout_at_1p71": 1.5991,
+   "vout_at_1p62": 1.5778
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5973,
+   "vin_min_1pct": 1.67,
+   "vout_at_1p71": 1.5932,
+   "vout_at_1p62": 1.5375
+  }
+ },
+ {
+  "corner": "SS",
+  "temp": 125,
+  "Wp_um": 4000,
+  "IL0": {
+   "vout_at_1p8": 1.6111,
+   "vin_min_1pct": 1.586,
+   "vout_at_1p71": 1.6107,
+   "vout_at_1p62": 1.6079
+  },
+  "IL50": {
+   "vout_at_1p8": 1.5986,
+   "vin_min_1pct": 1.654,
+   "vout_at_1p71": 1.5956,
+   "vout_at_1p62": 1.553
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5931,
+   "vin_min_1pct": 1.724,
+   "vout_at_1p71": 1.5758,
+   "vout_at_1p62": 1.4853
+  }
+ },
+ {
+  "corner": "SS",
+  "temp": 125,
+  "Wp_um": 6000,
+  "IL0": {
+   "vout_at_1p8": 1.6125,
+   "vin_min_1pct": 1.586,
+   "vout_at_1p71": 1.612,
+   "vout_at_1p62": 1.6087
+  },
+  "IL50": {
+   "vout_at_1p8": 1.6003,
+   "vin_min_1pct": 1.632,
+   "vout_at_1p71": 1.5986,
+   "vout_at_1p62": 1.5747
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5968,
+   "vin_min_1pct": 1.678,
+   "vout_at_1p71": 1.5924,
+   "vout_at_1p62": 1.531
+  }
+ },
+ {
+  "corner": "SS",
+  "temp": 27,
+  "Wp_um": 4000,
+  "IL0": {
+   "vout_at_1p8": 1.6058,
+   "vin_min_1pct": 1.586,
+   "vout_at_1p71": 1.6056,
+   "vout_at_1p62": 1.6046
+  },
+  "IL50": {
+   "vout_at_1p8": 1.5966,
+   "vin_min_1pct": 1.638,
+   "vout_at_1p71": 1.5949,
+   "vout_at_1p62": 1.5699
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5926,
+   "vin_min_1pct": 1.69,
+   "vout_at_1p71": 1.5878,
+   "vout_at_1p62": 1.5208
+  }
+ },
+ {
+  "corner": "SS",
+  "temp": 27,
+  "Wp_um": 6000,
+  "IL0": {
+   "vout_at_1p8": 1.6063,
+   "vin_min_1pct": 1.586,
+   "vout_at_1p71": 1.6061,
+   "vout_at_1p62": 1.605
+  },
+  "IL50": {
+   "vout_at_1p8": 1.5981,
+   "vin_min_1pct": 1.62,
+   "vout_at_1p71": 1.597,
+   "vout_at_1p62": 1.5846
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5953,
+   "vin_min_1pct": 1.656,
+   "vout_at_1p71": 1.5926,
+   "vout_at_1p62": 1.554
+  }
+ },
+ {
+  "corner": "FF",
+  "temp": -40,
+  "Wp_um": 4000,
+  "IL0": {
+   "vout_at_1p8": 1.6035,
+   "vin_min_1pct": 1.586,
+   "vout_at_1p71": 1.6033,
+   "vout_at_1p62": 1.6026
+  },
+  "IL50": {
+   "vout_at_1p8": 1.5957,
+   "vin_min_1pct": 1.622,
+   "vout_at_1p71": 1.5947,
+   "vout_at_1p62": 1.5837
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5926,
+   "vin_min_1pct": 1.66,
+   "vout_at_1p71": 1.59,
+   "vout_at_1p62": 1.5552
+  }
+ },
+ {
+  "corner": "FF",
+  "temp": -40,
+  "Wp_um": 6000,
+  "IL0": {
+   "vout_at_1p8": 1.6039,
+   "vin_min_1pct": 1.586,
+   "vout_at_1p71": 1.6037,
+   "vout_at_1p62": 1.603
+  },
+  "IL50": {
+   "vout_at_1p8": 1.5969,
+   "vin_min_1pct": 1.61,
+   "vout_at_1p71": 1.5963,
+   "vout_at_1p62": 1.5888
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5946,
+   "vin_min_1pct": 1.634,
+   "vout_at_1p71": 1.5931,
+   "vout_at_1p62": 1.5758
+  }
+ },
+ {
+  "corner": "SS",
+  "temp": -40,
+  "Wp_um": 4000,
+  "IL0": {
+   "vout_at_1p8": 1.6029,
+   "vin_min_1pct": 1.586,
+   "vout_at_1p71": 1.6027,
+   "vout_at_1p62": 1.602
+  },
+  "IL50": {
+   "vout_at_1p8": 1.5948,
+   "vin_min_1pct": 1.628,
+   "vout_at_1p71": 1.5936,
+   "vout_at_1p62": 1.5803
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5914,
+   "vin_min_1pct": 1.672,
+   "vout_at_1p71": 1.5884,
+   "vout_at_1p62": 1.5447
+  }
+ },
+ {
+  "corner": "SS",
+  "temp": -40,
+  "Wp_um": 6000,
+  "IL0": {
+   "vout_at_1p8": 1.6033,
+   "vin_min_1pct": 1.586,
+   "vout_at_1p71": 1.6031,
+   "vout_at_1p62": 1.6024
+  },
+  "IL50": {
+   "vout_at_1p8": 1.596,
+   "vin_min_1pct": 1.614,
+   "vout_at_1p71": 1.5953,
+   "vout_at_1p62": 1.5873
+  },
+  "IL100": {
+   "vout_at_1p8": 1.5936,
+   "vin_min_1pct": 1.642,
+   "vout_at_1p71": 1.5919,
+   "vout_at_1p62": 1.5693
+  }
+ }
+]

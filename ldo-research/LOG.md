@@ -23,3 +23,4 @@
 - 2026-11-02 17:38:28 UTC — ldo_hybrid.py 加 sync/reg_div 選項後做回歸：初版改法使 X3 數字微變（≤2%），改成 sync=0 時產生與原版完全相同的 netlist，重跑 x3_hybrid.json 位元相同；s13 結果不變。
 - 2026-11-02 17:42:07 UTC — agent7（PSR 增強）完成 12 篇；literature.csv 93 列。X6：理想 feedforward 注入顯示最佳 gff 隨負載變（0.06/0.1/≥1 mS），印證 α_pg=1+gds/gm 推導；1 MHz 需 1 mS 才改善 ~20 dB 且傷低頻。
 - 2026-11-02 17:49:25 UTC — 第 2 輪 (b) 完成並修正（公平 B 設計點、PSRR@MHz 理由撤回、SRE +48%、Rz 10 mA、β≪1 條件等）；CONCLUSION v3；s15_rz_loadreg 存檔。
+- 2026-11-02 17:53:51 UTC — 第 2 輪 (a) 完成；重現 s16（Rz 角落振盪）、s17（規格）、s18（板上電容）。CONCLUSION v4、D-014/015。

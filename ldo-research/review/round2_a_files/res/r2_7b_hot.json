@@ -1,0 +1,50 @@
+[
+ {
+  "dVthp_extra_V": 0.0,
+  "Wp_um": 4000,
+  "vout_0_SF125": 1.6525,
+  "vpg": 1.759
+ },
+ {
+  "dVthp_extra_V": 0.0,
+  "Wp_um": 8000,
+  "vout_0_SF125": 1.7346,
+  "vpg": 1.785
+ },
+ {
+  "dVthp_extra_V": 0.05,
+  "Wp_um": 4000,
+  "vout_0_SF125": 1.6139,
+  "vpg": 1.712
+ },
+ {
+  "dVthp_extra_V": 0.05,
+  "Wp_um": 8000,
+  "vout_0_SF125": 1.6237,
+  "vpg": 1.748
+ },
+ {
+  "dVthp_extra_V": 0.1,
+  "Wp_um": 4000,
+  "vout_0_SF125": 1.6091,
+  "vpg": 1.662
+ },
+ {
+  "dVthp_extra_V": 0.1,
+  "Wp_um": 8000,
+  "vout_0_SF125": 1.6109,
+  "vpg": 1.699
+ },
+ {
+  "dVthp_extra_V": 0.15,
+  "Wp_um": 4000,
+  "vout_0_SF125": 1.6073,
+  "vpg": 1.612
+ },
+ {
+  "dVthp_extra_V": 0.15,
+  "Wp_um": 8000,
+  "vout_0_SF125": 1.6084,
+  "vpg": 1.648
+ }
+]

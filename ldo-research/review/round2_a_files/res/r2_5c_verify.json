@@ -1,0 +1,147 @@
+{
+ "nominal": {
+  "10mA": {
+   "T_at_1M_dB": 5.2,
+   "T_at_10M_dB": -1.3,
+   "T_at_20M_dB": -2.3,
+   "peak_1_100MHz_dB": 4.8,
+   "peak_f_MHz": 1.1,
+   "pm": 135.5,
+   "gm": 18.4,
+   "ugf_MHz": 2.89
+  },
+  "30mA": {
+   "T_at_1M_dB": 4.7,
+   "T_at_10M_dB": -1.8,
+   "T_at_20M_dB": -1.7,
+   "peak_1_100MHz_dB": 4.3,
+   "peak_f_MHz": 1.1,
+   "pm": 134.9,
+   "gm": 16.5,
+   "ugf_MHz": 2.45
+  },
+  "step_10to12mA_1ns": {
+   "undershoot_mV": 10.49,
+   "n_zero_cross_1us": 1,
+   "ring_f_MHz": 0.0,
+   "pp_100_300ns_mV": 2.26,
+   "pp_300_1000ns_mV": 1.02
+  }
+ },
+ "Cncz=0.8p": {
+  "10mA": {
+   "T_at_1M_dB": 5.4,
+   "T_at_10M_dB": 2.1,
+   "T_at_20M_dB": -0.8,
+   "peak_1_100MHz_dB": 5.1,
+   "peak_f_MHz": 1.1,
+   "pm": 18.2,
+   "gm": 3.6,
+   "ugf_MHz": 19.4
+  },
+  "30mA": {
+   "T_at_1M_dB": 4.9,
+   "T_at_10M_dB": 0.6,
+   "T_at_20M_dB": 3.9,
+   "peak_1_100MHz_dB": 4.6,
+   "peak_f_MHz": 1.1,
+   "pm": 141.2,
+   "gm": 3.2,
+   "ugf_MHz": 3.19
+  },
+  "step_10to12mA_1ns": {
+   "undershoot_mV": 15.71,
+   "n_zero_cross_1us": 42,
+   "ring_f_MHz": 21.17,
+   "pp_100_300ns_mV": 12.29,
+   "pp_300_1000ns_mV": 4.24
+  }
+ },
+ "Cncz=0.4p": {
+  "10mA": {
+   "T_at_1M_dB": 5.3,
+   "T_at_10M_dB": 0.4,
+   "T_at_20M_dB": 0.6,
+   "peak_1_100MHz_dB": 4.9,
+   "peak_f_MHz": 1.1,
+   "pm": 139.1,
+   "gm": 7.0,
+   "ugf_MHz": 3.5
+  },
+  "30mA": {
+   "T_at_1M_dB": 4.8,
+   "T_at_10M_dB": -0.6,
+   "T_at_20M_dB": 1.9,
+   "peak_1_100MHz_dB": 4.5,
+   "peak_f_MHz": 1.1,
+   "pm": 137.9,
+   "gm": 5.7,
+   "ugf_MHz": 2.72
+  },
+  "step_10to12mA_1ns": {
+   "undershoot_mV": 13.7,
+   "n_zero_cross_1us": 3,
+   "ring_f_MHz": 0.0,
+   "pp_100_300ns_mV": 2.77,
+   "pp_300_1000ns_mV": 1.01
+  }
+ },
+ "Cncz=1.2p": {
+  "10mA": {
+   "T_at_1M_dB": 5.5,
+   "T_at_10M_dB": 3.9,
+   "T_at_20M_dB": -3.8,
+   "peak_1_100MHz_dB": 6.0,
+   "peak_f_MHz": 13.3,
+   "pm": 7.6,
+   "gm": 1.7,
+   "ugf_MHz": 17.61
+  },
+  "30mA": {
+   "T_at_1M_dB": 5.0,
+   "T_at_10M_dB": 1.9,
+   "T_at_20M_dB": 2.0,
+   "peak_1_100MHz_dB": 5.5,
+   "peak_f_MHz": 15.8,
+   "pm": 10.0,
+   "gm": 2.2,
+   "ugf_MHz": 21.38
+  },
+  "step_10to12mA_1ns": {
+   "undershoot_mV": 17.19,
+   "n_zero_cross_1us": 37,
+   "ring_f_MHz": 18.68,
+   "pp_100_300ns_mV": 20.83,
+   "pp_300_1000ns_mV": 15.24
+  }
+ },
+ "Cncz=0.8p,Rz=5k": {
+  "10mA": {
+   "T_at_1M_dB": 4.6,
+   "T_at_10M_dB": -5.0,
+   "T_at_20M_dB": -4.9,
+   "peak_1_100MHz_dB": 4.1,
+   "peak_f_MHz": 1.1,
+   "pm": 110.6,
+   "gm": 12.2,
+   "ugf_MHz": 1.84
+  },
+  "30mA": {
+   "T_at_1M_dB": 4.1,
+   "T_at_10M_dB": -5.9,
+   "T_at_20M_dB": -3.8,
+   "peak_1_100MHz_dB": 3.6,
+   "peak_f_MHz": 1.1,
+   "pm": 111.0,
+   "gm": 11.0,
+   "ugf_MHz": 1.71
+  },
+  "step_10to12mA_1ns": {
+   "undershoot_mV": 14.71,
+   "n_zero_cross_1us": 1,
+   "ring_f_MHz": 0.0,
+   "pp_100_300ns_mV": 3.39,
+   "pp_300_1000ns_mV": 0.79
+  }
+ }
+}

@@ -1,0 +1,58 @@
+{
+ "D3_FFm40_Ibias+30_parasitic": {
+  "3mA": {
+   "pp_before_step_mV": 0.0,
+   "pp_4_6us_after_mV": 0.0
+  },
+  "10mA": {
+   "pp_before_step_mV": 0.0,
+   "pp_4_6us_after_mV": 145.68
+  },
+  "30mA": {
+   "pp_before_step_mV": 0.0,
+   "pp_4_6us_after_mV": 169.54
+  }
+ },
+ "undershoot": [
+  {
+   "design": "REF-A 100p/Cc5/Rz0",
+   "undershoot_0to100mA_mV": {
+    "1ns": 742.2,
+    "100ns": 235.5,
+    "1000ns": 111.0
+   }
+  },
+  {
+   "design": "D3 1n/Cc8/Rz10k(第1輪)",
+   "undershoot_0to100mA_mV": {
+    "1ns": 430.9,
+    "100ns": 184.5,
+    "1000ns": 80.3
+   }
+  },
+  {
+   "design": "1n/Cc12/Rz5k",
+   "undershoot_0to100mA_mV": {
+    "1ns": 454.6,
+    "100ns": 249.0,
+    "1000ns": 105.8
+   }
+  },
+  {
+   "design": "1n/Cc16/Rz3k",
+   "undershoot_0to100mA_mV": {
+    "1ns": 469.1,
+    "100ns": 290.6,
+    "1000ns": 121.5
+   }
+  },
+  {
+   "design": "1n/Cc20/Rz0(REF-A 1nF)",
+   "undershoot_0to100mA_mV": {
+    "1ns": 496.8,
+    "100ns": 345.5,
+    "1000ns": 151.2
+   }
+  }
+ ]
+}

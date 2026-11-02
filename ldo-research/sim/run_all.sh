@@ -23,6 +23,9 @@ echo "[8e] 第 1 輪審查反例重現（公平 B）";             python3 s12_f
 echo "[8f] hybrid 同步器延遲 vs limit cycle";          python3 s13_hybrid_sync.py | tee ../results/run_s13.txt
 echo "[8g] 實驗 X6：feedforward PSRR 抵消 vs 負載";      python3 s14_ff_psrr.py | tee ../results/run_s14.txt
 echo "[8h] Rz 補償表與同條件 load regulation";     python3 s15_rz_loadreg.py | tee ../results/run_s15.txt
+echo "[8i] Rz 角落穩健度";                          python3 s16_rz_robust.py | tee ../results/run_s16.txt
+echo "[8j] 規格替代 Vout 1.4 V";                     python3 s17_spec_alt.py > ../results/run_s17.txt
+echo "[8k] 板上 Vout 電容對穩定度";                 python3 s18_offchip_cap.py | tee ../results/run_s18.txt
 echo "[9] LEARNING 實驗";                          python3 learn.py all > ../results/run_learn.txt
 if [ -d ../../ext/DLDO-survey ]; then
   echo "[7] DLDO 資料集統計";                        python3 s7_dataset_stats.py | tee ../results/run_s7.txt

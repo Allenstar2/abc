@@ -1,0 +1,90 @@
+{
+ "TT_27C": {
+  "vsd0.05": {
+   "vth_cc_V": 0.324,
+   "ioff_pA_per_um": 169.2,
+   "S_mV_dec": 90.2,
+   "i_at_vsg41mV_nA_per_um": 0.52
+  },
+  "vsd0.2": {
+   "vth_cc_V": 0.306,
+   "ioff_pA_per_um": 225.6,
+   "S_mV_dec": 89.4,
+   "i_at_vsg41mV_nA_per_um": 0.69
+  },
+  "vsd1.8": {
+   "vth_cc_V": 0.253,
+   "ioff_pA_per_um": 821.2,
+   "S_mV_dec": 88.5,
+   "i_at_vsg41mV_nA_per_um": 2.51
+  },
+  "DIBL_mV_per_V": 40.6,
+  "pass4mm_ioff_vsd0.15_uA_est": 0.9
+ },
+ "TT_125C": {
+  "vsd0.05": {
+   "vth_cc_V": 0.247,
+   "ioff_pA_per_um": 7105.1,
+   "S_mV_dec": 127.3,
+   "i_at_vsg41mV_nA_per_um": 15.76
+  },
+  "vsd0.2": {
+   "vth_cc_V": 0.22,
+   "ioff_pA_per_um": 9488.1,
+   "S_mV_dec": 123.8,
+   "i_at_vsg41mV_nA_per_um": 21.1
+  },
+  "vsd1.8": {
+   "vth_cc_V": 0.16,
+   "ioff_pA_per_um": 27800.3,
+   "S_mV_dec": 122.9,
+   "i_at_vsg41mV_nA_per_um": 61.49
+  },
+  "DIBL_mV_per_V": 49.7,
+  "pass4mm_ioff_vsd0.15_uA_est": 37.95
+ },
+ "SF_27C": {
+  "vsd0.05": {
+   "vth_cc_V": 0.274,
+   "ioff_pA_per_um": 662.3,
+   "S_mV_dec": 91.7,
+   "i_at_vsg41mV_nA_per_um": 2.0
+  },
+  "vsd0.2": {
+   "vth_cc_V": 0.256,
+   "ioff_pA_per_um": 883.1,
+   "S_mV_dec": 90.8,
+   "i_at_vsg41mV_nA_per_um": 2.66
+  },
+  "vsd1.8": {
+   "vth_cc_V": 0.202,
+   "ioff_pA_per_um": 3207.9,
+   "S_mV_dec": 89.9,
+   "i_at_vsg41mV_nA_per_um": 9.63
+  },
+  "DIBL_mV_per_V": 41.1,
+  "pass4mm_ioff_vsd0.15_uA_est": 3.53
+ },
+ "SF_125C": {
+  "vsd0.05": {
+   "vth_cc_V": 0.196,
+   "ioff_pA_per_um": 18856.1,
+   "S_mV_dec": 130.3,
+   "i_at_vsg41mV_nA_per_um": 40.78
+  },
+  "vsd0.2": {
+   "vth_cc_V": 0.169,
+   "ioff_pA_per_um": 25287.8,
+   "S_mV_dec": 125.5,
+   "i_at_vsg41mV_nA_per_um": 55.07
+  },
+  "vsd1.8": {
+   "vth_cc_V": 0.11,
+   "ioff_pA_per_um": 73811.6,
+   "S_mV_dec": NaN,
+   "i_at_vsg41mV_nA_per_um": 159.65
+  },
+  "DIBL_mV_per_V": 49.1,
+  "pass4mm_ioff_vsd0.15_uA_est": 101.15
+ }
+}
