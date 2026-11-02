@@ -160,7 +160,7 @@ Z_out,cl ≈ 1 / (gm_c · gm_p · R_X)
 **沒有 Verilog 能不能做？**（[D]，對照閘級 XSPICE）
 - 需要：2 個比較器（可用連續比較器＋同步器，不一定要 StrongARM）、8 個 DFF、32 個 2/3 輸入閘＋1 個 NOR、8 個 slice 驅動 inverter、時脈（外部輸入最簡單；片上可用 ring oscillator）、power-on reset。
 - 這和你做過的 DFF、除頻器是同一等級，可以手畫或用 PDK 的標準元件庫手拼（需確認平台有無 std cell [H]）。
-- XSPICE 模型與閘級實作的差距：d_dff 沒有 setup/hold 違規與 metastability（比較器輸出是非同步訊號，實作時要 2 級 DFF 同步器）。**但同步器會造成決策延遲**：第 1 輪審查 (c) 的行為模型指出延遲 d 個時脈時 limit cycle 分界點從 1 移到 d+1；作者電路級重現（`s13_hybrid_sync.py`，寬窗比值 1.23、31 個負載點）：無同步器 0/31、2 級同步器 **11/31**、2 級同步器＋shift register 用 ÷3 時脈（等效 blanking）0/31 [X]。→ 規則：**有 d 級同步器時，shift register 每 d+1 個時脈才更新一次**（÷(d+1) 計數器，正是你做過的除頻器）；比較器 offset 的影響見下一段「完整條件」；PTM 反相器 FO4 = 54–60 ps [X]，DFF 時脈到輸出約數倍 FO4 [H]，10–50 MHz 時脈沒有時序壓力。
+- XSPICE 模型與閘級實作的差距：d_dff 沒有 setup/hold 違規與 metastability（比較器輸出是非同步訊號，實作時要 2 級 DFF 同步器）。**但同步器會造成決策延遲**：第 1 輪審查 (c) 的行為模型指出延遲 d 個時脈時 limit cycle 分界點從 1 移到 d+1；作者電路級重現（`s13_hybrid_sync.py`，寬窗比值 1.23、31 個負載點）：無同步器 0/31、1 級同步器 11/31、**2 級同步器 26/31**、1 級＋÷2 與 2 級＋÷3（等效 blanking）皆 0/31 [X]（初版接法錯誤：shift register 時脈晚 1 ns 使第 2 級同步器透明，量到的 11/31 其實是 d=1；第 2 輪 (c) 指出後更正）。→ 規則：**有 d 級同步器時，shift register 每 d+1 個時脈才更新一次**（÷(d+1) 計數器，正是你做過的除頻器）；比較器 offset 的影響見下一段「完整條件」；PTM 反相器 FO4 = 54–60 ps [X]，DFF 時脈到輸出約數倍 FO4 [H]，10–50 MHz 時脈沒有時序壓力。
 
 **limit cycle 的完整條件**（第 1 輪審查 (c) 行為模型＋作者電路驗證）：分界點 ≈ 1 ＋ 兩顆比較器 offset 之和（以片電流為單位）＋ 決策延遲 d（若不 blanking）；欠阻尼或比時脈慢的類比響應會再把分界點推高（1.05 到 >3.6，行為模型）[X/D]。
 

@@ -68,7 +68,7 @@ REF-A −38.2 dB；REF-B（5 片導通）−18.8 dB，差 19 dB。導通的 slic
 1. 穩定碼 k 需要 I_L − k·I_s ∈ [I_a(VH), I_a(VL)]（寬度 W）。k 每加 1，類比電流跳 I_s。若 W < I_s，序列 {I_L − k·I_s} 可能整個跳過窗口：每個長度 I_s 的週期裡有 (I_s − W) 長的負載區間沒有任何穩定碼 → 碼在相鄰兩值間來回 = limit cycle。
 2. 窄窗 W=[8, 14] mA、I_s=12.2 mA：洞在 I_L − 12.2k ∈ (14, 20.2)，即 **(14, 20.2)、(26.2, 32.4)、(38.4, 44.6)、(50.6, 56.8)、(62.8, 69.0)、(75.0, 81.2)、(87.2, 93.4)、(99.4, …)** mA；約一半負載範圍（(12.2−6)/12.2 = 51%）會 limit cycle。X3a 量的 20 mA 在洞裡，45/70/95 mA 不在（45−36.6=8.4、70−61=9、95−85.4=9.6 mA，都在窗內）。
 3. 3→18 mA 段平均斜率 = 15 mA / 0.235 V = 63.8 mA/V → 一片 = 12.2/63.8 = **191 mV**。兩顆比較器 offset 差的 σ = √2 × 5 = 7.1 mV，3σ = 21 mV → **窗口 ≥ 212 mV（≈ 13.5 mA）**。本次寬窗 235 mV 只多 23 mV（約 3.3σ），**很緊**；再加上溫度讓 I–V 曲線平移，實作要再加寬或把 slice 做小。
-4. （第 1 輪審查追加）若比較器後面有 d 級 DFF 同步器（防 metastability），決策延遲 d 個時脈，分界點變成 d+1：電路級 2 級同步器時寬窗有 11/31 負載點 limit cycle；shift register 改每 3 個時脈更新一次（÷3）即消失（`s13_hybrid_sync.py`）。
+4. （第 1 輪審查追加）若比較器後面有 d 級 DFF 同步器（防 metastability），決策延遲 d 個時脈，分界點變成 d+1：電路級 1 級同步器時寬窗有 11/31、2 級同步器 26/31 負載點 limit cycle；shift register 改每 d+1 個時脈更新一次即全部消失（`s13_hybrid_sync.py`）（初版接法錯誤：shift register 時脈晚 1 ns 使第 2 級同步器透明，量到的 11/31 其實是 d=1；第 2 輪 (c) 指出後更正）。
 
 ---
 
@@ -88,7 +88,7 @@ REF-A −38.2 dB；REF-B（5 片導通）−18.8 dB，差 19 dB。導通的 slic
 12. 中頻（UGF 附近 1–3 MHz）最差，接近 0 dB；高頻靠 CL 分流，但滿載 gds_p/(2πCL) 轉折在 ~400 MHz，所以 10–100 MHz 都在 0 dB 附近。改善：增加 EA 增益與頻寬、feedforward ripple cancellation（Park 2014 的方向）、NMOS pass（需 charge pump）、加大 CL。
 13. 會。條件是窗口電流 > 一片電流（加比較器 offset 與溫漂餘裕），否則約一半負載範圍會 limit cycle（H3、X3a）；若加了 d 級同步器，還要每 d+1 個時脈才更新（`s13`）。另外每次切換是一次 12 mA 的快速負載步階，造成 34–83 mV 尖峰（依 slice 邊沿）。
 14. **未確認**。只讀到摘要：有「transient response is dictated by the digital portion」與數位逼近演算法等偏 C 線索，但穩態誰供電、DC 精度誰決定、數位穩態是否停止都沒寫。要讀全文或 Leduc 的碩士論文才能判定。
-15. 用閘級：雙向 thermometer shift register 每位元＝1 DFF＋3 AND2＋1 OR3（本次 XSPICE 就是這個結構）；比較器用連續比較器＋2 級 DFF 同步器，**而且 shift register 要每 3 個時脈才更新一次**（否則同步器延遲會造成 limit cycle：`s13` 電路級 11/31 負載點振盪 → 加 ÷3 後 0/31）；時脈從外部輸入。驗證：LTspice 電晶體級跑代表性情境（加片、減片、hold、上電）。XSPICE 沒有 metastability 與 setup/hold 違規，要另外用電晶體級檢查。
+15. 用閘級：雙向 thermometer shift register 每位元＝1 DFF＋3 AND2＋1 OR3（本次 XSPICE 就是這個結構）；比較器用連續比較器＋2 級 DFF 同步器，**而且 shift register 要每 3 個時脈才更新一次**（否則同步器延遲會造成 limit cycle：`s13` 電路級 2 級同步器 26/31 負載點振盪 → 加 ÷3 後 0/31）；時脈從外部輸入。驗證：LTspice 電晶體級跑代表性情境（加片、減片、hold、上電）。XSPICE 沒有 metastability 與 setup/hold 違規，要另外用電晶體級檢查。
 16. 只能看趨勢。lmin=lmax=0.18 µm 代表 L≠0.18 µm 是外插；本次量到 gm/gds 隨 L 增加（NMOS 12→59→97）方向合理，但 Vth 對 L 不單調（0.41→0.50→0.45 V）。而且沒有 corner、沒有 mismatch 模型。下線前一定要換成平台的 PDK 重做。
 17. PMOS pass 只能「送」電流不能「吸」電流。卸載時多餘的電流只能靠洩放或 pass 關斷後的漏電慢慢放電：1 nF × 0.2 V / 200 µA = 1 µs；而且 Vout 可能直接衝到 Vin（本次 100 pF 時 overshoot 被 Vin 夾在 206 mV）。
 18. 不一定。本次 class-B 電容耦合 SRE：小訊號完全不變（PM、PSRR 相同），最佳參數下 undershoot 只改善 8–15%，參數掃描中 100 ns 邊沿最差從 236 惡化到 348 mV（+48%，過度修正後振鈴；`x4b_sre_sweep.json`）；第一版偏壓還因 PTM PMOS 的 DIBL 讓偵測管靜態導通，整顆 LDO 失效（LOG.md）。

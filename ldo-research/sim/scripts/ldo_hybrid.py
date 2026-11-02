@@ -30,7 +30,7 @@ def digital_block(p):
     legacy = p.get("sync", 0) == 0 and p.get("reg_div", 1) == 1   # 與最初版本（X3a–X3e）完全相同的 netlist
     s = [f"""
 Vclk clka 0 PULSE(0 1.8 {T/2} 0.1n 0.1n {T/2-0.1e-9} {T})
-Vclkr clkra 0 PULSE(0 1.8 {T/2+1e-9} 0.1n 0.1n {T*p['reg_div']/2-0.1e-9} {T*p['reg_div']})
+Vclkr clkra 0 PULSE(0 1.8 {T/2} 0.1n 0.1n {T*p['reg_div']/2-0.1e-9} {T*p['reg_div']})
 Vvl vl 0 {p['VL']}
 Vvh vh 0 {p['VH']}
 Bup upa 0 V = 0.9*(1+tanh((V(vl)-V(pg))*2000))

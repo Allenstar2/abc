@@ -63,12 +63,14 @@
   "direct": {
    "f0_MHz": 763.7,
    "tie_peak_ps": 924.77,
+   "tie_sinefit_amp_ps": 914.9,
    "edges": 3435,
    "vdd_ripple_pp_mV": 20.0
   },
   "ldo": {
    "f0_MHz": 765.8,
    "tie_peak_ps": 335.35,
+   "tie_sinefit_amp_ps": 334.06,
    "edges": 3445,
    "vdd_ripple_pp_mV": 7.4
   }

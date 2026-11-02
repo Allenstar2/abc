@@ -11,7 +11,7 @@
   "frac": 0.0,
   "bad": []
  },
- "sync2 10MHz": {
+ "sync1 10MHz": {
   "n_levels": 31,
   "n_limit_cycle": 11,
   "frac": 0.35,
@@ -72,6 +72,149 @@
     "vpp_mV": 99.1
    }
   ]
+ },
+ "sync2 10MHz": {
+  "n_levels": 31,
+  "n_limit_cycle": 26,
+  "frac": 0.84,
+  "bad": [
+   {
+    "IL_mA": 20.0,
+    "toggles": 18,
+    "vpp_mV": 427.8
+   },
+   {
+    "IL_mA": 23.0,
+    "toggles": 18,
+    "vpp_mV": 410.0
+   },
+   {
+    "IL_mA": 26.0,
+    "toggles": 18,
+    "vpp_mV": 345.2
+   },
+   {
+    "IL_mA": 29.0,
+    "toggles": 20,
+    "vpp_mV": 426.4
+   },
+   {
+    "IL_mA": 32.0,
+    "toggles": 20,
+    "vpp_mV": 358.1
+   },
+   {
+    "IL_mA": 35.0,
+    "toggles": 23,
+    "vpp_mV": 375.1
+   },
+   {
+    "IL_mA": 38.0,
+    "toggles": 22,
+    "vpp_mV": 368.6
+   },
+   {
+    "IL_mA": 41.0,
+    "toggles": 23,
+    "vpp_mV": 323.1
+   },
+   {
+    "IL_mA": 44.0,
+    "toggles": 26,
+    "vpp_mV": 337.1
+   },
+   {
+    "IL_mA": 47.0,
+    "toggles": 24,
+    "vpp_mV": 332.2
+   },
+   {
+    "IL_mA": 50.0,
+    "toggles": 24,
+    "vpp_mV": 300.4
+   },
+   {
+    "IL_mA": 53.0,
+    "toggles": 26,
+    "vpp_mV": 340.5
+   },
+   {
+    "IL_mA": 56.0,
+    "toggles": 23,
+    "vpp_mV": 308.3
+   },
+   {
+    "IL_mA": 59.0,
+    "toggles": 24,
+    "vpp_mV": 278.9
+   },
+   {
+    "IL_mA": 62.0,
+    "toggles": 24,
+    "vpp_mV": 259.8
+   },
+   {
+    "IL_mA": 65.0,
+    "toggles": 24,
+    "vpp_mV": 285.1
+   },
+   {
+    "IL_mA": 68.0,
+    "toggles": 25,
+    "vpp_mV": 269.4
+   },
+   {
+    "IL_mA": 71.0,
+    "toggles": 24,
+    "vpp_mV": 241.4
+   },
+   {
+    "IL_mA": 74.0,
+    "toggles": 22,
+    "vpp_mV": 238.6
+   },
+   {
+    "IL_mA": 77.0,
+    "toggles": 22,
+    "vpp_mV": 228.4
+   },
+   {
+    "IL_mA": 80.0,
+    "toggles": 20,
+    "vpp_mV": 195.7
+   },
+   {
+    "IL_mA": 83.0,
+    "toggles": 20,
+    "vpp_mV": 193.3
+   },
+   {
+    "IL_mA": 86.0,
+    "toggles": 18,
+    "vpp_mV": 190.2
+   },
+   {
+    "IL_mA": 89.0,
+    "toggles": 16,
+    "vpp_mV": 158.2
+   },
+   {
+    "IL_mA": 92.0,
+    "toggles": 16,
+    "vpp_mV": 156.0
+   },
+   {
+    "IL_mA": 95.0,
+    "toggles": 9,
+    "vpp_mV": 125.1
+   }
+  ]
+ },
+ "sync1 10MHz reg÷2": {
+  "n_levels": 31,
+  "n_limit_cycle": 0,
+  "frac": 0.0,
+  "bad": []
  },
  "sync2 10MHz reg÷3": {
   "n_levels": 31,

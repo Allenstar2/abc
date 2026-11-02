@@ -12,8 +12,10 @@ pwl = ["0 0"]; t = 1e-6
 for I in levels:
     pwl += [f"{t:.6g} {pwl[-1].split()[1]}", f"{t+50e-9:.6g} {I:.6g}"]; t += hold
 load = "IL vout 0 PWL(" + " ".join(pwl) + ")"
+# 註：初版把 shift register 時脈延後 1 ns，使第 2 級同步器透明（等效 d=1），第 2 輪審查 (c) 指出；已改為同一時脈沿。
 cases = {"no-sync 10MHz": dict(fclk=10e6), "no-sync 50MHz": dict(fclk=50e6),
-         "sync2 10MHz": dict(fclk=10e6, sync=2), "sync2 10MHz reg÷3": dict(fclk=10e6, sync=2, reg_div=3)}
+         "sync1 10MHz": dict(fclk=10e6, sync=1), "sync2 10MHz": dict(fclk=10e6, sync=2),
+         "sync1 10MHz reg÷2": dict(fclk=10e6, sync=1, reg_div=2), "sync2 10MHz reg÷3": dict(fclk=10e6, sync=2, reg_div=3)}
 R = {}
 for name, c in cases.items():
     p = dict(HDEF, **c)

@@ -14,7 +14,7 @@ def ring(sup):
         s.append(f"Xr{i} n{i} n{(i+1)%N} {sup} inv")
     return "\n".join(s)
 
-def tie_from(t, v, vdd, t0):
+def tie_from(t, v, vdd, t0, fm=None):
     """以 v 穿越 vdd/2 的上升沿算週期，回傳 f0、峰值 TIE（去線性趨勢）。"""
     sel = t > t0; t, v, vdd = t[sel], v[sel], vdd[sel]
     x = v - vdd / 2
@@ -23,7 +23,12 @@ def tie_from(t, v, vdd, t0):
     k = np.arange(len(tc)); A = np.vstack([k, np.ones_like(k)]).T
     T, b = np.linalg.lstsq(A, tc, rcond=None)[0]
     tie = tc - (k * T + b)
-    return 1 / T, float((tie.max() - tie.min()) / 2), len(tc)
+    if fm is None:
+        return 1 / T, float((tie.max() - tie.min()) / 2), len(tc)
+    # 正弦擬合（第 2 輪審查 (c) 建議：(max−min)/2 對分析視窗敏感）
+    M = np.vstack([np.sin(2*np.pi*fm*tc), np.cos(2*np.pi*fm*tc), tc - tc.mean(), np.ones_like(tc)]).T
+    c = np.linalg.lstsq(M, tc - (k * T + b), rcond=None)[0]
+    return 1 / T, float((tie.max() - tie.min()) / 2), len(tc), float(np.hypot(c[0], c[1]))
 
 R = {}
 # 1. f vs VDD
@@ -66,9 +71,9 @@ for tag in ("direct", "ldo"):
     net = f"* x5 {tag}\n.include {MODEL}\n.options reltol=1e-4\n{body}\n.ic v(n0)=0\n.control\ntran 5p {tstop} 0 10p uic\nwrdata {RES}/x5_{tag}.txt v(n0) v(vdd)\nquit\n.endc\n.end\n"
     run(net, f"x5_{tag}", timeout=3000)
     a = np.loadtxt(f"{RES}/x5_{tag}.txt")
-    f0s, tie, n = tie_from(a[:, 0], a[:, 1], a[:, 3], tst + 0.5e-6)
+    f0s, tie, n, tie_sine = tie_from(a[:, 0], a[:, 1], a[:, 3], tst + 0.5e-6, fm=fm)
     vv = a[:, 3][a[:, 0] > tst + 0.5e-6]
-    sims[tag] = dict(f0_MHz=round(f0s / 1e6, 1), tie_peak_ps=round(tie * 1e12, 2), edges=n,
+    sims[tag] = dict(f0_MHz=round(f0s / 1e6, 1), tie_peak_ps=round(tie * 1e12, 2), tie_sinefit_amp_ps=round(tie_sine * 1e12, 2), edges=n,
                      vdd_ripple_pp_mV=round(float(np.ptp(vv)) * 1e3, 2))
 R["cosim_fm1MHz_Ain10mV"] = sims
 json.dump(R, open(f"{RES}/x5_vco_supply.json", "w"), indent=1, ensure_ascii=False)

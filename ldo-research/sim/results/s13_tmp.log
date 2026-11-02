@@ -60,18 +60,16 @@ adac3#branch_1_0                             0
 adac2#branch_1_0                             0
 adac1#branch_1_0                             0
 
- Reference value :  1.82475e-05
- Reference value :  3.55521e-05
- Reference value :  5.21017e-05
- Reference value :  6.77501e-05
- Reference value :  8.23083e-05
- Reference value :  9.84465e-05
- Reference value :  1.13500e-04
- Reference value :  1.29950e-04
- Reference value :  1.46686e-04
- Reference value :  1.63601e-04
- Reference value :  1.79751e-04
-No. of Data Rows : 82674
+ Reference value :  2.06003e-05
+ Reference value :  3.88865e-05
+ Reference value :  5.94002e-05
+ Reference value :  7.85521e-05
+ Reference value :  9.85501e-05
+ Reference value :  1.17065e-04
+ Reference value :  1.34700e-04
+ Reference value :  1.53750e-04
+ Reference value :  1.70100e-04
+No. of Data Rows : 67753
 ngspice-42 done
 Warning: Model issue on line 5 :
   .model nmos nmos level=49 lint=4.e-08 tox=4.e-09 vth0=0.3999 rdsw=250 lm ...

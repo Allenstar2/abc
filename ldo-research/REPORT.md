@@ -50,7 +50,7 @@
 ### b.4 應用背景：HBM 與高速 SerDes（使用者追加，詳見 `APPLICATIONS.md`）
 - **HBM**（12 篇＋13 補充來源）：HBM 介面專用 LDO 只找到首爾大學三篇（ISSCC 2025、JSSC 2026、CICC 2026，都是 hybrid/digital、靠 command/strobe 時序），標題指標是 droop/settling（<10 mV、400 ps、20 pF）。HBM rail 0.4–1.2 V，1.6 V 不是 HBM rail。學生晶片沒有 memory controller，hybrid 的主要好處用不到 [H]。
 - **SerDes**（15 篇）：LDO 主要用在 PLL/VCO/clock，用寬頻 PSRR＋低雜訊換低 jitter（SD10 教學：PSRR 40 dB 撐到 10 MHz、50 nV/√Hz）[H，綜合摘要]。0.18 µm 例子都在 2.5 GHz 以下。
-- **本次模擬（X5）**：7 級 ring（764 MHz、Kvdd 440 MHz/V）由 REF-A 供電，Vin 10 mV@1 MHz → 峰值 TIE 335 ps（無 LDO 925 ps），手算 339/916 ps，差 ~1% [X/D]。REF-A 在 1 MHz 只擋 8.6 dB、10 MHz 放大 1.3 dB。
+- **本次模擬（X5）**：7 級 ring（764 MHz、Kvdd 440 MHz/V）由 REF-A 供電，Vin 10 mV@1 MHz → 峰值 TIE 334 ps（無 LDO 915 ps，正弦擬合），手算 339/916 ps，差 ≤1.3% [X/D]；第 2 輪審查用另一顆振盪器在 3 個頻率獨立驗證（誤差 ≤2.9%）。REF-A 在 1 MHz 只擋 8.6 dB、10 MHz 放大 1.3 dB。
 - **若以 PSRR/jitter 為主**：維持 PMOS pass＋feedforward（X6 顯示需 adaptive：完全抵消所需的過追蹤量隨負載變 15 倍，滿載 1 MHz 最好約 −13 dB [X/D]），或換 NMOS-pass 子類（審查者模擬 1–10 MHz 好 15–20 dB，代價 Vout ≤ ~1.2 V 或 charge pump）。
 
 ---
@@ -76,7 +76,7 @@ PSRR_LF = R_o·[gds_p + gm_p(1−α_pg)]/(1+T0) ≈ gds_p·R_o/(1+T0)（α_pg≈
 
 ### c.3 B：類比主導 hybrid
 - **兩迴路交互作用**：數位迴路看到的是「slice 電流 → pg 電壓」受控體。limit cycle 分界點 ≈ 1 ＋ 兩顆比較器 offset 之和（以片電流為單位）＋ 決策延遲 d（若不 blanking）；欠阻尼類比響應再推高（第 1 輪審查行為模型＋作者電路驗證）。
-- 電路級 [X]：窄窗（比值 0.49）20 mA 時 limit cycle 191–229 mV p-p；寬窗（1.23）無同步器 10/50 MHz 皆 0/31 負載點振盪；**2 級同步器 11/31**；同步器＋shift register ÷3 時脈 0/31（`s13`）。
+- 電路級 [X]：窄窗（比值 0.49）20 mA 時 limit cycle 191–229 mV p-p；寬窗（1.23）無同步器 10/50 MHz 皆 0/31 負載點振盪；1 級同步器 11/31、**2 級同步器 26/31**；同步器＋shift register ÷(d+1) 時脈 0/31（`s13`）（初版接法錯誤：shift register 時脈晚 1 ns 使第 2 級同步器透明，量到的 11/31 其實是 d=1；第 2 輪 (c) 指出後更正）。
 - **切換瞬間**：slice 閘極邊沿 1/30/300 ns → 正尖峰 82.6/71.4/34.5 mV [X]。
 - **PSRR**：slice 導通是 Vin→Vout 的低阻抗開關，低頻差 8–14 dB；1–100 MHz 與 A 相同（≈0 dB）。
 - **時脈與漣波**：本模型數位為理想，時脈饋通、kickback、電源彈跳**未模擬** [H]。
@@ -123,7 +123,7 @@ PSRR_LF = R_o·[gds_p + gm_p(1−α_pg)]/(1+T0) ≈ gds_p·R_o/(1+T0)（α_pg≈
 | 2 | 「1 nF 慢邊沿反而較差」 | 第 1 輪 (a)：加 Rz=10 kΩ 後 1 nF 全面較好 | 第 2 輪 (a)：Rz=10 kΩ 在角落振盪；穩健的小 Rz 下 1 nF **只在 1 ns 邊沿**占優 |
 | 3 | 「首選 A 加 SRE」 | 作者自己的 X4：最好 −8～15%、最差 +48% | SRE 移出基準 |
 | 4 | 「B/C 的 MHz PSRR 結構性吃虧」 | 第 2 輪 (b)：證據只到 100 kHz；審查者量 1 MHz A −6.7、B −4.1 dB | 撤回 |
-| 5 | 「實作要加 2 級 DFF 同步器」 | 第 1 輪 (c) 行為模型：延遲 d 使分界點變 d+1 | 作者電路級確認（11/31 → ÷3 後 0/31）：同步器要配 blanking |
+| 5 | 「實作要加 2 級 DFF 同步器」 | 第 1 輪 (c) 行為模型：延遲 d 使分界點變 d+1 | 作者電路級確認（2 級同步器 26/31 → ÷3 後 0/31；初版量到的 11/31 因時脈接法錯誤只等於 d=1，第 2 輪 (c) 指出）：同步器要配 blanking |
 | 6 | 「窗口 > 一片電流就不會 limit cycle」 | 第 1 輪 (c) | 還要加 offset 與決策延遲 |
 | 7 | 「高溫輕載漏電是 A 的失效情境」 | 第 2 輪 (a)：可能是 PTM 的 PMOS Vth/DIBL 假象 | 降級為「待 PDK 確認」 |
 | 8 | 「SF buffer 只能把 pg 拉到 ~1.65 V」 | 作者自己重跑 OP：實際 1.759 V | 已更正（失效原因是漏電而非擺幅） |

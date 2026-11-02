@@ -57,13 +57,13 @@ HBM 與 SerDes 的 LDO 文獻同時在意兩件事：**droop/settling**（HBM �
 **Vin 漣波 10 mV，結果**：
 | f_m | 路徑 | VCO 上的漣波振幅 | 峰值 TIE 解析 | 峰值 TIE 模擬 | 誤差 |
 |---|---|---|---|---|---|
-| 1 MHz | 無 LDO（漣波直接上 VCO） | 10 mV | 916 ps | 925 ps | +1.0% |
-| 1 MHz | 經 REF-A（PSRR −8.6 dB） | 3.70 mV（模擬 p-p 7.4 mV） | 339 ps | 335 ps | −1.0% |
+| 1 MHz | 無 LDO（漣波直接上 VCO） | 10 mV | 916 ps | 925 ps（正弦擬合 915 ps） | +1.0%（擬合 −0.1%） |
+| 1 MHz | 經 REF-A（PSRR −8.6 dB） | 3.70 mV（模擬 p-p 7.4 mV） | 339 ps | 335 ps（正弦擬合 334 ps） | −1.0%（擬合 −1.3%） |
 | 100 kHz | 經 REF-A（PSRR −28.3 dB） | 0.39 mV | 354 ps | — | — |
 | 10 MHz | 經 REF-A（PSRR **+1.3 dB**，放大） | 11.6 mV | 107 ps | — | — |
 
 **解讀**：
-1. 手算與共模擬差 ~1%，說明「PSRR(f) × Kvdd → jitter」這條鏈可以用手算預測 [X/D]。
+1. 手算與共模擬差 ~1%，說明「PSRR(f) × Kvdd → jitter」這條鏈可以用手算預測 [X/D]。第 2 輪審查 (c) 用自己設計的 5 級 current-starved ring（158 MHz、Kvdd 39 MHz/V）在 300 kHz/1 MHz/3 MHz 獨立驗證，誤差 −0.2%～−2.9%；並指出 (max−min)/2 的 TIE 量法對分析視窗敏感（同波形 335→381 ps），已改報正弦擬合振幅。
 2. 簡單 capless LDO（REF-A）在 1 MHz 只擋 8.6 dB、10 MHz 甚至放大。**對迴路頻寬低於 ~1 MHz 的 PLL**，這正是 PLL 壓不住、最需要 LDO 擋的頻段 [H]；但高速 SerDes 的 ring PLL 頻寬可 >100 MHz（SD03，agent6 §4.2），那時關鍵頻段更高，0.18 µm 的類比 LDO 只能靠 CL 分流。
 3. 自由振盪 ring 的 335 ps TIE 對 764 MHz（週期 1.31 ns）是巨大的；實際 SerDes 有 PLL，數字只用來比較 LDO 的相對效果。
 4. **這是學生做得到的「應用示範」**：片上放一個由 LDO 供電的 ring oscillator（或 inverter delay line），量測時在 Vin 注入漣波、用頻譜儀看 spur 或用示波器量週期抖動，間接量到 LDO 在 MHz 的 PSRR。是否已有人做過、新穎性如何，見 §3 與 GAPS.md 更新。
