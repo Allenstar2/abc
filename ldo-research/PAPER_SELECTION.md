@@ -24,7 +24,7 @@
 | 7 | A02 | Kim, Kwak, Kim, ISCAS 2022（10.1109/ISCAS48785.2022.9937778，間接驗證） | 你讀過；180 nm；voltage damper + body loop | 是否 capless、是否實測；125.9 mV undershoot 的 ΔI、CL、邊沿；body loop 需要 deep n-well 或獨立 n-well 嗎（0.18 µm 平台是否有） |
 | 8 | H11 | Jin et al., Electronics/MDPI 2023（self-triggered digitally assisted hybrid，65 nm，OA 有報導） | 摘要明確是 B 類（數位只在大暫態觸發），可當備案 B 的參考 | 觸發條件與 dead band；穩態時數位是否完全靜止；PSRR；數位如何實作 |
 | 9 | A12 | Torres et al., IEEE CAS Magazine 2014（10.1109/MCAS.2014.2314263，**DOI 未驗證，單一搜尋摘錄**） | 反面/限制：同一 0.6 µm 製程實作 5 種 capless 架構，證明排名隨指標改變 | 各架構的 PSR、settling、Iq 數字；哪個最適合 0.18 µm |
-| 10 | D08＋X01 | Wang, Kim, Seok 等 DLDO review（D08）＋ 公開資料集 github.com/mgseok/DLDO-survey | 唯一能實際開啟的一手資料；支持「FoM 不可比較」與 hybrid/數位的 PSR 弱點 | review 正文提出的新 FoM 定義；hybrid 類設計的 PSRR |
+| 10 | D08＋X01 | Wang, Kim, Seok 等 DLDO review（D08）＋ 公開資料集 github.com/mgseok/DLDO-survey | 唯一能實際開啟的資料（二手整理）；支持「FoM 不可比較」與 hybrid/數位的 PSR 弱點 | review 正文提出的新 FoM 定義；hybrid 類設計的 PSRR |
 
 ## 主要排除理由（其餘 43 筆：54 列減去入選的 11 個 id，第 10 項含 D08 與 X01）
 
