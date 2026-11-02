@@ -14,13 +14,15 @@
 | G3 | 0.18 µm、1.8 V 下的 capless LDO PSR feedforward 抵消 | **已有**：A01 Park 2014 JSSC（0.18 µm、1.8 V，PSR 優於 −56 dB 至 4 MHz [摘要]）；A13 Joo 2017（0.18 µm PSR 模型）；A03 Lim 2018 | — | **刪除**（已有人做過） |
 | G4 | 電容耦合 SRE / FVF / SSF 的快速暫態 capless LDO | **已有**大量：A06、A07、A08、A09、F03、F04、D13 | — | **刪除**（已有人做過；本次模擬也顯示簡單 SRE 改善僅 8–15% [X]，不是容易的新貢獻） |
 | G5 | 大 PMOS pass 在高溫輕載的漏電使調節失效（本次 SF-like 125 °C 輕載 Vout +46 mV [X]）的系統研究 | 屬於教科書級的「最小負載電流」設計問題；不構成研究缺口 | 高 | **刪除**（不是研究缺口，是設計檢查項目） |
+| G6 | **0.18 µm 類比 capless LDO＋片上 ring oscillator 當應用負載，實測 supply-induced spur/TIE 對漣波頻率的曲線，並用「有/無 LDO 的 spur 差＝PSRR」當應用層級的 PSRR 量測** | 部分有：PLL 論文常注入 supply tone 量 spur（SD03、SD08、SD14），但 regulator 屬 PLL 一部分；獨立 LDO＋RO 最接近的是 SD04（180 nm，**只有模擬**）。2014 後 0.18 µm 實測未找到（agent6，摘要層級、42 次搜尋） | 高：RO 只要幾個 inverter；量測只需訊號源、bias-T、頻譜儀/示波器；本次 X5 已示範手算與模擬差 ~1% [X] | **保留（與 G1 合併成主推）**，定位為「應用示範＋量測方法」，不宣稱首創。未完整查證 |
 
-## G1 的具體做法（若教授同意）
+## G1＋G6 的具體做法（若教授同意）
 
 1. 晶片上：REF-A 類 LDO（首選）＋片上負載：4–8 段二進位加權 NMOS（總 0–100 mA，或依教授定的 Imax），每段閘極由 inverter 驅動；最後一級 inverter 的 PMOS/NMOS 可切換尺寸（或串電阻）得到 ~1 ns / ~20 ns / ~200 ns 邊沿。
 2. Vout 取出兩條：(a) 直接 pad；(b) 片上 PMOS/NMOS source follower 或 unity-gain buffer → pad。
 3. 量測矩陣：t_edge ×3、起點電流 ×3（0、1 mA、10 mA）、取出方式 ×2，報告 ΔV、settling、以及用三種 FoM 定義（ps-FoM、edge-adjusted FoM）算出的值。
-4. 風險：負載電流走獨立 GND pad；片上負載的 IR drop 與熱；示波器頻寬（1 ns 邊沿需 ≥ 500 MHz 探棒/示波器 [H]）。
+4. （G6）在 LDO 輸出掛 7 級 ring oscillator（數 mA 級，可用 enable 關掉），輸出經除頻器（你做過）降到 <100 MHz 再出 pad，量測時在 Vin 注入 100 kHz–10 MHz 漣波，用頻譜儀量 spur；同一顆 RO 另接一個直接由 Vin 供電的版本當「無 LDO」對照。
+5. 風險：負載電流走獨立 GND pad；片上負載的 IR drop 與熱；示波器頻寬（1 ns 邊沿需 ≥ 500 MHz 探棒/示波器 [H]）。
 
 ## 建議的搜尋關鍵字（早上補查用）
 - "load transient" "edge time" capacitor-less LDO measurement on-chip load generator

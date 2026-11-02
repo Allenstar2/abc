@@ -1,0 +1,10 @@
+narrow 8-14 mA: r = 0.492; LC load intervals (mA): (14.0,20.2), (26.2,32.4), (38.4,44.6), (50.6,56.8), (62.8,69.0), (75.0,81.2), (87.2,93.4), (99.4,105.6) ; fraction of 0-100 mA = 0.44
+   I_L=20 mA -> codes inside window: NONE -> LC
+   I_L=45 mA -> codes inside window: [3]
+   I_L=70 mA -> codes inside window: [5]
+   I_L=95 mA -> codes inside window: [7]
+wide 3-18 mA: r = 1.230; LC load intervals (mA):  ; fraction of 0-100 mA = 0.00
+   I_L=20 mA -> codes inside window: [1]
+   I_L=45 mA -> codes inside window: [3]
+   I_L=70 mA -> codes inside window: [5]
+   I_L=95 mA -> codes inside window: [7]

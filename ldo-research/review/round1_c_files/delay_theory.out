@@ -1,0 +1,14 @@
+d=1 r=1.2  sim LC frac=0.669   predicted(n_in<d+1, interior)=0.669   agree=100.0%
+d=1 r=1.5  sim LC frac=0.407   predicted(n_in<d+1, interior)=0.407   agree=100.0%
+d=1 r=1.9  sim LC frac=0.075   predicted(n_in<d+1, interior)=0.075   agree=100.0%
+d=1 r=2.0  sim LC frac=0.000   predicted(n_in<d+1, interior)=0.000   agree=100.0%
+d=1 r=2.5  sim LC frac=0.000   predicted(n_in<d+1, interior)=0.000   agree=100.0%
+d=1 r=2.9  sim LC frac=0.000   predicted(n_in<d+1, interior)=0.000   agree=100.0%
+d=1 r=3.0  sim LC frac=0.000   predicted(n_in<d+1, interior)=0.000   agree=100.0%
+d=2 r=1.2  sim LC frac=0.819   predicted(n_in<d+1, interior)=0.819   agree=100.0%
+d=2 r=1.5  sim LC frac=0.782   predicted(n_in<d+1, interior)=0.782   agree=100.0%
+d=2 r=1.9  sim LC frac=0.732   predicted(n_in<d+1, interior)=0.732   agree=100.0%
+d=2 r=2.0  sim LC frac=0.719   predicted(n_in<d+1, interior)=0.719   agree=100.0%
+d=2 r=2.5  sim LC frac=0.345   predicted(n_in<d+1, interior)=0.345   agree=100.0%
+d=2 r=2.9  sim LC frac=0.062   predicted(n_in<d+1, interior)=0.062   agree=100.0%
+d=2 r=3.0  sim LC frac=0.000   predicted(n_in<d+1, interior)=0.000   agree=100.0%

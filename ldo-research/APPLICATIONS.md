@@ -25,9 +25,25 @@ HBM 與 SerDes 都讓「LDO 的**中高頻 PSRR**（MHz～百 MHz）」比負載
 4. 可借用的評估方式：週期性 burst 負載（片上負載開關用外部方波驅動）、多負載同時切換、PSRR 曲線看中高頻。這些都不需要數位控制。
 5. 可選延伸 [H，agent5 構想，非 HB05 電路]：外部 trigger 腳在負載切換前預先加大 EA/buffer 偏壓（類比 feedforward），模仿 command-aware 概念；量測時可關掉對照。
 
-## 3. 高速 SerDes（agent6）
+## 3. 高速 SerDes（agent6，15 篇：SD01–SD15）
 
-（agent6 回報後補上，見 §3 更新）
+### 3.1 讀到的事實（僅摘要）
+| 位置 | 內容 | 來源 id |
+|---|---|---|
+| PLL/VCO/ring oscillator 供電（最常見） | >100 Gb/s link 的 ring PLL 用 supply-regulated 架構，50 mVpp 漣波下 spur < −54 dBc、immunity 改善 31.4 dB [M] | SD03（JSSC 2026） |
+| 從 VCO 推 LDO 規格（教學） | 5 GHz LC VCO 的 LDO：PSRR 40 dB 撐到 10 MHz、雜訊 50 nV/√Hz @1 MHz、PN 惡化 ≤1 dB、≤1 mW | SD10（Razavi，SSC Magazine 2022） |
+| TX driver | 112 Gb/s PAM4 TX 擺幅由外接 LDO 設定；10.24 Gb/s TX 晶片內 capless LDO（PSRR −50 dB <1 MHz，轉述） | SD02、SD11 |
+| RX front-end | 只找到 SiGe 224 Gb/s 的 dual-loop regulator | SD12 |
+| 0.18 µm 例子 | supply-regulated PLL（1.8 V，2.4 GHz，3.29 ps rms，注入 50 mV supply tone）[M]；180 nm LDO＋5 級 RO（**只有模擬**） | SD14（2006，背景）、SD04 |
+| 反面/限制 | regulator 吃 headroom（低壓先進製程）；LDO 耗功率面積；用 adaptive filter 取代 LDO（LPDDR5 clock，27.84→4.28 ps rms）；180 nm 補償電路不用 LDO | SD07、SD01、SD13、SD06 |
+
+### 3.2 對專題的意義
+1. **SerDes 裡 LDO 的主要用途是換低 jitter（寬頻 PSRR＋低雜訊＋mW 級功耗），不是應付大負載暫態**（SD10、SD03；agent6 §1）。
+2. **電流不匹配**：SerDes 時脈 rail 是 mW 級（SD10 ≤1 mW、SD09 320 µW），學生的 10–100 mA 比較像整個 TX/多 lane。建議 ring oscillator 只當數 mA 的示範負載，另放 10–100 mA 可程式負載 [H，agent6]。
+3. **不要包裝成「SerDes LDO」**：0.18 µm 例子都在 2.5 GHz 以下（SD14、SD15）。
+4. **headroom 批評在 0.18 µm 較弱**：SD07 的批評針對 ~1 V 製程；1.8→1.6 V 相對寬裕，但 200 mV、100 mA 需要大 PMOS（本專案 4 mm）。
+5. **「LDO 供電片上 RO、量 supply-induced spur」**：在 PLL 論文裡常見（regulator 屬於 PLL 的一部分）；以「獨立類比 LDO＋RO 當應用負載」為題最接近的是 SD04（180 nm，只有模擬）。2014 後**沒找到** 0.18 µm 實測——可當區隔點，但**不能宣稱首創**（只有摘要、搜尋 42 次）。→ GAPS.md G6。
+6. **與 X5 模擬一致**：窄頻區有/無 LDO 的 spur 差等於該頻率的 PSRR [D]；本次 X5 在 1 MHz 量到 TIE 比 925/335 ps ≈ 2.76 倍 = 8.8 dB，與 REF-A 在該負載的 PSRR −8.6 dB 一致 [X]。
 
 ## 4. 本次模擬：供電漣波 → ring oscillator jitter（X5，`sim/scripts/s10_vco_supply.py`）
 
@@ -52,10 +68,10 @@ HBM 與 SerDes 都讓「LDO 的**中高頻 PSRR**（MHz～百 MHz）」比負載
 3. 自由振盪 ring 的 335 ps TIE 對 764 MHz（週期 1.31 ns）是巨大的；實際 SerDes 有 PLL，數字只用來比較 LDO 的相對效果。
 4. **這是學生做得到的「應用示範」**：片上放一個由 LDO 供電的 ring oscillator（或 inverter delay line），量測時在 Vin 注入漣波、用頻譜儀看 spur 或用示波器量週期抖動，間接量到 LDO 在 MHz 的 PSRR。是否已有人做過、新穎性如何，見 §3 與 GAPS.md 更新。
 
-## 5. 對首選/備案的影響（暫定，待 agent6、agent7 回報後定稿）
+## 5. 對首選/備案的影響（agent6 已回報；agent7 PSR 技術待補）
 
 | 若教授想要的應用動機 | 首選 | 設計重點 | 主要量測 |
 |---|---|---|---|
 | 無特定應用（一般 SoC） | A | 輕載穩定、暫態（片上負載、3 檔邊沿） | 負載/線性暫態、PSRR、Iq、dropout |
 | HBM 介面 | A（＋可選類比 feedforward trigger） | 中高頻 PSRR、burst 負載 | PSRR 曲線、burst droop |
-| SerDes/clock | A＋PSR 增強（見 agent7 整理） | 1–100 MHz PSRR、輸出雜訊 | PSRR 曲線、ring oscillator spur/TIE |
+| SerDes/clock | A＋PSR 增強（見 agent7 整理）；Imax 可降到數 mA–10 mA，換取更容易的高 PSRR | 1–100 MHz PSRR、輸出雜訊（SD10：40 dB 至 10 MHz、50 nV/√Hz） | PSRR 曲線、ring oscillator spur/TIE（有/無 LDO 對照） |

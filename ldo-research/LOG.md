@@ -18,3 +18,4 @@
 - 2026-11-02 17:28:43 UTC — agent5（HBM）完成：12 篇＋13 補充來源（專利/廠商/二手，只在 notes）。HBM 介面專用 LDO 只找到首爾大學三篇（HB05–07，皆僅摘要）。HBM rail 0.4–1.2 V，1.6 V 不是 HBM rail。結論：不改變 A 首選，改變的是評估方式（中高頻 PSRR、burst 負載）。開 agent7（中高頻 PSRR 增強）。literature.csv 66 列。
 - 2026-11-02 17:30:55 UTC — 第 1 輪 (a) 完成：REF-B 稻草人、1 nF 結論反轉（Rz）、SRE 移出首選；作者重現 s12_fairB（553/154/33 vs 499/127/27 mV 一致）、Rz 結果一致。CONCLUSION_DRAFT v2。
 - 2026-11-02 17:31:55 UTC — APPLICATIONS.md（HBM＋X5）草稿；開第 2 輪 (a)。執行中：R1(c)、agent6 SerDes、agent7 PSR、R2(a)。
+- 2026-11-02 17:33:47 UTC — agent6（SerDes）完成 15 篇；APPLICATIONS §3、GAPS G6（LDO＋RO spur）更新；literature.csv 81 列。

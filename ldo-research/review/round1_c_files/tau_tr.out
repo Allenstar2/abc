@@ -1,0 +1,13 @@
+dn12_0   I_pass  12.40->  0.40 mA  t63=   1.8 ns  t90=   4.0 ns  Vout dev max/min = 188.2/0.0 mV
+up0_12   I_pass   0.40-> 12.60 mA  t63=   2.8 ns  t90=   3.4 ns  Vout dev max/min = -0.0/-258.1 mV
+dn22_10  I_pass  22.40-> 10.20 mA  t63=   1.0 ns  t90=   2.2 ns  Vout dev max/min = 105.8/0.0 mV
+up10_22  I_pass  10.20-> 22.40 mA  t63=   1.2 ns  t90=   2.0 ns  Vout dev max/min = -0.0/-106.3 mV
+--- V(pg) and Vout settling (fraction of final step reached) ---
+dn12_0   pg   dX= 164.53 mV  settle to 10%:    85.4 ns   to 2%:   121.0 ns
+dn12_0   vout dX=   4.54 mV  settle to 10%:   234.8 ns   to 2%:   301.0 ns
+up0_12   pg   dX=-165.59 mV  settle to 10%:     3.6 ns   to 2%:    70.6 ns
+up0_12   vout dX=  -4.57 mV  settle to 10%:   338.8 ns   to 2%:   430.0 ns
+dn22_10  pg   dX=  56.59 mV  settle to 10%:     5.8 ns   to 2%:    60.6 ns
+dn22_10  vout dX=   1.54 mV  settle to 10%:   327.4 ns   to 2%:   418.0 ns
+up10_22  pg   dX= -56.59 mV  settle to 10%:     2.8 ns   to 2%:    88.4 ns
+up10_22  vout dX=  -1.54 mV  settle to 10%:   339.4 ns   to 2%:   433.0 ns
