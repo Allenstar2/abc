@@ -20,6 +20,7 @@ echo "[8b] SRE 參數掃描";                          python3 s9b_sre_sweep.py 
 echo "[8c] 實驗 X5：VCO 供電漣波→jitter";             python3 s10_vco_supply.py | tee ../results/run_s10.txt
 echo "[8d] 補充查核";                              python3 s11_misc_checks.py > ../results/run_s11.txt
 echo "[8e] 第 1 輪審查反例重現（公平 B）";             python3 s12_fairB.py | tee ../results/run_s12.txt
+echo "[8f] hybrid 同步器延遲 vs limit cycle";          python3 s13_hybrid_sync.py | tee ../results/run_s13.txt
 echo "[9] LEARNING 實驗";                          python3 learn.py all > ../results/run_learn.txt
 if [ -d ../../ext/DLDO-survey ]; then
   echo "[7] DLDO 資料集統計";                        python3 s7_dataset_stats.py | tee ../results/run_s7.txt

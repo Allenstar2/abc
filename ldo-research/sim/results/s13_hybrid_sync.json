@@ -1,0 +1,82 @@
+{
+ "no-sync 10MHz": {
+  "n_levels": 31,
+  "n_limit_cycle": 0,
+  "frac": 0.0,
+  "bad": []
+ },
+ "no-sync 50MHz": {
+  "n_levels": 31,
+  "n_limit_cycle": 0,
+  "frac": 0.0,
+  "bad": []
+ },
+ "sync2 10MHz": {
+  "n_levels": 31,
+  "n_limit_cycle": 11,
+  "frac": 0.35,
+  "bad": [
+   {
+    "IL_mA": 20.0,
+    "toggles": 20,
+    "vpp_mV": 292.8
+   },
+   {
+    "IL_mA": 23.0,
+    "toggles": 17,
+    "vpp_mV": 284.9
+   },
+   {
+    "IL_mA": 26.0,
+    "toggles": 12,
+    "vpp_mV": 279.5
+   },
+   {
+    "IL_mA": 44.0,
+    "toggles": 12,
+    "vpp_mV": 163.7
+   },
+   {
+    "IL_mA": 47.0,
+    "toggles": 12,
+    "vpp_mV": 169.5
+   },
+   {
+    "IL_mA": 50.0,
+    "toggles": 8,
+    "vpp_mV": 168.7
+   },
+   {
+    "IL_mA": 68.0,
+    "toggles": 6,
+    "vpp_mV": 110.9
+   },
+   {
+    "IL_mA": 71.0,
+    "toggles": 8,
+    "vpp_mV": 114.9
+   },
+   {
+    "IL_mA": 74.0,
+    "toggles": 8,
+    "vpp_mV": 115.7
+   },
+   {
+    "IL_mA": 83.0,
+    "toggles": 9,
+    "vpp_mV": 97.3
+   },
+   {
+    "IL_mA": 86.0,
+    "toggles": 6,
+    "vpp_mV": 99.1
+   }
+  ]
+ },
+ "sync2 10MHz reg÷3": {
+  "n_levels": 31,
+  "n_limit_cycle": 0,
+  "frac": 0.0,
+  "bad": []
+ }
+}

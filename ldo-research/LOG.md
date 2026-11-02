@@ -19,3 +19,4 @@
 - 2026-11-02 17:30:55 UTC — 第 1 輪 (a) 完成：REF-B 稻草人、1 nF 結論反轉（Rz）、SRE 移出首選；作者重現 s12_fairB（553/154/33 vs 499/127/27 mV 一致）、Rz 結果一致。CONCLUSION_DRAFT v2。
 - 2026-11-02 17:31:55 UTC — APPLICATIONS.md（HBM＋X5）草稿；開第 2 輪 (a)。執行中：R1(c)、agent6 SerDes、agent7 PSR、R2(a)。
 - 2026-11-02 17:33:47 UTC — agent6（SerDes）完成 15 篇；APPLICATIONS §3、GAPS G6（LDO＋RO spur）更新；literature.csv 81 列。
+- 2026-11-02 17:36:53 UTC — 第 1 輪 (c) 完成；s13 電路級驗證同步器延遲：0/31、0/31（50 MHz）、11/31（sync2）、0/31（sync2+÷3）。第 1 輪三項全部完成。開第 2 輪 (c)。

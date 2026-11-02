@@ -70,8 +70,10 @@ CL 加大 10 倍，Cc 也要大 10 倍（或 I_min 大 10 倍）。掃描結果�
 **PSRR**（推導 [D]，對照 [X]）：EA 的 PMOS mirror 與 SF 的電流源都接 Vin，使 pg 大致跟著 Vin 走（a_pg ≈ 1），Vin 的漣波主要經 gds_p 注入：
 
 ```
-PSRR_LF ≈ gds_p · R_o / (1 + T0)
+PSRR_LF ≈ gds_p · R_o / (1 + T0)                       （近似：假設 pg 完全跟隨 Vin）
+PSRR_LF = R_o · [gds_p + gm_p·(1 − α_pg)] / (1 + T0)   （精確：α_pg = v_pg/v_in）
 ```
+第 1 輪審查 (c) 以小訊號矩陣算出 α_pg = 0.948–0.994（buffer 的 drain 接地使 pg 不完全跟隨 Vin），近似式因此偏樂觀：滿載 0.6 dB、零載 1.0 dB、10 mA 時 2.2 dB [X，審查者]。
 - 100 mA：R_o ≈ 1/gds_p → PSRR ≈ −T0 = −33.7 dB；模擬 −33.3 dB [X]。
 - 0 mA：gds_p·R_o = 0.253/(0.253+0.125) = 0.67 → −3.5 − 53.2 = −56.7 dB；模擬 −55.3 dB [X]。
 - 中頻 |T| 下降，PSRR 在 UGF 附近（1.6–2.5 MHz）升到 −5.3～−8.7 dB @1 MHz（100 mA / 10 mA）[X]。
@@ -158,7 +160,9 @@ Z_out,cl ≈ 1 / (gm_c · gm_p · R_X)
 **沒有 Verilog 能不能做？**（[D]，對照閘級 XSPICE）
 - 需要：2 個比較器（可用連續比較器＋同步器，不一定要 StrongARM）、8 個 DFF、32 個 2/3 輸入閘＋1 個 NOR、8 個 slice 驅動 inverter、時脈（外部輸入最簡單；片上可用 ring oscillator）、power-on reset。
 - 這和你做過的 DFF、除頻器是同一等級，可以手畫或用 PDK 的標準元件庫手拼（需確認平台有無 std cell [H]）。
-- XSPICE 模型與閘級實作的差距：d_dff 沒有 setup/hold 違規與 metastability（比較器輸出是非同步訊號，實作時要 2 級 DFF 同步器）；比較器 offset 會讓窗口縮小（窗口要 > 3σ offset）；PTM 反相器 FO4 = 54–60 ps [X]，DFF 時脈到輸出約數倍 FO4 [H]，10–50 MHz 時脈沒有時序壓力。
+- XSPICE 模型與閘級實作的差距：d_dff 沒有 setup/hold 違規與 metastability（比較器輸出是非同步訊號，實作時要 2 級 DFF 同步器）。**但同步器會造成決策延遲**：第 1 輪審查 (c) 的行為模型指出延遲 d 個時脈時 limit cycle 分界點從 1 移到 d+1；作者電路級重現（`s13_hybrid_sync.py`，寬窗比值 1.23、31 個負載點）：無同步器 0/31、2 級同步器 **11/31**、2 級同步器＋shift register 用 ÷3 時脈（等效 blanking）0/31 [X]。→ 規則：**有 d 級同步器時，shift register 每 d+1 個時脈才更新一次**（÷(d+1) 計數器，正是你做過的除頻器）；比較器 offset 會讓窗口縮小（窗口要 > 3σ offset）；PTM 反相器 FO4 = 54–60 ps [X]，DFF 時脈到輸出約數倍 FO4 [H]，10–50 MHz 時脈沒有時序壓力。
+
+**limit cycle 的完整條件**（第 1 輪審查 (c) 行為模型＋作者電路驗證）：分界點 ≈ 1 ＋ 兩顆比較器 offset 之和（以片電流為單位）＋ 決策延遲 d（若不 blanking）；欠阻尼或比時脈慢的類比響應會再把分界點推高（1.05 到 >3.6，行為模型）[X/D]。
 
 **主導限制**：B 的好處（DC 精度、較小的類比 pass）在 100 mA 規格下不大；壞處（PSRR、glitch、limit cycle 風險、大步階要額外非同步路徑）都會出現在量測上。
 **失效情境**：量產或溫度讓比較器 offset 或 I_a(V) 曲線漂移，使窗口縮到小於一片電流 → 特定負載下出現 ~200 mV p-p 的 limit cycle（X3a 窄窗即為示範）[X/D]。

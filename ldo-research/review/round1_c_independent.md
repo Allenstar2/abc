@@ -184,4 +184,119 @@ A_os = R_o·[ gds_p + gm_p·(1 − α_pg) ] ,   α_pg ≡ ∂v_pg/∂v_in (開�
 
 r_crit 定義為：r ≥ r_crit 時，0–8·I_s 所有負載都不會 LC（r 以 0.05 步進掃 0.5–4.0）。
 
-SCAN_TABLE_PLACEHOLDER
+| 情境 | r_crit | LC 比例 @ r=1.0 | @1.2 | @1.5 | @2.0 | 推導 / 解讀 |
+|---|---|---|---|---|---|---|
+| 基準 | **1.00** | 0 | 0 | 0 | 0 | W ≥ I_s |
+| offset os = −0.1（窗口變寬） | 0.80 | 0 | 0 | 0 | 0 | r_crit = 1 + 2·os |
+| os = +0.05 | 1.10 | 0.09 | 0 | 0 | 0 | 同上，與模擬完全吻合 |
+| os = +0.10 | 1.20 | 0.17 | 0 | 0 | 0 | 〃 |
+| os = +0.20 | 1.40 | 0.35 | 0.17 | 0 | 0 | 〃 |
+| 一階類比 τ = 0.5 / 1 / 3 / 10 T | **1.00** | 0 | 0 | 0 | 0 | 單調、無慣性的延遲只會讓鎖定變慢，不會產生持續 LC |
+| 二階 ω_n = 3 rad/T，ζ = 0.3 / 0.5 / 0.7 | 1.45 / 1.15 / 1.05 | 0.60 / 0.20 / 0.03 | 0.31 / 0 / 0 | 0 | 0 | ≈ 1 + 過衝量 M_p（0.37 / 0.16 / 0.05） |
+| 二階 ω_n = 1 rad/T，ζ = 0.3 / 0.5 / 0.7 | 2.05 / 1.60 / 1.50 | 0.86 / 0.86 / 0.52 | 0.66 / 0.58 / 0.29 | 0.44 / 0.07 / 0 | 0.01 / 0 / 0 | 響應跨好幾個時脈，二階起始段等效為延遲，加上過衝 |
+| 二階 ω_n = 0.3 rad/T，ζ = 0.3 / 0.5 / 0.7 | > 4 / 3.60 / 2.90 | 0.89 / 0.86 / 0.85 | 0.87 / 0.84 / 0.82 | 0.84 / 0.81 / 0.78 | 0.79 / 0.75 / 0.72 | 類比遠慢於時脈 |
+| 純延遲 d = 1 時脈 | **2.00** | 0.84 | 0.67 | 0.41 | 0 | r_crit = d + 1 |
+| 純延遲 d = 2（2 級 DFF 同步器） | **3.00** | 0.84 | 0.82 | 0.78 | 0.72 | r_crit = d + 1 |
+| d = 1 + blanking 1 / d = 2 + blanking 2 | **1.00** | 0 | 0 | 0 | 0 | 每步之後等 d 個時脈，恢復準靜態 |
+| τ = 1 T + os = 0.1 | 1.20 | 0.17 | 0 | 0 | 0 | 一階延遲不影響，只剩 offset 項 |
+| 二階 ω_n = 1, ζ = 0.5 + os = 0.1 | 1.85 | 0.88 | 0.85 | 0.47 | 0 | 效應大致相加 |
+
+**純延遲的推導 [D] 與驗證 [X]**：類比瞬間 settle、比較器結果晚 d 個時脈才生效時，碼依 k[n+1] = k[n] + u(k[n−d]) 更新。碼第一次進入窗內時，pipeline 裡已經有 d 個同方向的命令，所以碼一定會衝到 k_first ± d。要停住，就必須 k_first … k_first ± d 這 d+1 個碼都在窗內。長度 W 的區間對所有負載都保證含 d+1 個候選點 ⇔ W ≥ (d+1)·I_s。用「窗內碼數 < d+1 且位於可調節區內」去預測 LC 負載，對 d = 1、2 和 r = 1.2–3.0 的 14 組模擬**逐點 100% 一致**（`delay_theory.out`）。
+
+碼序列範例（負載 4.0·I_s，`trace_demo.out`）：
+```
+d=0, r=1.5          stable : 1233333333…
+d=1, r=1.5          LC     : 0123443223443223443…   (週期 6，p-p 2 碼)
+d=1, r=1.5, blank=1 stable : 0112233333…
+d=2, r=2.2          LC     : 0012344432111234443211…  (p-p 3 碼)
+二階 ω_n=1, ζ=0.3, r=1.2 LC : 1234432234432234…
+```
+
+### 3.4 實際電路的時間尺度（用 REF-A 做參考，不是 REF-B）[X]
+
+我在自己的 REF-A netlist 上施加一片 slice 大小（12.2 mA、1 ns 邊沿）的負載步階。從類比迴路的角度看，slice 導通等同負載減少（`tau_tr.out`）：
+
+| 步階 | pass 電流 t63 / t90 | V(pg) 回到 10% / 2% | Vout 偏移峰值 | Vout 回到 2% |
+|---|---|---|---|---|
+| 12.4 → 0.4 mA（輕載端） | 1.8 / 4.0 ns | 85 / 121 ns | +188 mV | 301 ns |
+| 0.4 → 12.6 mA | 2.8 / 3.4 ns | 3.6 / 71 ns | −258 mV | 430 ns |
+| 22.4 → 10.2 mA | 1.0 / 2.2 ns | 5.8 / 61 ns | +106 mV | 418 ns |
+| 10.2 → 22.4 mA | 1.2 / 2.0 ns | 2.8 / 88 ns | −106 mV | 433 ns |
+
+- pass 電流經 Cc 快速路徑在幾 ns 內就接手，但比較器看的是 V(pg)。V(pg) 有 60–120 ns 的慢尾巴：Vout 以迴路頻寬（約 µs 等級）回到穩態時，pass 的 Vsd 跟著改變，V(pg) 也隨之漂移。
+- 對照時脈：1 MHz（T = 1 µs）幾乎完全準靜態；10 MHz（T = 100 ns）大致準靜態；**50 MHz（T = 20 ns）時慢尾巴橫跨 3–6 個時脈**。若尾巴帶有欠阻尼成分，依 3.3 節分界點會明顯上移。
+- 限制 [H]：REF-B 的 pass 是 800 µm，再加上 slice 讓 G_o 變大、迴路增益掉到 16–23 dB，時間尺度和 REF-A 不同；上表只能說明量級。原作者 X3a 的寬窗（r = 1.23）在 50 MHz 只測了 4 個負載點，我**無法**用自己的模擬確認或否定它在所有負載都穩定。
+
+### 3.5 主張 3 判定：**部分成立**
+
+- 「窗口 < 一片電流 → 某些負載 LC」：**成立**。LC 負載比例 = 1 − r（逐點 100% 與理論一致），也和原作者 4 個負載點的電路結果一致。
+- 「窗口 > 一片電流 → 不會 LC」：**只在準靜態下成立**，也就是類比在一個時脈內 settle 且不過衝、比較器沒有 offset、比較器到 slice 沒有額外的 pipeline 延遲。ANALYSIS.md 原文把它寫成「**必要**條件」（並提到 offset 餘裕），這個措辭是對的；但如果當成充分條件來用就不成立。分界點的移動：
+  1. **offset**：r_crit = 1 + (os_H + os_L)/I_s，與模擬完全吻合。兩顆比較器的 offset 直接相加，而不是只需要大於 3σ。
+  2. **純延遲 d 個時脈**：r_crit = d + 1。ANALYSIS.md 第 161 行建議實作時加 2 級 DFF 同步器，如果直接加上去（d = 2）而不改控制器，**r = 1.23 的寬窗在約 80% 的負載會 LC**（r = 1.2、d = 2 時比例 0.82）。對策：每次改碼後 blanking d 個時脈（模擬證實可恢復 r_crit = 1），或把窗口拉到 > 3 片電流。
+  3. **類比動態**：單調的一階延遲（τ ≤ 10 T）不移動分界點；欠阻尼或比時脈慢的二階響應會把 r_crit 推到 1.05–3.6 以上（見表）。50 MHz 時脈 + 輕載這個組合最需要再驗證。
+
+---
+
+## 4. 總結與建議
+
+1. **主張 1 成立**：換成 Middlebrook 雙注入（斷在 vout→分壓器），DC / UGF / PM 與原主張差 ≤ 0.3%。p2 公式比 `.pz` 低 12%，原因是與 buffer 極點交互；CL ≤ 50 pF 時兩者合併成複數極點，公式失效，建議在 ANALYSIS.md 註明適用範圍。
+2. **主張 2 大致成立**：數字差 ≤ 0.5 dB；公式忽略 α_pg < 1（Mb 的 drain 接地，SF 增益 < 1），中載偏樂觀 2.2 dB。建議改寫成 A_os/(1+T0)，其中 A_os = R_o[gds_p + gm_p(1−α_pg)]。
+3. **主張 3 部分成立**：1.0 是**準靜態**分界點。報告中「窗口 > 一片電流就安全」應改成 `W > I_s·(1 + d) + os_H + os_L`，並加上「類比對 slice 步階的 V(pg) 響應在 1 個時脈內 settle 且無明顯過衝」的條件。建議原作者在 50 MHz、r = 1.23 下對負載做細掃（例如 0–100 mA 每 0.5 mA 一點），確認寬窗沒有動態 LC。
+
+**本次驗證的限制**：(a) 主張 1、2 用的是同一個 PTM 模型和同一份電路（重抄），所以驗證的是「方法與推導」，不是模型準確度。(b) 主張 3 是行為模型，沒有重跑 REF-B 電路；slice 電流視為常數（實際會隨 Vout 變化）；比較器沒有 metastability 和雜訊。
+
+---
+
+## 附錄 A.1 Middlebrook 雙注入推導 [D]
+
+在斷點，vout 側是 Thevenin（開路電壓 = −A·v_b，A 是由 b 側電壓經分壓器→EA→pass 回到 vout 的增益；輸出阻抗 Z_a），分壓器側是 Z_b，真正的迴路增益是 T = A·Z_b/(Z_a+Z_b)。
+
+- 電壓注入（v_b = v_a + v_inj）：i = v_b/Z_b，v_a = −A·v_b − Z_a·v_b/Z_b，所以 T_v = −v_a/v_b = A + Z_a/Z_b。
+- 電流注入（注入節點電壓 v）：i_y = (−A·v − v)/Z_a（由 a 側流出），i_x = v/Z_b（流進 b 側），所以 T_i = −i_y/i_x = (A+1)·Z_b/Z_a。
+- 令 ρ = Z_a/Z_b：(T_v·T_i − 1)/(T_v+T_i+2) = [A(A+1+ρ)/ρ] / [(ρ+1)(A+ρ+1)/ρ] = A/(1+ρ) = T。✔
+
+這個公式假設斷點沒有反向傳輸（分壓器側只經 M1 閘極往前送）。閘極 Cgs/Cgd 的高頻反向耦合會造成 0.1–0.2° 的 PM 差，與閘極 L-C 法的結果一致。
+
+## 附錄 A.2 數值結果檔
+
+- `lg_results.json`：OP（11 顆電晶體的 gm/gds/gmbs/id/vgs/vds/vth/vdsat），以及每種斷迴路法的 DC/UGF/PM、PSRR、開迴路 supply gain。
+- `ss_results.json` / `ss_model.out`：自寫節點矩陣的 T0、α_ea、α_pg、A_os、PSRR。
+- `pz_test.out`、`pz_cl.out`：`.pz` 極零點與 CL 掃描。
+- `tau_tr.out`：slice 步階的 pass 電流 / V(pg) / Vout settling。
+- `hyb_A.json`、`hyb_scan.json` / `hyb_scan.out`、`delay_theory.out`、`trace_demo.out`、`refb_map.out`：主張 3 的所有數字。
+
+## 附錄 B 檔案清單（`review/round1_c_files/`）
+
+| 檔案 | 內容 |
+|---|---|
+| `sim_lg.py` | flat netlist 產生器 `core()`、Middlebrook 雙注入 `mb()`、Vout→分壓器 L-C（有/無 replica）`lc()`、閘極 L-C `gate()`、閉迴路 PSRR `psrr_cl()`、開迴路 supply gain `supply_open()`、`margins()` |
+| `ss_model.py` | 從 OP 組 KCL 矩陣，算 T0 / A_os / PSRR，並與主張公式比較 |
+| `pz_test.py`、`pz_cl.py` | ngspice `.pz`（M1 閘極以 1 Ω 接 DC 源，cur 輸入） |
+| `tau_tr.py` | slice 大小的步階暫態 |
+| `hybrid_beh.py`、`hybrid_scan.py`、`delay_theory.py`、`trace_demo.py`、`refb_map.py` | 主張 3 行為模型、掃描、延遲理論驗證、碼序列範例、REF-B 洞位置 |
+| `mbv_IL0.cir`、`mbi_IL0.cir`、`lcr_IL0.cir`、`psr_IL0.cir`、`aos_IL0.cir`、`pz_IL0.cir` | 零載時實際送進 ngspice 的 netlist（Middlebrook 電壓/電流注入、replica L-C、PSRR、開迴路 supply、pz） |
+
+注意：腳本把輸出寫到**腳本所在目錄**，要重跑請先把整個資料夾複製到 scratch 目錄；腳本之間以相對路徑互相 import，並從 `lg_results.json` 讀 OP。
+
+關鍵 netlist 片段（Middlebrook，零載）：
+```
+* 電壓注入 (mbv_IL0.cir)                    * 電流注入 (mbi_IL0.cir)
+VIN vin 0 DC 1.8                             VIN vin 0 DC 1.8
+VREF vref 0 0.8                              VREF vref 0 0.8
+Vinj r1t vout DC 0 AC 1                      Vsa vout j DC 0
+IL vout 0 DC 0.0                             Vsb j r1t DC 0
+.control                                     Iinj 0 j DC 0 AC 1
+ac dec 40 1 1e10                             IL vout 0 DC 0.0
+wrdata mbv_IL0.txt v(vout) v(r1t)            .control
+.endc                                        ac dec 40 1 1e10
+                                             wrdata mbi_IL0.txt i(Vsa) i(Vsb)
+T_v = -v(vout)/v(r1t);  T_i = -i(Vsa)/i(Vsb);  T = (T_v*T_i - 1)/(T_v + T_i + 2)
+```
+
+行為模型核心（`hybrid_beh.py::simulate`，每個時脈）：
+```python
+up = (Ia > IH - os) & act;  dn = (Ia < I_LO + os) & ~up & act
+k_cmd = clip(k_cmd + up - dn, 0, N);  hist.append(k_cmd); hist.pop(0); k_app = hist[0]   # d-clock latency
+tgt = clip(loads - k_app, 0, IMAX)
+Ia = tgt + (Ia - tgt)*exp(-1/tau)            # order 1   (order 2: exact ZOH state update)
+```
