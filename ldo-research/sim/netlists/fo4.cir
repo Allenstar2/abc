@@ -1,0 +1,25 @@
+* FO4 inverter delay, PTM 180nm, VDD 1.8
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+VDD vdd 0 1.8
+VIN in 0 PULSE(0 1.8 1n 50p 50p 2n 4n)
+.subckt inv a y vdd
+Mn y a 0 0 NMOS W=1u L=0.18u
+Mp y a vdd vdd PMOS W=2.5u L=0.18u
+.ends
+X1 in a vdd inv
+X2 a b vdd inv
+X3 b c vdd inv
+X4 b c2 vdd inv
+X5 b c3 vdd inv
+X6 b c4 vdd inv
+X7 c d vdd inv
+X8 c d2 vdd inv
+X9 c d3 vdd inv
+X10 c d4 vdd inv
+.control
+tran 1p 6n
+meas tran tphl trig v(a) val=0.9 rise=1 targ v(b) val=0.9 fall=1
+meas tran tplh trig v(a) val=0.9 fall=1 targ v(b) val=0.9 rise=1
+quit
+.endc
+.end

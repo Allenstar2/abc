@@ -1,0 +1,29 @@
+{
+ "rows": 58,
+ "edge_reported": 46,
+ "edge_min_ns": 0.015,
+ "edge_max_ns": 4000.0,
+ "edge_median_ns": 2.0,
+ "psrr_reported": 8,
+ "hybridization": {
+  "fully digital": 22,
+  "nested": 21,
+  "hybrid": 15
+ },
+ "xwang_cicc2019": [
+  [
+   "A Charge-Pump-based LDO Employing an AC-Coupled High-Z Feedback Loop Towards a sub-4fs FoM and a 105,000x Stable Dynamic Current Range",
+   "CICC",
+   "2019",
+   "185.0",
+   "1"
+  ],
+  [
+   "A Charge-Pump-based LDO Employing an AC-Coupled High-Z Feedback Loop Towards a sub-4fs FoM and a 105,000x Stable Dynamic Current Range",
+   "CICC",
+   "2019",
+   "88.0",
+   "10"
+  ]
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "glitch": [
+  {
+   "t_drv_ns": 1.0,
+   "code_changes": 7,
+   "max_pos_mV": 82.60870999999992,
+   "max_neg_mV": 2.4947600000000403,
+   "final_code": 7
+  },
+  {
+   "t_drv_ns": 29.999999999999996,
+   "code_changes": 7,
+   "max_pos_mV": 71.40199999999996,
+   "max_neg_mV": 2.3434099999999347,
+   "final_code": 7
+  },
+  {
+   "t_drv_ns": 300.0,
+   "code_changes": 7,
+   "max_pos_mV": 34.46955500000004,
+   "max_neg_mV": 2.275824999999898,
+   "final_code": 7
+  }
+ ],
+ "fo4": {
+  "tphl_ps": 60.25152,
+  "tplh_ps": 53.8652
+ }
+}

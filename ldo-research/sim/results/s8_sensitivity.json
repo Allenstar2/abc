@@ -1,0 +1,104 @@
+[
+ {
+  "Imax_mA": 10.0,
+  "Wp_um": 400,
+  "CL_pF": 100.0,
+  "Cc_pF": 5.0,
+  "pm_min": 69.7,
+  "dc_db_full": 33.4,
+  "load_reg_mV": 10.2,
+  "Iq_uA": 289.4,
+  "psrr_1k_full": -33.1,
+  "psrr_1M_full": -5.3,
+  "undershoot_0_to_Imax_mV": {
+   "1ns": 307.6,
+   "100ns": 152.1,
+   "1000ns": 45.6
+  }
+ },
+ {
+  "Imax_mA": 10.0,
+  "Wp_um": 400,
+  "CL_pF": 1000.0000000000001,
+  "Cc_pF": 20.0,
+  "pm_min": 54.4,
+  "dc_db_full": 33.4,
+  "load_reg_mV": 10.2,
+  "Iq_uA": 289.4,
+  "psrr_1k_full": -33.0,
+  "psrr_1M_full": -0.2,
+  "undershoot_0_to_Imax_mV": {
+   "1ns": 276.6,
+   "100ns": 262.2,
+   "1000ns": 98.3
+  }
+ },
+ {
+  "Imax_mA": 50.0,
+  "Wp_um": 2000,
+  "CL_pF": 100.0,
+  "Cc_pF": 5.0,
+  "pm_min": 68.8,
+  "dc_db_full": 33.7,
+  "load_reg_mV": 12.0,
+  "Iq_uA": 288.0,
+  "psrr_1k_full": -33.3,
+  "psrr_1M_full": -5.4,
+  "undershoot_0_to_Imax_mV": {
+   "1ns": 551.9,
+   "100ns": 185.1,
+   "1000ns": 81.4
+  }
+ },
+ {
+  "Imax_mA": 50.0,
+  "Wp_um": 2000,
+  "CL_pF": 1000.0000000000001,
+  "Cc_pF": 20.0,
+  "pm_min": 55.2,
+  "dc_db_full": 33.7,
+  "load_reg_mV": 12.0,
+  "Iq_uA": 288.0,
+  "psrr_1k_full": -33.3,
+  "psrr_1M_full": -0.4,
+  "undershoot_0_to_Imax_mV": {
+   "1ns": 388.3,
+   "100ns": 319.3,
+   "1000ns": 131.6
+  }
+ },
+ {
+  "Imax_mA": 100.0,
+  "Wp_um": 4000,
+  "CL_pF": 100.0,
+  "Cc_pF": 5.0,
+  "pm_min": 66.4,
+  "dc_db_full": 33.7,
+  "load_reg_mV": 12.8,
+  "Iq_uA": 286.7,
+  "psrr_1k_full": -33.3,
+  "psrr_1M_full": -5.3,
+  "undershoot_0_to_Imax_mV": {
+   "1ns": 742.2,
+   "100ns": 235.5,
+   "1000ns": 111.0
+  }
+ },
+ {
+  "Imax_mA": 100.0,
+  "Wp_um": 4000,
+  "CL_pF": 1000.0000000000001,
+  "Cc_pF": 20.0,
+  "pm_min": 54.7,
+  "dc_db_full": 33.7,
+  "load_reg_mV": 12.8,
+  "Iq_uA": 286.7,
+  "psrr_1k_full": -33.3,
+  "psrr_1M_full": -0.4,
+  "undershoot_0_to_Imax_mV": {
+   "1ns": 496.8,
+   "100ns": 345.5,
+   "1000ns": 151.2
+  }
+ }
+]
