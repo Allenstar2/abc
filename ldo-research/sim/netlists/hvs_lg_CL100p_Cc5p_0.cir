@@ -1,0 +1,44 @@
+* hvs_lg_CL100p_Cc5p_0
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options temp=27 reltol=1e-4 abstol=1e-12 vntol=1e-7
+
+.subckt ldoA vin vout vref fb fbi
+Ibias vin bn 1e-05
+Mbn bn bn 0 0 NMOS W=4u L=1u
+Mt tail bn 0 0 NMOS W=8u L=1u
+M1 d1 fbi tail 0 NMOS W=20u L=1.0u
+M2 ea vref tail 0 NMOS W=20u L=1.0u
+M3 d1 d1 vin vin PMOS W=4u L=1.0u
+M4 ea d1 vin vin PMOS W=4u L=1.0u
+Mbn2 bp bn 0 0 NMOS W=4u L=1u
+Mbp bp bp vin vin PMOS W=4u L=1u
+Mcs pg bp vin vin PMOS W=20u L=1u
+Mb 0 ea pg pg PMOS W=20u L=0.18u
+Mp vout pg vin vin PMOS W=4000u L=0.18u
+R1 vout fb 4000.0
+R2 fb 0 4000.0
+Cc vout ea 5e-12
+.ends
+
+VIN vin 0 DC 1.8 AC 0
+VREF vref 0 0.8
+X1 vin vout vref fb fbi ldoA
+Lbrk fb fbi 1e9
+Cbrk fbi acs 1
+VAC acs 0 DC 0 AC 1
+CL vout ncl 1e-10
+RESR ncl 0 1e-06
+IL vout 0 DC 0
+.control
+op
+let vout_op = v(vout)
+let vpg_op = v(x1.pg)
+let vea_op = v(x1.ea)
+let iin = -i(vin)
+print vout_op vpg_op vea_op iin
+ac dec 40 10 1e10
+let T = -v(fb)/v(fbi)
+wrdata /home/user/abc/ldo-research/sim/results/hvs_lg_CL100p_Cc5p_0_T.txt T
+quit
+.endc
+.end

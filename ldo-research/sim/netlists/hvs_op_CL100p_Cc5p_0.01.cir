@@ -1,0 +1,33 @@
+* hvs_op_CL100p_Cc5p_0.01
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options temp=27 reltol=1e-4 abstol=1e-12 vntol=1e-7
+
+.subckt ldoA vin vout vref fb fbi
+Ibias vin bn 1e-05
+Mbn bn bn 0 0 NMOS W=4u L=1u
+Mt tail bn 0 0 NMOS W=8u L=1u
+M1 d1 fbi tail 0 NMOS W=20u L=1.0u
+M2 ea vref tail 0 NMOS W=20u L=1.0u
+M3 d1 d1 vin vin PMOS W=4u L=1.0u
+M4 ea d1 vin vin PMOS W=4u L=1.0u
+Mbn2 bp bn 0 0 NMOS W=4u L=1u
+Mbp bp bp vin vin PMOS W=4u L=1u
+Mcs pg bp vin vin PMOS W=20u L=1u
+Mb 0 ea pg pg PMOS W=20u L=0.18u
+Mp vout pg vin vin PMOS W=4000u L=0.18u
+R1 vout fb 4000.0
+R2 fb 0 4000.0
+Cc vout ea 5e-12
+.ends
+
+VIN vin 0 1.8
+VREF vref 0 0.8
+X1 vin vout vref fb fb ldoA
+IL vout 0 DC 0.01
+.control
+op
+print @m.x1.m1[gm] @m.x1.m1[gds] @m.x1.m1[id] @m.x1.m2[gm] @m.x1.m2[gds] @m.x1.m2[id] @m.x1.m3[gm] @m.x1.m3[gds] @m.x1.m3[id] @m.x1.m4[gm] @m.x1.m4[gds] @m.x1.m4[id] @m.x1.mt[gm] @m.x1.mt[gds] @m.x1.mt[id] @m.x1.mb[gm] @m.x1.mb[gds] @m.x1.mb[id] @m.x1.mcs[gm] @m.x1.mcs[gds] @m.x1.mcs[id] @m.x1.mp[gm] @m.x1.mp[gds] @m.x1.mp[id]
+print v(vout) v(x1.pg) v(x1.ea) v(x1.tail) v(x1.d1)
+quit
+.endc
+.end

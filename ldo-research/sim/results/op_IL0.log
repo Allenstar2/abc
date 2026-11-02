@@ -1,0 +1,55 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * op_il0
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+
+No. of Data Rows : 1
+@m.x1.m1[gm] = 1.841823e-04
+@m.x1.m1[gds] = 1.222341e-06
+@m.x1.m1[id] = 9.828466e-06
+@m.x1.m2[gm] = 1.792789e-04
+@m.x1.m2[gds] = 1.138727e-06
+@m.x1.m2[id] = 9.471934e-06
+@m.x1.m3[gm] = 5.979189e-05
+@m.x1.m3[gds] = 1.172089e-06
+@m.x1.m3[id] = 9.828466e-06
+@m.x1.m4[gm] = 5.778806e-05
+@m.x1.m4[gds] = 1.296172e-06
+@m.x1.m4[id] = 9.471935e-06
+@m.x1.mt[gm] = 2.340940e-04
+@m.x1.mt[gds] = 3.095183e-06
+@m.x1.mt[id] = 1.930039e-05
+@m.x1.mb[gm] = 8.290690e-04
+@m.x1.mb[gds] = 2.230115e-05
+@m.x1.mb[id] = 4.055548e-05
+@m.x1.mcs[gm] = 1.875494e-04
+@m.x1.mcs[gds] = 1.411615e-04
+@m.x1.mcs[id] = 4.055549e-05
+@m.x1.mp[gm] = 1.298096e-03
+@m.x1.mp[gds] = 6.405185e-05
+@m.x1.mp[id] = 5.024222e-05
+v(vout) = 1.607751e+00
+v(x1.pg) = 1.649488e+00
+v(x1.ea) = 1.334491e+00
+v(x1.tail) = 2.716493e-01
+v(x1.d1) = 1.039648e+00
+ngspice-42 done
+Warning: Model issue on line 5 :
+  .model nmos nmos level=49 lint=4.e-08 tox=4.e-09 vth0=0.3999 rdsw=250 lm ...
+
+Warning: Model issue on line 10 :
+  .model pmos pmos level=49 lint=3.e-08 tox=4.2e-09 vth0=-0.42 rdsw=450 lm ...
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed

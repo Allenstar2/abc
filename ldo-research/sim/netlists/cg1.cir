@@ -1,0 +1,15 @@
+* cgate
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+VS s 0 1.8
+VD d 0 1.6
+VG g0 0 1.65
+RG g0 g 1e12
+IAC 0 g DC 0 AC 1
+M1 d g s s PMOS W=4000u L=0.18u
+.control
+ac lin 3 1e5 1e6
+let c = 1/(2*3.14159265*frequency*imag(-1/v(g)))
+print c
+quit
+.endc
+.end
