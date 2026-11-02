@@ -1,0 +1,15 @@
+* n_L0.18
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+VD d 0 0.6
+VG g 0 0.6
+M1 d g 0 0 NMOS W=1.7999999999999998u L=0.18u
+.save @m1[id] @m1[gm] @m1[gds] @m1[vth]
+.control
+dc VG 0.2 1.2 0.005
+wrdata /home/user/abc/ldo-research/sim/results/dc_n_L0.18_vgs.txt @m1[id] @m1[gm] @m1[gds] @m1[vth]
+alter VG 0.6
+dc VD 0.05 1.8 0.01 VG 0.5 0.8 0.1
+wrdata /home/user/abc/ldo-research/sim/results/dc_n_L0.18_vds.txt @m1[id] @m1[gm] @m1[gds]
+quit
+.endc
+.end
