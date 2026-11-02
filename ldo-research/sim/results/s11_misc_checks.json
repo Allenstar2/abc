@@ -1,0 +1,57 @@
+{
+ "bsim_v3.1": {
+  "@m1[gm]": 0.0005987655,
+  "@m1[gds]": 7.59064e-06,
+  "@m1[id]": 9.086943e-05
+ },
+ "bsim_v3.3.0": {
+  "@m1[gm]": 0.0005987655,
+  "@m1[gds]": 7.59064e-06,
+  "@m1[id]": 9.086943e-05
+ },
+ "recovery_1nF_overshoot_to_1pct_us": 2.2333749999999997,
+ "recovery_100pF_overshoot_to_1pct_us": 0.3222784999999998,
+ "REFB_code0_Iq_uA": 288.9972,
+ "REFB_analog_max_mA_at_1pct_drop": 33.0,
+ "fairness_1nF": [
+  {
+   "design": "1n_Imin500_Cc10",
+   "pm": [
+    58.4,
+    75.2,
+    89.1
+   ],
+   "undershoot_1ns_100ns_1us_mV": [
+    458,
+    261,
+    104
+   ]
+  },
+  {
+   "design": "1n_Imin500_Cc5",
+   "pm": [
+    43.3,
+    62.5,
+    87.0
+   ],
+   "undershoot_1ns_100ns_1us_mV": [
+    456,
+    213,
+    89
+   ]
+  },
+  {
+   "design": "100p_Imin500_Cc3",
+   "pm": [
+    70.4,
+    79.5,
+    85.7
+   ],
+   "undershoot_1ns_100ns_1us_mV": [
+    687,
+    185,
+    72
+   ]
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * bsim ver
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+@m1[gm] = 5.987655e-04
+@m1[gds] = 7.590640e-06
+@m1[id] = 9.086943e-05
+ngspice-42 done
+Warning: Model issue on line 5 :
+  .model nmos nmos level=49 lint=4.e-08 tox=4.e-09 vth0=0.3999 rdsw=250 lm ...
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Checking parameters for BSIM 3.3 model nmos
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.

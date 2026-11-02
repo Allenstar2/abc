@@ -13,3 +13,4 @@
 - 2026-11-02 17:13:44 UTC — LEARNING.md / LEARNING_ANSWERS.md 完成；REPORT g/h 節草稿在 scratchpad。等待第 1 輪審查。
 - 2026-11-02 17:16:45 UTC — run_all.sh 在隔離副本完整重跑 1m53s，s2/x2/x3/s8 json 與 repo 版本位元相同。補 SRE 與 learn 步驟。REFERENCES.md 由 make_refs.py 產生；D03 補資料集 DOI。
 - 2026-11-02 17:18:13 UTC — 使用者新增需求：研究 HBM 與高速 SerDes 用的 LDO（明天要看）。因同時上限 4 個 subagent（目前 3 個審查在跑），先開 agent5（HBM）；SerDes 等空位再開。網路仍擋學術網站，新文獻同樣僅摘要。我自己先做一個可模擬的連結：0.18µm ring VCO 的 Kvdd 與 REF-A PSRR → 供電漣波造成的 jitter/spur。
+- 2026-11-02 17:19:44 UTC — 第 1 輪 (b) 完成並修正 23 項；開 agent6（SerDes）。REVIEW_LOG.md 建立。

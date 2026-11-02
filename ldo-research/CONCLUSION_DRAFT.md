@@ -10,7 +10,7 @@
 
 **備案：B 類比主導 hybrid（gate-sensing thermometer 粗調）**
 - 條件：教授要 hybrid 題目、或 Imax 提到 ≥200–300 mA、或 Leduc 2025 全文證實為簡單 B 型。
-- 設計規則：窗口 ≥ 1.5× 一片電流（含 offset）、slice 邊沿放慢到 ~100 ns 級、加非同步 droop detector、數位與類比分開供電。
+- 設計規則（[D]/[H]，模擬只驗證過窗口 1.23×（無 LC）與 0.49×（有 LC）、slice 邊沿 1/30/300 ns）：窗口 > 一片電流＋比較器 offset 餘裕（H3 推得 3σ 時需 ≥1.1×）、放慢 slice 邊沿以降低尖峰、加非同步 droop detector、數位與類比分開供電。
 
 **排除：C 數位主導**：無強力理由（Vin 1.8 V 不缺 headroom、Imax 100 mA、無 Verilog、量化漣波 ∝ I_u/(CL·f_clk) 在 capless 下極大）。
 

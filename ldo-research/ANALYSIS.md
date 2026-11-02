@@ -10,7 +10,7 @@
 |---|---|---|
 | Pass device 在滿載處於 triode | Vin−Vout = 0.2 V，100 mA 時 PMOS Vsg ≈ 0.67 V（W=4 mm），Vov ≈ 0.3 V > Vsd → triode。三極區 gm/gds ≈ Vsd/(Vov−Vsd) | 模擬 gm_p = 347 mS、gds_p = 260 mS，gm_p/gds_p = 1.33 [X] |
 | 滿載迴路增益掉 ~20 dB | T0 = β·A_EA·A_SF·gm_p·R_o；滿載 gm_p·R_o 從 13.2 掉到 1.33 | 輕載 53.0 dB → 滿載 33.7 dB [X] |
-| W 與 dropout 的取捨 | W 越大 dropout 越小、triode 越淺，但 C_pg 越大（slew 變慢） | W=4 mm：C_gg = 5.3 pF（輕載）～7.9 pF（滿載）[X]；Cox·W·L＋2·Cov·W 估計 8.1 pF [D] |
+| W 與 dropout 的取捨 | W 越大 dropout 越小、triode 越淺，但 C_pg 越大（slew 變慢） | W=4 mm：C_gg = 5.5 pF（零外部負載）～7.9 pF（滿載）[X]；Cox·W·L＋2·Cov·W 估計 8.1 pF [D] |
 | Vin 來源 | 若 Vin 是 1.8 V ±10% 的外部電源，Vin=1.62 V 時 100 mA 已在 dropout（REF-A 在 100 mA 的 dropout 為 94 mV，即 Vin≈1.674 V 開始掉）[X] | 要問教授 Vin 從哪來 |
 | on-chip 1 nF 的面積 | MOS 電容 C/A ≈ Cox ≈ 8.2 fF/µm² → 0.12 mm²；MIM 若 1–2 fF/µm²（PDK 未知 [H]）→ 0.5–1 mm² | 1 nF 很可能是整顆學生晶片面積的大部分 [H] |
 | 100 mA 走 bond wire | 1 nH × 100 mA / 1 ns = 100 mV 的 L·di/dt（bond wire 電感 ~1 nH/mm 為常見經驗值 [H]） | 快邊沿負載**必須做在片上**（見 REPORT g 節） |
@@ -65,7 +65,7 @@ CL 加大 10 倍，Cc 也要大 10 倍（或 I_min 大 10 倍）。掃描結果�
 - 結果：0→100 mA、1 ns 邊沿 undershoot 742 mV（100 pF）、497 mV（1 nF）[X]。
 - **慢邊沿反而 1 nF 比較差**：100 ns 邊沿 236 mV（100 pF）vs 345 mV（1 nF）；1 µs 邊沿 111 vs 151 mV [X]。原因：1 nF 必須用 Cc=20 pF 才穩定，UGF 從 ~2.5 MHz 掉到 ~0.5 MHz，迴路追不上斜坡 [D]。
 - **起點電流很重要**：1 µs 邊沿、CL=100 pF，起點 0/1/10 mA → 111/52/21 mV [X]。輕載時 gm_p 小、pg 接近關斷，迴路既慢又要大幅擺動。
-- **Overshoot 被 Vin 夾住**：卸載時 pass 仍送 100 mA，Vout 以 1 V/ns 衝到 Vin（206 mV＝1.8−1.594）[X]。PMOS pass 不能吸電流，Vout 只能靠洩放電流放電：t ≈ CL·ΔV/I_bleed = 1 nF×0.2 V/200 µA = 1 µs [D]，與 1 nF 波形約 1.5–2 µs 的回復一致 [X]。pg 往上拉只靠 SF 的 50 µA 電流源：50 µA / 7.9 pF ≈ 6.3 V/µs，擺 0.46 V 需 ~73 ns [D]。
+- **Overshoot 被 Vin 夾住**：卸載時 pass 仍送 100 mA，Vout 以 1 V/ns 衝到 Vin（206 mV＝1.8−1.594）[X]。PMOS pass 不能吸電流，Vout 只能靠洩放電流放電：t ≈ CL·ΔV/I_bleed = 1 nF×0.2 V/200 µA = 1 µs [D]，與 1 nF 波形回到 ±1% 需 2.2 µs 一致（100 pF 只需 0.32 µs；`s11_misc_checks.py`）[X]。pg 往上拉只靠 SF 的 50 µA 電流源：50 µA / 7.9 pF ≈ 6.3 V/µs，擺 0.47 V（1.128→1.595 V）需 ~74 ns [D]。
 
 **PSRR**（推導 [D]，對照 [X]）：EA 的 PMOS mirror 與 SF 的電流源都接 Vin，使 pg 大致跟著 Vin 走（a_pg ≈ 1），Vin 的漣波主要經 gds_p 注入：
 
@@ -74,7 +74,7 @@ PSRR_LF ≈ gds_p · R_o / (1 + T0)
 ```
 - 100 mA：R_o ≈ 1/gds_p → PSRR ≈ −T0 = −33.7 dB；模擬 −33.3 dB [X]。
 - 0 mA：gds_p·R_o = 0.253/(0.253+0.125) = 0.67 → −3.5 − 53.2 = −56.7 dB；模擬 −55.3 dB [X]。
-- 中頻 |T| 下降，PSRR 在 UGF 附近（1.6–2.5 MHz）升到 −5～−8 dB @1 MHz [X]。
+- 中頻 |T| 下降，PSRR 在 UGF 附近（1.6–2.5 MHz）升到 −5.3～−8.7 dB @1 MHz（100 mA / 10 mA）[X]。
 - 高頻要靠 CL 分流：PSRR ≈ gds_p/(ωCL)，滿載 gds_p=0.26 S、CL=100 pF → 轉折在 414 MHz [D]；模擬 100 MHz 仍 +0.1 dB [X]。
 - 結論：**本規格的中高頻 PSR 天生差**（pass 在 triode、gds 大、CL 小）。若教授要求 1–10 MHz PSR，需 A5 類 feedforward 抵消（A01 Park 2014 的方向）[D]。
 
@@ -100,7 +100,7 @@ Z_out,cl ≈ 1 / (gm_c · gm_p · R_X)
 ### A3. 暫態增強路徑（電容耦合 SRE、adaptive/dynamic bias、super source follower）—— **只推導**
 
 **原理** [D]：在小訊號迴路之外，加一條只在大擾動時導通的路徑。例：Vout 經電容 C_f 耦合到一顆平時接近截止的電晶體閘極，Vout 快速下降時它導通、把 pg 灌電流/抽電流（class-AB 行為），靜態不耗電。
-**需要的量** [D]：把 pg 在 t_r 內移動 ΔV_g，要 I_drive = C_pg·ΔV_g/t_r。REF-A：C_pg≈8 pF、ΔV_g≈0.52 V（1.649→1.128 V）[X]，要 t_r=5 ns 就需要 ~0.8 mA 的瞬時電流——比 SF 偏壓 50 µA 大 16 倍。
+**需要的量** [D]：把 pg 在 t_r 內移動 ΔV_g，要 I_drive = C_pg·ΔV_g/t_r。REF-A：C_pg≈8 pF、ΔV_g≈0.47 V（1.595→1.128 V）[X]，要 t_r=5 ns 就需要 ~0.75 mA 的瞬時電流——比 SF 偏壓 50 µA 大約 15 倍。
 **小訊號影響** [D]：若 booster 偏在弱反轉，它是一條並聯的 high-pass 前饋路徑，會在迴路增益加入一對零極點；若 booster 在 UGF 附近有增益，可能形成局部正回授。設計原則：耦合路徑的轉折頻率要高於主迴路 UGF 至少數倍，或 booster 完全不導通（dead zone）。
 **失效情境**：Vin 漣波經 pass Cgd 耦合到 Vout 再經 C_f 觸發 booster → 在某些頻率 PSRR 變差或誤觸發；dead zone 太大時小步階完全沒改善 [D/H]。
 **Adaptive bias**：EA tail ∝ 負載電流，讓 gm1 跟著 gm_p 走，GBW/p2 比值大致固定，可降低輕載 Iq；但 adaptive 迴路本身是正回授（負載↑→偏壓↑→gm↑），要確認不鎖死 [D]。
@@ -114,7 +114,7 @@ Z_out,cl ≈ 1 / (gm_c · gm_p · R_X)
 
 ## B. 類比主導雙迴路 hybrid（本次 REF-B）
 
-**原理**：類比迴路（同 REF-A，pass 縮到 800 µm，最大約 30–35 mA）永遠負責 Vout；數位迴路只看類比 pass 的閘極 V(pg)：V(pg) < VL（類比快用完）→ 加一片；V(pg) > VH → 減一片。8 片 PMOS slice，每片 W=130 µm，導通（閘極 0 V）時 12.2 mA @Vsd=0.2 V [X/D]。控制器是閘級的雙向 thermometer shift register（XSPICE d_dff＋d_and/d_or/d_nor），時脈 1/10/50 MHz。
+**原理**：類比迴路（同 REF-A，pass 縮到 800 µm；碼 0 時 Vout 掉 1% 的負載為 33 mA，`s11_misc_checks.py`）永遠負責 Vout；數位迴路只看類比 pass 的閘極 V(pg)：V(pg) < VL（類比快用完）→ 加一片；V(pg) > VH → 減一片。8 片 PMOS slice，每片 W=130 µm，導通（閘極 0 V）時 12.2 mA @Vsd=0.2 V [X/D]。控制器是閘級的雙向 thermometer shift register（XSPICE d_dff＋d_and/d_or/d_nor），時脈 1/10/50 MHz。
 
 **兩迴路交互作用** [D]：從數位迴路看，類比迴路是一個「把 slice 電流變化轉成 pg 電壓變化」的受控體：
 
@@ -151,7 +151,7 @@ Z_out,cl ≈ 1 / (gm_c · gm_p · R_X)
 **PSRR 與迴路增益**（X3c、X3d，碼凍結）[X]：
 - slice 導通時是 Vin→Vout 的低阻抗開關（5 片 ≈ 0.3 S 量級 [D]），讓 G_o 變大 → 類比迴路 DC 增益：碼 0 輕載 53.1 dB，碼 3/5/7 只剩 22.8/18.7/16.0 dB；UGF 從 2.4 MHz 掉到 0.4–0.75 MHz。
 - 70 mA 時 PSRR @1 kHz：REF-A −38.2 dB，REF-B（碼 5）−18.8 dB，差 19 dB；@100 kHz −25.6 vs −13.3 dB。
-- 反過來，數位迴路的積分作用讓類比 pass 永遠回到同一工作點 → 95 mA 時 Vout 1.5975 V（REF-A 1.5932 V），DC load regulation 較好。
+- 反過來，數位迴路的積分作用讓類比 pass 永遠回到同一工作點 → 95 mA 時 Vout 1.5975 V（REF-A 1.5936 V），DC load regulation 較好。
 
 **時脈與漣波** [D/H]：本模型的數位是理想的，沒有時脈饋通、沒有電源彈跳。真實電路中：(1) 時脈驅動與 DFF 的電流尖峰會經共用電源/基板耦合到 Vout 與 Vref；(2) 比較器 kickback 會擾動 pg。建議數位與類比分開供電與接地 pad，時脈只在需要時開（gated clock）。
 
