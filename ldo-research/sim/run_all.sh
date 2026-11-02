@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # 一鍵重跑所有模擬（需要 ngspice ≥ 42、python3、numpy、matplotlib、pandas+openpyxl(僅資料集統計)）
 # 用法：bash sim/run_all.sh        （從 ldo-research/ 目錄或任意目錄執行皆可）
+# 選用：DLDO 資料集統計需先 git clone https://github.com/mgseok/DLDO-survey ldo-research/ext/DLDO-survey
+# 注意：腳本共用 sim/results/ 下的暫存檔名，請勿同時執行兩份。
 set -euo pipefail
 cd "$(dirname "$0")/scripts"
 echo "[0] 元件特性 (DEVICE_CHAR.md)";            python3 s0_device_char.py > ../results/run_s0.txt
@@ -13,6 +15,9 @@ echo "[5b] hybrid 固定碼迴路增益";                  python3 s5b_hybrid_lo
 echo "[5c] slice 切換尖峰 vs 驅動邊沿、FO4";         python3 s5c_hybrid_glitch.py | tee ../results/run_s5c.txt
 echo "[5d] 規格敏感度 Imax×CL"; python3 s8_sensitivity.py | tee ../results/run_s8.txt
 echo "[6] 粗略 corner/溫度趨勢";                    python3 s6_corners.py > ../results/run_s6.txt
+echo "[8] 實驗 X4：首選架構的 SRE";               python3 s9_sre.py | tee ../results/run_s9.txt
+echo "[8b] SRE 參數掃描";                          python3 s9b_sre_sweep.py | tee ../results/run_s9b.txt
+echo "[9] LEARNING 實驗";                          python3 learn.py all > ../results/run_learn.txt
 if [ -d ../../ext/DLDO-survey ]; then
   echo "[7] DLDO 資料集統計";                        python3 s7_dataset_stats.py | tee ../results/run_s7.txt
 fi

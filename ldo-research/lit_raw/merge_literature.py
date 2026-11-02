@@ -30,8 +30,16 @@ out.append(dict(id="X01", first_author="M. Seok; Z. Wang; S. J. Kim", authors_sh
                 notes="本次以 pandas 讀取：58 列；46 列有 edge time，範圍 0.015–4000 ns，中位數 2 ns；僅 8 列有 PSRR。"
                       "X. Wang CICC 2019 同晶片：1 ns 邊沿 droop 185 mV、10 ns 邊沿 88 mV。180 nm 只有 2 列（ESSCIRC 2018 pseudo-digital 0.7→0.6 V 100 mA 30 pF droop 106 mV @150 ns；VLSI 2018 quasi-digital）。",
                 oa_reported="", dup_of="", source_agent="main"))
+# 與 Seok 資料集交叉比對到的 DOI（資料集所列，未經 doi.org 驗證）
+ds_doi = {"H13": "10.1109/ISSCC.2016.7417951（資料集列的是 ISSCC 2016 會議版；本列可能是期刊版）",
+          "H14": "10.1109/ISSCC.2019.8662343", "D01": "10.1109/CICC.2010.5617586",
+          "D03": "10.1109/ISSCC.2015.7062944", "D05": "10.1109/ISSCC.2017.7870403"}
+for r in out:
+    r["doi_from_dataset"] = ds_doi.get(r["id"], "")
+    if r["id"] == "D03" and not r.get("url"):
+        r["url"] = "https://doi.org/10.1109/ISSCC.2015.7062944"
 fields = list(out[0].keys())
-for extra in ("oa_reported", "dup_of", "source_agent"):
+for extra in ("oa_reported", "dup_of", "source_agent", "doi_from_dataset"):
     if extra not in fields: fields.append(extra)
 with open(os.path.join(HERE, "..", "literature.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.DictWriter(f, fieldnames=fields); w.writeheader()
