@@ -2,7 +2,7 @@
 
 > **證據等級提醒**：本次所有文獻都只讀到搜尋摘錄（D-009、D-012），表中文獻數字一律是「摘要值」，**不能**拿來推電路細節。
 > [M]/[S] 指的是「摘要說是實測/模擬」，不是我核對過全文。
-> 唯一實際開啟的一手資料是 Seok 等人的 DLDO survey 資料集（X01）。[X] 是本次 ngspice 模擬（PTM 180nm，不是真實製程）。
+> 唯一實際開啟的資料是 Seok 等人的 DLDO survey 資料集（X01，屬二手整理）。[X] 是本次 ngspice 模擬（PTM 180nm，不是真實製程）。
 
 ## 1. 分類法（依「誰決定穩態 Vout」與「誰負責快速暫態」）
 
@@ -59,7 +59,7 @@
 | 穩態精度 | 由 EA 增益決定；滿載時 pass 在 triode，DC 迴路增益從 53 dB 掉到 34 dB [X] | 數位迴路有積分作用，類比 pass 每個負載都被拉回同一工作點 → DC load regulation 較好（95 mA 時 Vout 1.5975 vs REF-A 1.5936）[X] | comparator dead zone 會降低輸出精度 [文獻摘要 H08]；要 mV 級精度需類比細調 [D] |
 | 穩定度 | 最差在最輕載（p2≈G2/CL）。CL 越大越難：1 nF 需 Cc=20 pF＋200 µA 洩放才有 PM 55° [X] | 類比部分同 A；另加數位迴路的 limit cycle 條件（dead band 要大於一片電流）[X] | limit cycle 是本質問題 [H08/D04 摘要] |
 | 大步階暫態 | 受 pass gate slew 限制：t_r ≈ C_pg·ΔV_g/I_drive；1 ns 邊沿 742 mV(100 pF) [X] | 只靠 gate-sensing 的 B 比 A 更差（5→95 mA, 100 ns：313 vs 127 mV）[X]；要加 droop detector 或多片同時開 | 依時脈與演算法；需快時脈或非同步觸發 |
-| PSRR | 低頻受 EA 增益限制，中頻 ~0 dB 附近 [X] | slice 導通時 Vin→Vout 是低阻抗路徑：70 mA 時 1 kHz PSRR −18.8 dB vs A 的 −38 dB [X] | 弱（資料集 8/58 列有 PSRR，Nasir 2015 −5 dB@1 MHz）[資料集/摘要] |
+| PSRR | 低頻受 EA 增益限制，中頻 ~0 dB 附近 [X] | slice 導通時 Vin→Vout 是低阻抗路徑：70 mA 時 1 kHz PSRR −18.8 dB vs A 的 −38 dB [X] | 資料集 8/58 列有 PSRR（皆 @1 MHz）：−5～−46 dB、中位 −27 dB，多為 PSR 增強的 hybrid；不能據此說 B/C 本質較差 [資料集] |
 | 漣波/EMI | 無時脈 | 切換瞬間每片 12 mA 步階造成 34–83 mV 尖峰 [X]；時脈饋通 [H]（未模擬，數位為理想） | 時脈相關漣波 |
 | 數位實作（無 Verilog） | 不需要 | 8-bit 雙向 thermometer shift register＋2 個時脈比較器，可閘級手畫（8 個 DFF＋每位元 3 個 AND2 與 1 個 OR3，共 32 個閘＋1 個 NOR2；本次 XSPICE 即用此閘級結構）[D] | 演算法式控制（SAR、charge distribution）通常需要合成，閘級手畫風險高 [H] |
 | 量測難度 | 標準 LDO 量測＋片上負載 | 加上時脈、碼的觀測、limit cycle 判讀 | 同 B，且量化行為更複雜 |

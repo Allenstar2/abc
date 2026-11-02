@@ -1,0 +1,9 @@
+{
+ "nmos_load_mA_per_um": 0.721,
+ "SFlike_125C_noload": {
+  "vout_op": 1.6525,
+  "vpg_op": 1.7594,
+  "vea_op": 1.6429,
+  "iin": 0.0003
+ }
+}

@@ -1,0 +1,39 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s19_sf
+
+Doing analysis at TEMP = 125.000000 and TNOM = 27.000000
+
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+
+No. of Data Rows : 1
+vout_op = 1.652464e+00
+vpg_op = 1.759398e+00
+vea_op = 1.642854e+00
+iin = 2.589785e-04
+Doing analysis at TEMP = 125.000000 and TNOM = 27.000000
+
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+
+No. of Data Rows : 361
+ngspice-42 done
+Warning: Model issue on line 5 :
+  .model nmos nmos level=49 lint=4.e-08 tox=4.0000e-09 vth0=0.4499 rdsw=25 ...
+
+Warning: Model issue on line 10 :
+  .model pmos pmos level=49 lint=3.e-08 tox=4.2000e-09 vth0=-0.3700 rdsw=4 ...
+
+Using SPARSE 1.3 as Direct Linear Solver
+Using SPARSE 1.3 as Direct Linear Solver

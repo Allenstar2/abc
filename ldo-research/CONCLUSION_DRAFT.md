@@ -13,7 +13,7 @@
   4. **時脈雜訊**：B/C 的碼切換在 Vout 造成 34–83 mV 尖峰（`x3e`），若應用是時脈供電會變成 spur [H]。
 - **教授推薦 hybrid 論文本身是選 B 的理由**：首選/備案順序也取決於教授是否要求 hybrid（第二個要問的問題）。
 
-**HBM/SerDes 應用動機時**：A 的子類應換成 **NMOS-pass**（審查者：1–10 MHz PSRR 好 15–20 dB，作者未重現），代價是 Vout ≤ ~1.2 V 或需 charge pump；或維持 PMOS pass＋feedforward（X6 顯示需 adaptive，滿載受 triode 限制）。
+**HBM/SerDes 應用動機時**：A 的子類應換成 **NMOS-pass**（審查者：1–10 MHz PSRR 好 14–18 dB（審查者 json，只測 0–10 mA、Vout 1.0 V），作者未重現），代價是 Vout ≤ ~1.2 V 或需 charge pump；或維持 PMOS pass＋feedforward（X6 顯示需 adaptive，滿載受 triode 限制）。
 
 **備案：B 類比主導 hybrid**：類比 pass 不要縮太小；窗口 > 一片電流＋offset；同步器配 ÷(d+1) 更新；保留數位 reset→純類比降級模式；先不加非同步 droop 路徑。
 
