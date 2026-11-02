@@ -2,16 +2,19 @@
  "B_fair_nosync": {
   "undershoot_mV": 153.7,
   "overshoot_mV": 186.0,
-  "recovery_1pct_us": 0.798
+  "recovery_1pct_us": 0.798,
+  "post_release_dip_below_final_mV": 524.2
  },
  "B_fair_sync2_div3": {
   "undershoot_mV": 179.8,
   "overshoot_mV": 187.8,
-  "recovery_1pct_us": 2.301
+  "recovery_1pct_us": 2.301,
+  "post_release_dip_below_final_mV": 528.7
  },
  "A": {
   "undershoot_mV": 127.4,
   "overshoot_mV": 168.3,
-  "recovery_1pct_us": 0.145
+  "recovery_1pct_us": 0.145,
+  "post_release_dip_below_final_mV": 0.0
  }
 }

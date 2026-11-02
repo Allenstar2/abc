@@ -1,0 +1,174 @@
+{
+ "K": 0.7166692306272551,
+ "Vt": 0.3127099594820241,
+ "loop": [
+  {
+   "Ia_mA": 0.2,
+   "n_slices": 0,
+   "gm_a_mS": 5.3,
+   "dc_db": 63.9,
+   "ugf_MHz": 2.37,
+   "pm": 72.9
+  },
+  {
+   "Ia_mA": 0.2,
+   "n_slices": 4,
+   "gm_a_mS": 5.3,
+   "dc_db": 1.4,
+   "ugf_MHz": 0.03,
+   "pm": 149.3
+  },
+  {
+   "Ia_mA": 0.2,
+   "n_slices": 8,
+   "gm_a_mS": 5.3,
+   "dc_db": -4.7,
+   "ugf_MHz": NaN,
+   "pm": NaN
+  },
+  {
+   "Ia_mA": 1.0,
+   "n_slices": 0,
+   "gm_a_mS": 22.8,
+   "dc_db": 67.6,
+   "ugf_MHz": 2.49,
+   "pm": 85.7
+  },
+  {
+   "Ia_mA": 1.0,
+   "n_slices": 4,
+   "gm_a_mS": 22.8,
+   "dc_db": 14.1,
+   "ugf_MHz": 0.22,
+   "pm": 101.1
+  },
+  {
+   "Ia_mA": 1.0,
+   "n_slices": 8,
+   "gm_a_mS": 22.8,
+   "dc_db": 8.1,
+   "ugf_MHz": 0.11,
+   "pm": 113.2
+  },
+  {
+   "Ia_mA": 3.0,
+   "n_slices": 0,
+   "gm_a_mS": 57.2,
+   "dc_db": 67.8,
+   "ugf_MHz": 2.49,
+   "pm": 88.3
+  },
+  {
+   "Ia_mA": 3.0,
+   "n_slices": 4,
+   "gm_a_mS": 57.2,
+   "dc_db": 22.1,
+   "ugf_MHz": 0.49,
+   "pm": 93.9
+  },
+  {
+   "Ia_mA": 3.0,
+   "n_slices": 8,
+   "gm_a_mS": 57.2,
+   "dc_db": 16.1,
+   "ugf_MHz": 0.27,
+   "pm": 98.7
+  },
+  {
+   "Ia_mA": 10.0,
+   "n_slices": 0,
+   "gm_a_mS": 139.4,
+   "dc_db": 67.3,
+   "ugf_MHz": 2.49,
+   "pm": 89.3
+  },
+  {
+   "Ia_mA": 10.0,
+   "n_slices": 4,
+   "gm_a_mS": 139.4,
+   "dc_db": 29.8,
+   "ugf_MHz": 0.94,
+   "pm": 90.9
+  },
+  {
+   "Ia_mA": 10.0,
+   "n_slices": 8,
+   "gm_a_mS": 139.4,
+   "dc_db": 23.8,
+   "ugf_MHz": 0.58,
+   "pm": 93.0
+  },
+  {
+   "Ia_mA": 18.0,
+   "n_slices": 0,
+   "gm_a_mS": 203.4,
+   "dc_db": 65.0,
+   "ugf_MHz": 2.49,
+   "pm": 89.5
+  },
+  {
+   "Ia_mA": 18.0,
+   "n_slices": 4,
+   "gm_a_mS": 203.4,
+   "dc_db": 32.9,
+   "ugf_MHz": 1.16,
+   "pm": 90.3
+  },
+  {
+   "Ia_mA": 18.0,
+   "n_slices": 8,
+   "gm_a_mS": 203.4,
+   "dc_db": 27.0,
+   "ugf_MHz": 0.75,
+   "pm": 91.8
+  },
+  {
+   "Ia_mA": 50.0,
+   "n_slices": 0,
+   "gm_a_mS": 340.0,
+   "dc_db": 50.5,
+   "ugf_MHz": 2.17,
+   "pm": 89.5
+  },
+  {
+   "Ia_mA": 50.0,
+   "n_slices": 4,
+   "gm_a_mS": 340.0,
+   "dc_db": 35.8,
+   "ugf_MHz": 1.37,
+   "pm": 90.0
+  },
+  {
+   "Ia_mA": 50.0,
+   "n_slices": 8,
+   "gm_a_mS": 340.0,
+   "dc_db": 30.6,
+   "ugf_MHz": 0.99,
+   "pm": 90.8
+  },
+  {
+   "Ia_mA": 90.0,
+   "n_slices": 0,
+   "gm_a_mS": 382.8,
+   "dc_db": 39.5,
+   "ugf_MHz": 1.64,
+   "pm": 89.7
+  },
+  {
+   "Ia_mA": 90.0,
+   "n_slices": 4,
+   "gm_a_mS": 382.8,
+   "dc_db": 33.0,
+   "ugf_MHz": 1.16,
+   "pm": 90.3
+  },
+  {
+   "Ia_mA": 90.0,
+   "n_slices": 8,
+   "gm_a_mS": 382.8,
+   "dc_db": 29.4,
+   "ugf_MHz": 0.9,
+   "pm": 91.1
+  }
+ ]
+}

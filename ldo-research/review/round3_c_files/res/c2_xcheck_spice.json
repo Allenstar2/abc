@@ -1,0 +1,134 @@
+[
+ {
+  "IL_end_mA": 2.0,
+  "t_off_ns": 1.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.7956,
+  "ea_max": 1.771,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.1897,
+  "dip_below_95mA_level_mV": 410.5,
+  "V_end": 1.6026
+ },
+ {
+  "IL_end_mA": 2.0,
+  "t_off_ns": 300.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.7953,
+  "ea_max": 1.771,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.1972,
+  "dip_below_95mA_level_mV": 402.9,
+  "V_end": 1.6026
+ },
+ {
+  "IL_end_mA": 2.0,
+  "t_off_ns": 1000.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.7953,
+  "ea_max": 1.772,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.2595,
+  "dip_below_95mA_level_mV": 340.6,
+  "V_end": 1.6026
+ },
+ {
+  "IL_end_mA": 5.0,
+  "t_off_ns": 1.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.7892,
+  "ea_max": 1.766,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.0771,
+  "dip_below_95mA_level_mV": 523.0,
+  "V_end": 1.6013
+ },
+ {
+  "IL_end_mA": 5.0,
+  "t_off_ns": 300.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.789,
+  "ea_max": 1.767,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.1991,
+  "dip_below_95mA_level_mV": 401.0,
+  "V_end": 1.6013
+ },
+ {
+  "IL_end_mA": 5.0,
+  "t_off_ns": 1000.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.789,
+  "ea_max": 1.77,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.2552,
+  "dip_below_95mA_level_mV": 344.9,
+  "V_end": 1.6013
+ },
+ {
+  "IL_end_mA": 11.0,
+  "t_off_ns": 1.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.7762,
+  "ea_max": 1.757,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 0.9894,
+  "dip_below_95mA_level_mV": 610.7,
+  "V_end": 1.5999
+ },
+ {
+  "IL_end_mA": 11.0,
+  "t_off_ns": 300.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.7761,
+  "ea_max": 1.759,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.2257,
+  "dip_below_95mA_level_mV": 374.4,
+  "V_end": 1.5999
+ },
+ {
+  "IL_end_mA": 11.0,
+  "t_off_ns": 1000.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.7761,
+  "ea_max": 1.764,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.2782,
+  "dip_below_95mA_level_mV": 321.9,
+  "V_end": 1.5999
+ },
+ {
+  "IL_end_mA": 20.0,
+  "t_off_ns": 1.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.7566,
+  "ea_max": 1.736,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.1361,
+  "dip_below_95mA_level_mV": 464.0,
+  "V_end": 1.5984
+ },
+ {
+  "IL_end_mA": 20.0,
+  "t_off_ns": 300.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.7566,
+  "ea_max": 1.745,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.2666,
+  "dip_below_95mA_level_mV": 333.6,
+  "V_end": 1.5984
+ },
+ {
+  "IL_end_mA": 20.0,
+  "t_off_ns": 1000.0,
+  "V_at_95mA": 1.6001,
+  "V_max_after_release": 1.7566,
+  "ea_max": 1.755,
+  "pg_max": 1.8,
+  "V_min_after_last_removal": 1.315,
+  "dip_below_95mA_level_mV": 285.2,
+  "V_end": 1.5984
+ }
+]

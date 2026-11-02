@@ -60,7 +60,7 @@ adac3#branch_1_0                             0
 adac2#branch_1_0                             0
 adac1#branch_1_0                             0
 
- Reference value :  1.60783e-05
+ Reference value :  1.57283e-05
 No. of Data Rows : 10359
 ngspice-42 done
 Warning: Model issue on line 5 :

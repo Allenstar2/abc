@@ -12,12 +12,12 @@
 |---|---|
 | **先決條件** | **規格要先和教授確認**。1.8 V→1.6 V、100 mA 是最脆弱的一環：SS-like 125 °C 時 100 mA 的最低可調節 Vin 是 1.716 V（只容許 −4.7%）[X，`s17`]。Vout 改 1.4 V 時容許 −13%、滿載迴路增益 +15 dB、PSRR@1 kHz +13 dB，**但卸載過衝從 206 mV 變 404 mV**（Vout 會衝到 Vin）[X，`s21`] |
 | **預設方案（首選）** | **A：純類比 capless LDO**（教授沒有要求 hybrid 時）。基準：NMOS 輸入 EA → PMOS source follower → PMOS pass（L=0.18 µm），**純 Miller 補償（Rz=0）**、最小負載洩放（或 adaptive bias）、片上可程式負載。選 A 的理由是**首次下線的失效模式最少**，不是性能大幅領先。A 的類比核心就是 B 的類比迴路，**在確認教授意向前，用 PDK 重建 REF-A、跑角落、定補償這幾步兩條路共用** |
-| **決策規則** | ① 教授沒有 hybrid 要求 → **A**。② 教授要「hybrid 元素」、接受低風險 → **B**（類比 pass ≈2.4 mm、寬窗、gate-sensing、同步器＋÷(d+1)、數位 reset 可降級成類比 LDO）。③ 教授要「做 Leduc 那種」→ 先說明 Leduc 依標題（"Analog Assisted"＝本報告分類的 C/AAD）與前作 H02 摘要（數位決定 power transistor 大小、類比 EA 只管零載/輕載）**很可能是 C**（仍未確認）；無 Verilog 時建議以 ② 代替，或參考同作者的**純類比雙迴路 capless LDO（H03，TSMC 180 nm）**走 A。④ 教授接受 Vout ≈ 1.0 V，且 1 ns 暫態或 ≥1 MHz PSRR 是主要指標（HBM/SerDes 動機）→ **A 的 NMOS-pass 子類**（見 b.4） |
+| **決策規則** | ① 教授沒有 hybrid 要求 → **A**。② 教授要「hybrid 元素」、接受低風險 → **B**（類比 pass ≈2.4 mm、寬窗、gate-sensing、同步器＋÷(d+1)、數位 reset 可降級成類比 LDO）。③ 教授要「做 Leduc 那種」→ 先說明 Leduc 依標題（"Analog Assisted"＝本報告分類的 C/AAD）與前作 H02 摘要（數位決定 power transistor 大小、類比 EA 只管零載/輕載）**很可能是 C**（仍未確認）；無 Verilog 時建議以 ② 代替，或參考同作者的**純類比雙迴路 capless LDO（H03，TSMC 180 nm）**走 A。④ 教授接受 Vout ≈ 1.0 V（簡單 5T EA 時 10 mA 的上限約 1.0 V；1.2 V 只能供 ≤2 mA），且 10 MHz 級 PSRR 或 1 ns 暫態是主要指標（HBM/SerDes 動機）→ **A 的 NMOS-pass 子類**（見 b.4；代價是 1 kHz PSRR 差 24–42 dB） |
 | **排除** | **C：數位主導**。Vin 1.8 V 不缺類比 headroom、教授偏類比、學生無 Verilog；要贏暫態需要的非同步路徑在 B 上就已經很脆弱（審查者模擬，作者未重現） |
 | **Leduc 2025** | **未確認（僅摘要）**。線索強烈偏 C（標題、"transient response is dictated by the digital portion"、H02 摘要），但穩態誰供電、DC 精度誰決定、數位穩態是否停止仍未讀到（D-010） |
 | **信心程度** | 技術排序 A ≥ B：**中**——照本報告規則實作的 B（2 級同步器＋÷3）在 5→95 mA、100 ns 邊沿 undershoot 180 mV vs A 127 mV（+41%）、卸載後回到 ±1% 要 2.3 µs vs 0.145 µs（約 16 倍）[X，`s20`]；理想 B（無同步器）差 21%、回復慢 5.5 倍。PSRR 只在 ≤1 MHz 有限差距，文獻 hybrid 可做到好 PSR，不是理由。**最終選擇取決於教授意向——缺的是輸入，不是證據。** A vs C：就學生可行性而言**高**（C 未模擬）。所有絕對數字：**低**（PTM、無 PDK、無佈局） |
 | **最大風險** | (1) 規格在角落下失去調節；(2) 1 ns 級快邊沿 100 mA 步階在 100 pF 下 undershoot >400 mV [X]，推測 0.18 µm 任何迴路都難 <200 mV [D/H]；(3) 模型不是真實製程；(4) **下線流程**：只有 LTspice，佈局、DRC/LVS、寄生抽取用什麼工具未知；ESD、latch-up、電遷移（100 mA）、熱、上電順序都未模擬 |
-| **最弱的結論** | 「A 優於 B」的**理由**被三輪審查削弱多次（現在主要靠驗證風險＋同步器規則下的暫態/回復）；B 非同步 droop 路徑脆弱（審查者模擬，可能含 XSPICE 假象）；NMOS-pass 子類的優缺點（審查者模擬）；所有文獻數字（92 篇僅摘要） |
+| **最弱的結論** | 「A 優於 B」的**理由**被三輪審查削弱多次（現在主要靠驗證風險、同步器規則下的暫態/回復、以及 B 卸載後 ~530 mV 的自造下陷）；B 加遮蔽式 droop 路徑後 undershoot 可能降到 59 mV（只有行為模型）——**若電路級成立，技術排序可能反轉**；B 非同步 droop 路徑脆弱（審查者模擬，可能含 XSPICE 假象）；NMOS-pass 子類的優缺點（審查者模擬）；所有文獻數字（92 篇僅摘要） |
 | **會改變建議的新資訊** | 教授要 hybrid；Leduc 全文顯示為簡單 B；Imax ≥ 200–300 mA；Vin 可用 3.3 V；平台有標準元件庫且允許合成；PSRR/jitter 或 1 ns 暫態是主要指標且可降 Vout（→ NMOS-pass） |
 | **HBM/SerDes** | 不改變首選類別，但改變評估指標：要量 PSRR 對頻率曲線與「供電漣波→jitter」；**不能宣稱做的是 HBM 或 SerDes 用 LDO**（HBM rail 0.4–1.2 V；SerDes 時脈 rail 是 mW 級）。詳見 `APPLICATIONS.md` |
 
@@ -37,6 +37,7 @@
 |---|---|---|---|
 | 5→95 mA undershoot（1 ns/100 ns/1 µs） | 499/127/27 mV [X] | 理想（無同步器）553/154/33 mV；**照規則加 2 級同步器＋÷3：100 ns 時 180 mV** [X，`s12`、`s20`] | 未模擬 |
 | 卸載後回到 ±1%（95→5 mA，100 ns 邊沿） | 0.145 µs [X] | 0.80 µs（理想）／**2.3 µs**（同步器＋÷3）[X，`s20`] | — |
+| **卸載後的自造下陷**（slice 在類比迴路飽和時被逐片移除） | 0 mV [X] | **524–529 mV**（Vout 掉到 1.07 V，最後一片關掉時）[X，`s20`、`sim/figs/x7_B_release_dip.png`]；第 3 輪 (c) 電晶體級交叉檢查 0.13–0.6 V | — |
 | PSRR@1 kHz（70 mA） | −38.2 dB [X] | −24.2 dB（碼 5，作者 [X]）～−30.1 dB（碼 3，審查者 [X]） | 資料集 8 列 @1 MHz：−5～−46 dB（中位 −27），多為專做 PSR 增強的 hybrid → **不能說 B/C 的 PSR 本質上較差** |
 | PSRR 1 MHz / 10–100 MHz（70 mA） | −6.7 dB / ≈0 dB | −1.9～−4.1 dB / ≈0 dB（10–100 MHz 與 A 差 ≤0.6 dB；審查者 [X]） | — |
 | 同條件 load reg（20→95 mA） | 6.1 mV [X] | 0.5 mV [X]（可能被 IR/熱蓋過 [H]） | — |
@@ -52,7 +53,7 @@
 - **HBM**（12 篇＋13 補充來源）：HBM 介面專用 LDO 只找到首爾大學三篇（ISSCC 2025、JSSC 2026、CICC 2026，都是 hybrid/digital、靠 command/strobe 時序），標題指標是 droop/settling（<10 mV、400 ps、20 pF）。HBM rail 0.4–1.2 V，1.6 V 不是 HBM rail。學生晶片沒有 memory controller，hybrid 的主要好處用不到 [H]。
 - **SerDes**（15 篇）：LDO 主要用在 PLL/VCO/clock，用寬頻 PSRR＋低雜訊換低 jitter（SD10 教學：PSRR 40 dB 撐到 10 MHz、50 nV/√Hz）[H，綜合摘要]。0.18 µm 例子都在 2.5 GHz 以下。
 - **本次模擬（X5）**：7 級 ring（764 MHz、Kvdd 440 MHz/V）由 REF-A 供電，Vin 10 mV@1 MHz → 峰值 TIE 334 ps（無 LDO 915 ps，正弦擬合），手算 339/916 ps，差 ≤1.3% [X/D]；第 2 輪審查用另一顆振盪器在 3 個頻率獨立驗證（誤差 ≤2.9%）。REF-A 在 1 MHz 只擋 8.6 dB、10 MHz 放大 1.3 dB。
-- **若以 PSRR/jitter 為主**：維持 PMOS pass＋feedforward（X6 顯示需 adaptive：完全抵消所需的過追蹤量隨負載變 15 倍，滿載 1 MHz 最好約 −13 dB [X/D]），或換 NMOS-pass 子類：審查者模擬（第 2 輪 0–10 mA；第 3 輪擴到 100 mA、Vout 1.0 V）1–10 MHz PSRR 好 14–19 dB、1 ns undershoot 238–268 mV vs 同 Vout 的 PMOS 版 719 mV；**代價**：1 kHz PSRR 差 20–30 dB、100 mA 時最低 Vin 1.73–1.76 V、Vout 必須 ≤ ~1.2 V（否則要 charge pump）[X，審查者；第 3 輪 (c) 獨立重做中]。
+- **若以 PSRR/jitter 為主**：維持 PMOS pass＋feedforward（X6 顯示需 adaptive：完全抵消所需的過追蹤量隨負載變 15 倍，滿載 1 MHz 最好約 −13 dB [X/D]），或換 NMOS-pass 子類。第 3 輪 (c) 在**相同 Vout=1.0 V、相同 CL、相近 Iq** 下獨立比較（前一位審查者拿 1.0 V 的 NMOS 比 1.6 V 的 REF-A，不公平）：**10 MHz 好 13.5–20 dB（結構性：PMOS 的 Miller Cc 讓閘極跟著 Vout，開迴路 Vin→Vout 約 0 dB）**；1 MHz 只在輕載好（≤1 mA 12–21 dB、10 mA 11–13 dB、20 mA 5–10 dB）；**1 kHz 反而差 24–42 dB**；EA 也接 Vin 時 10 MHz 優勢仍在。另一審查者（第 3 輪 (a)）在 100 mA：1 ns undershoot 238–268 vs 719 mV、最低 Vin 1.73–1.76 V。Vout 上限：簡單 5T EA 時 10 mA 約 1.0 V，1.2 V 只能 ≤2 mA；用 charge pump 時閘極要 2.1–2.4 V，有 1.8 V 元件氧化層耐壓問題 [X，審查者]。
 
 ---
 
@@ -83,6 +84,8 @@ PSRR_LF = R_o·[gds_p + gm_p(1−α_pg)]/(1+T0) ≈ gds_p·R_o/(1+T0)（α_pg≈
 - **時脈與漣波**：本模型數位為理想，時脈饋通、kickback、電源彈跳**未模擬** [H]。
 - **沒有 Verilog 能否實作**：可以。雙向 thermometer shift register = 每位元 1 DFF＋3 AND2＋1 OR3（本次 XSPICE 即閘級結構）＋2 比較器＋2 級同步器＋÷3 計數器。XSPICE 與閘級的差距：無 metastability、無 setup/hold 違規、比較器無 offset/kickback。
 - **降級模式**：數位 reset 後公平 B 是 88.5 mA、PM 68° 的類比 LDO（審查者 [X]）。
+- **卸載自造下陷（第 3 輪新發現）**：95→5 mA 後，類比 pass 被推到全關（pg=1.8 V、EA 飽和）時 slice 仍逐片移除，最後一片關掉的瞬間 Vout 掉到 1.07 V（比穩態低 ~530 mV）[X，`s20`]。前幾輪只看各平台最後 5 µs 所以沒看到。規則 [D]：類比迴路飽和時不要移除 slice（例如 DN 再 AND「Vout 已回到標稱附近」），或放慢 slice 關閉。
+- **非同步 droop 路徑**（第 3 輪 (c) 行為模型＋電晶體級交叉檢查）：弛張振盪是真的（同步減片自造 0.13–0.6 V 下陷會重新觸發 droop），「卡死」重現不出來（9,088 次平台測試 0 次，可能是 XSPICE 事件排序假象）。**每次同步減片後遮蔽 droop 1 µs**（10 個時脈計數器）時，行為模型 18 種設定 0/64 失效、100 ns undershoot 145→59 mV——**若在電路級成立，B 的暫態會反超 A（127 mV）**；但只在行為模型驗證，且不能解決上一條的卸載下陷。
 
 ### c.4 C：數位主導
 - 同步 DLDO 量化漣波 ≈ (I_u/2)/(CL·f_clk) [D]：8 片 12.2 mA、100 pF、10 MHz → 6 V（無法調節）；要把漣波壓到 ~50 mV，I_u=1 mA 需 f_clk ≈ 100 MHz。PTM 反相器 FO4 = 54–60 ps [X]。
@@ -138,6 +141,9 @@ PSRR_LF = R_o·[gds_p + gm_p(1−α_pg)]/(1+T0) ≈ gds_p·R_o/(1+T0)（α_pg≈
 | 15 | 「教授要 hybrid 就走 B」 | 第 3 輪 (a)：Leduc 依標題與 H02 摘要很可能是 C | 決策規則 ③：說明後以 B 或 H03 型類比雙迴路代替 |
 | 16 | 「需要片上監測 buffer」 | 第 3 輪 (a)：直接 sense pad＋探棒看到 100–103% | 最小可行晶片不放 buffer |
 | 17 | 「Vout 1.4 V 全面較好」 | 第 3 輪 (a) | 卸載過衝 206→404 mV（作者重現 `s21`） |
+| 18 | 「B 不加 droop 路徑就穩定」 | 第 3 輪 (c)：卸載時 slice 在類比迴路飽和下被移除，自造 0.13–0.6 V 下陷 | 作者重現 `s20`：~530 mV；B 的設計規則新增「飽和時不減片」 |
+| 19 | 「非同步 droop 路徑必然脆弱」 | 第 3 輪 (c)：遮蔽 1 µs 後行為模型穩定且 undershoot 59 mV | 改為「未遮蔽時必然振盪；遮蔽後可能可行，待電路級驗證」 |
+| 20 | 「NMOS-pass 1–10 MHz 好 15–20 dB」 | 第 3 輪 (c)：前審查者比的是不同 Vout；同 Vout 時 10 MHz 好 13.5–20 dB、1 MHz 只在輕載、1 kHz 差 24–42 dB | b.4 與決策規則 ④ 改寫 |
 
 完整紀錄：`REVIEW_LOG.md`；審查原文：`review/`。
 
@@ -215,7 +221,8 @@ PSRR_LF = R_o·[gds_p + gm_p(1−α_pg)]/(1+T0) ≈ gds_p·R_o/(1+T0)（α_pg≈
 1. **Leduc 2025 屬 B 或 C**：未確認（需全文或 Leduc 碩士論文 hybrid 章節）。
 2. **A vs B 的排序**：兩者性能接近，排序依賴「驗證風險」與教授意向——這是判斷，不是數據。
 3. **B 的非同步 droop 路徑脆弱**：只有審查者模擬，可能含 XSPICE 事件排序假象。
-4. **NMOS-pass 在 SerDes 情境的 14–18 dB 優勢**：審查者模擬（0–10 mA、Vout 1.0 V），作者未重現（第 3 輪 (c) 獨立重做中）。
+4. **NMOS-pass 子類**：兩位審查者各自模擬（同 Vout 1.0 V 下 10 MHz 好 13.5–20 dB、1 kHz 差 24–42 dB），作者未重現。
+4b. **B 加遮蔽式 droop 路徑的效果**（59 mV）：只有行為模型；電路級未驗證。
 5. **高溫輕載漏電失效**：可能是 PTM 假象。
 6. **所有絕對數字**：PTM 模型＋理想偏壓＋無佈局；LTspice 結果可能不同。
 7. **文獻數字**：除 X01 資料集外全部僅摘要；論文負載起點、CL 定義、邊沿時間多數未載明。

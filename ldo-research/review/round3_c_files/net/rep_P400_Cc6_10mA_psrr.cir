@@ -1,0 +1,42 @@
+* rep_P400_Cc6_10mA_psrr
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+.options temp=27 reltol=1e-4 abstol=1e-12 vntol=1e-7
+
+.subckt ldo vin vdda vout vref fb fbi
+Ibias vdda bn 1e-05
+Mbn bn bn 0 0 NMOS W=4u L=1u
+Mt tail bn 0 0 NMOS W=8u L=1u
+M1 d1 fbi tail 0 NMOS W=20u L=1u
+M2 ea vref tail 0 NMOS W=20u L=1u
+M3 d1 d1 vdda vdda PMOS W=4u L=1u
+M4 ea d1 vdda vdda PMOS W=4u L=1u
+Mbn2 bp bn 0 0 NMOS W=4u L=1u
+Mbp bp bp vdda vdda PMOS W=4u L=1u
+Mcs pg bp vdda vdda PMOS W=20u L=1u
+Mb 0 ea pg pg PMOS W=20u L=0.18u
+Mp vout pg vin vin PMOS W=400u L=0.18u
+R1 vout fb 1000.0
+R2 fb 0 4000.0
+Cc vout ea 6e-12
+.ends
+VIN vin 0 DC 1.8 AC 1
+Rtie vdda vin 1e-3
+VREF vref 0 0.8
+X1 vin vdda vout vref fb fb ldo
+CL vout 0 1e-10
+IL vout 0 DC 0.01
+.control
+op
+let vout_op = v(vout)
+let vg_op = v(x1.pg)
+let iin = -i(vin)
+let gm_p = @m.x1.mp[gm]
+let gds_p = @m.x1.mp[gds]
+let gmb_p = @m.x1.mp[gmbs]
+let id_p = @m.x1.mp[id]
+print vout_op vg_op iin gm_p gds_p gmb_p id_p
+ac dec 40 100 1e9
+wrdata /tmp/claude-0/-home-user/24b1423c-959f-5794-9f98-bbcbade8908e/scratchpad/review_r3c/res/rep_P400_Cc6_10mA_psrr_ps.txt v(vout) v(x1.pg)
+quit
+.endc
+.end

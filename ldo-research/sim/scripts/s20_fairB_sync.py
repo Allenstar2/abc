@@ -14,7 +14,9 @@ def metrics(t, vo, t0, te):
     idx = np.where((t > trel) & (np.abs(vo - fin) > 0.01 * fin))[0]
     rec = (t[idx[-1]] - trel) if len(idx) else 0.0
     os_ = vo[t > trel - te].max() - pre
-    return dict(undershoot_mV=round(float(us) * 1e3, 1), overshoot_mV=round(float(os_) * 1e3, 1), recovery_1pct_us=round(float(rec) * 1e6, 3))
+    dip = fin - vo[t > trel].min()   # 卸載後低於最終值的下陷（slice 逐片移除造成；第 3 輪審查 (c) 指出）
+    return dict(undershoot_mV=round(float(us) * 1e3, 1), overshoot_mV=round(float(os_) * 1e3, 1), recovery_1pct_us=round(float(rec) * 1e6, 3),
+                post_release_dip_below_final_mV=round(float(dip) * 1e3, 1))
 R = {}
 load = f"IL vout 0 PWL(0 0 1u 0 1.1u 5m {t0} 5m {t0+te} 95m {t0+te+hold} 95m {t0+2*te+hold} 5m)"
 tstop = t0 + 2 * te + hold + 10e-6
