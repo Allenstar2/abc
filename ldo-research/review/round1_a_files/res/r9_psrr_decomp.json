@@ -1,0 +1,20 @@
+{
+ "A": {
+  "gm_analog_mS": 352.6,
+  "gds_analog_mS": 145.9,
+  "G_inj_mS": 145.9,
+  "inj_over_gm": 0.414
+ },
+ "B800c5": {
+  "gm_analog_mS": 66.4,
+  "gds_analog_mS": 13.6,
+  "G_inj_mS": 309.8,
+  "inj_over_gm": 4.664
+ },
+ "B2400c3": {
+  "gm_analog_mS": 208.0,
+  "gds_analog_mS": 59.1,
+  "G_inj_mS": 236.7,
+  "inj_over_gm": 1.138
+ }
+}

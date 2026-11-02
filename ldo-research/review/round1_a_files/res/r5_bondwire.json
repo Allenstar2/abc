@@ -1,0 +1,114 @@
+[
+ {
+  "arch": "REF-A",
+  "vin": "ideal Vin",
+  "edge_ns": 1.0,
+  "undershoot_mV": 498.9,
+  "vin_min": 1.8,
+  "ring_pp_late_mV": 0.0
+ },
+ {
+  "arch": "REF-B 10MHz",
+  "vin": "ideal Vin",
+  "edge_ns": 1.0,
+  "undershoot_mV": 756.2
+ },
+ {
+  "arch": "REF-A",
+  "vin": "ideal Vin",
+  "edge_ns": 100.0,
+  "undershoot_mV": 127.5,
+  "vin_min": 1.8,
+  "ring_pp_late_mV": 0.0
+ },
+ {
+  "arch": "REF-B 10MHz",
+  "vin": "ideal Vin",
+  "edge_ns": 100.0,
+  "undershoot_mV": 313.1
+ },
+ {
+  "arch": "REF-A",
+  "vin": "1nH+0.1Ω, Cin=200p",
+  "edge_ns": 1.0,
+  "undershoot_mV": 599.1,
+  "vin_min": 1.68,
+  "ring_pp_late_mV": 0.0
+ },
+ {
+  "arch": "REF-B 10MHz",
+  "vin": "1nH+0.1Ω, Cin=200p",
+  "edge_ns": 1.0,
+  "undershoot_mV": 841.1
+ },
+ {
+  "arch": "REF-A",
+  "vin": "1nH+0.1Ω, Cin=200p",
+  "edge_ns": 100.0,
+  "undershoot_mV": 133.6,
+  "vin_min": 1.79,
+  "ring_pp_late_mV": 0.05
+ },
+ {
+  "arch": "REF-B 10MHz",
+  "vin": "1nH+0.1Ω, Cin=200p",
+  "edge_ns": 100.0,
+  "undershoot_mV": 318.5
+ },
+ {
+  "arch": "REF-A",
+  "vin": "1nH+0.1Ω, Cin=1n",
+  "edge_ns": 1.0,
+  "undershoot_mV": 536.0,
+  "vin_min": 1.71,
+  "ring_pp_late_mV": 0.0
+ },
+ {
+  "arch": "REF-B 10MHz",
+  "vin": "1nH+0.1Ω, Cin=1n",
+  "edge_ns": 1.0,
+  "undershoot_mV": 803.6
+ },
+ {
+  "arch": "REF-A",
+  "vin": "1nH+0.1Ω, Cin=1n",
+  "edge_ns": 100.0,
+  "undershoot_mV": 133.5,
+  "vin_min": 1.79,
+  "ring_pp_late_mV": 0.07
+ },
+ {
+  "arch": "REF-B 10MHz",
+  "vin": "1nH+0.1Ω, Cin=1n",
+  "edge_ns": 100.0,
+  "undershoot_mV": 318.9
+ },
+ {
+  "arch": "REF-A",
+  "vin": "2nH+0.2Ω, Cin=1n",
+  "edge_ns": 1.0,
+  "undershoot_mV": 539.6,
+  "vin_min": 1.667,
+  "ring_pp_late_mV": 0.01
+ },
+ {
+  "arch": "REF-B 10MHz",
+  "vin": "2nH+0.2Ω, Cin=1n",
+  "edge_ns": 1.0,
+  "undershoot_mV": 815.0
+ },
+ {
+  "arch": "REF-A",
+  "vin": "2nH+0.2Ω, Cin=1n",
+  "edge_ns": 100.0,
+  "undershoot_mV": 139.4,
+  "vin_min": 1.779,
+  "ring_pp_late_mV": 0.02
+ },
+ {
+  "arch": "REF-B 10MHz",
+  "vin": "2nH+0.2Ω, Cin=1n",
+  "edge_ns": 100.0,
+  "undershoot_mV": 328.6
+ }
+]

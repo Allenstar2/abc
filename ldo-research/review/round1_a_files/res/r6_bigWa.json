@@ -1,0 +1,191 @@
+[
+ {
+  "cfg": "B Wa=2400 win3-18mA",
+  "edge_ns": 1.0,
+  "undershoot_mV": 552.93401,
+  "overshoot_during_mV": 39.993979999999986,
+  "overshoot_release_mV": 189.97547999999998,
+  "t_settle10mV_us": 1.3966039999999995,
+  "code_end": 7,
+  "v_end": 1.6001356
+ },
+ {
+  "cfg": "B Wa=2400 win3-18mA",
+  "edge_ns": 100.0,
+  "undershoot_mV": 153.65607999999997,
+  "overshoot_during_mV": 39.78992000000004,
+  "overshoot_release_mV": 187.19800999999993,
+  "t_settle10mV_us": 1.3932840000000002,
+  "code_end": 7,
+  "v_end": 1.6001356
+ },
+ {
+  "cfg": "B Wa=2400 win3-18mA",
+  "edge_ns": 1000.0,
+  "undershoot_mV": 32.88410999999991,
+  "overshoot_during_mV": 61.00616000000003,
+  "overshoot_release_mV": 56.483389999999915,
+  "t_settle10mV_us": 1.1182839999999996,
+  "code_end": 7,
+  "v_end": 1.6001356
+ },
+ {
+  "cfg": "B Wa=2400 win3-18mA",
+  "plateaus": [
+   [
+    20.0,
+    1,
+    0,
+    0.0,
+    1.6006
+   ],
+   [
+    45.0,
+    3,
+    0,
+    0.0,
+    1.6004
+   ],
+   [
+    70.0,
+    5,
+    0,
+    0.0,
+    1.6003
+   ],
+   [
+    95.0,
+    7,
+    0,
+    0.0,
+    1.6001
+   ]
+  ]
+ },
+ {
+  "cfg": "B Wa=2400 win5-25mA",
+  "edge_ns": 1.0,
+  "undershoot_mV": 552.9340300000001,
+  "overshoot_during_mV": 37.90662999999994,
+  "overshoot_release_mV": 189.97546000000008,
+  "t_settle10mV_us": 0.8891039999999998,
+  "code_end": 7,
+  "v_end": 1.6001356
+ },
+ {
+  "cfg": "B Wa=2400 win5-25mA",
+  "edge_ns": 100.0,
+  "undershoot_mV": 153.65607999999997,
+  "overshoot_during_mV": 37.51926999999999,
+  "overshoot_release_mV": 187.19800999999993,
+  "t_settle10mV_us": 0.8832840000000001,
+  "code_end": 7,
+  "v_end": 1.6001356
+ },
+ {
+  "cfg": "B Wa=2400 win5-25mA",
+  "edge_ns": 1000.0,
+  "undershoot_mV": 32.88410999999991,
+  "overshoot_during_mV": 47.58538000000012,
+  "overshoot_release_mV": 65.0746900000001,
+  "t_settle10mV_us": 0.9710906099999995,
+  "code_end": 6,
+  "v_end": 1.59823743
+ },
+ {
+  "cfg": "B Wa=2400 win5-25mA",
+  "plateaus": [
+   [
+    20.0,
+    0,
+    0,
+    0.0,
+    1.5984
+   ],
+   [
+    45.0,
+    2,
+    0,
+    0.0,
+    1.5984
+   ],
+   [
+    70.0,
+    4,
+    0,
+    0.0,
+    1.5983
+   ],
+   [
+    95.0,
+    6,
+    0,
+    0.0,
+    1.5982
+   ]
+  ]
+ },
+ {
+  "cfg": "B Wa=2400 win5-25mA toff300n",
+  "edge_ns": 1.0,
+  "undershoot_mV": 552.9340300000001,
+  "overshoot_during_mV": 37.90662999999994,
+  "overshoot_release_mV": 189.97546000000008,
+  "t_settle10mV_us": 0.8891039999999998,
+  "code_end": 7,
+  "v_end": 1.6001356
+ },
+ {
+  "cfg": "B Wa=2400 win5-25mA toff300n",
+  "edge_ns": 100.0,
+  "undershoot_mV": 153.65607999999997,
+  "overshoot_during_mV": 37.51926999999999,
+  "overshoot_release_mV": 188.65058999999997,
+  "t_settle10mV_us": 0.8832840000000001,
+  "code_end": 7,
+  "v_end": 1.6001356
+ },
+ {
+  "cfg": "B Wa=2400 win5-25mA toff300n",
+  "edge_ns": 1000.0,
+  "undershoot_mV": 32.88410999999991,
+  "overshoot_during_mV": 47.58538000000012,
+  "overshoot_release_mV": 53.74553999999998,
+  "t_settle10mV_us": 0.9710906099999995,
+  "code_end": 6,
+  "v_end": 1.59823743
+ },
+ {
+  "cfg": "B Wa=2400 win5-25mA toff300n",
+  "plateaus": [
+   [
+    20.0,
+    0,
+    0,
+    0.0,
+    1.5984
+   ],
+   [
+    45.0,
+    2,
+    0,
+    0.0,
+    1.5984
+   ],
+   [
+    70.0,
+    4,
+    0,
+    0.0,
+    1.5983
+   ],
+   [
+    95.0,
+    6,
+    0,
+    0.0,
+    1.5982
+   ]
+  ]
+ }
+]

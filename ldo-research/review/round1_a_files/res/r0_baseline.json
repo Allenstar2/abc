@@ -1,0 +1,38 @@
+[
+ {
+  "arch": "REF-A",
+  "edge_ns": 1.0,
+  "undershoot_mV": 498.93591000000015,
+  "overshoot_rel_mV": 196.7520300000003
+ },
+ {
+  "arch": "REF-B 10MHz (repro)",
+  "edge_ns": 1.0,
+  "pre": 1.5991431400000005,
+  "undershoot_mV": 756.2453230000004,
+  "overshoot_during_mV": 54.639749999999545,
+  "overshoot_release_mV": 192.37415000000047,
+  "v_end": 1.5974744199999995,
+  "t_settle10mV_us": 1.6622299999999994,
+  "code_end": 7,
+  "code_max": 8
+ },
+ {
+  "arch": "REF-A",
+  "edge_ns": 100.0,
+  "undershoot_mV": 127.48957999999999,
+  "overshoot_rel_mV": 176.63706000000002
+ },
+ {
+  "arch": "REF-B 10MHz (repro)",
+  "edge_ns": 100.0,
+  "pre": 1.59914314,
+  "undershoot_mV": 313.07551,
+  "overshoot_during_mV": 54.31855000000007,
+  "overshoot_release_mV": 189.8713700000001,
+  "v_end": 1.59747442,
+  "t_settle10mV_us": 1.6624999999999996,
+  "code_end": 7,
+  "code_max": 8
+ }
+]

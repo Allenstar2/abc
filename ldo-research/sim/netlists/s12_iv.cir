@@ -1,0 +1,12 @@
+* iv
+.include /home/user/abc/ldo-research/sim/models/180nm_bulk.pm
+VS s 0 1.8
+VD d 0 1.6
+VG g 0 1.0
+M1 d g s s PMOS W=2400u L=0.18u
+.control
+dc VG 0.6 1.79 0.001
+wrdata /home/user/abc/ldo-research/sim/results/s12_iv.txt i(VS)
+quit
+.endc
+.end

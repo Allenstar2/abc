@@ -1,0 +1,242 @@
+[
+ {
+  "corner": "TT",
+  "temp": 27,
+  "arch": "A 4mm",
+  "bleed_uA": 200,
+  "vout": 1.606058,
+  "vpg": 1.594885,
+  "I_pass_uA": -200.75719999999998,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "TT",
+  "temp": 27,
+  "arch": "A 4mm",
+  "bleed_uA": 50,
+  "vout": 1.607751,
+  "vpg": 1.649488,
+  "I_pass_uA": -50.242219999999996,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "TT",
+  "temp": 27,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 200,
+  "vout": 1.604164,
+  "vpg": 1.52839,
+  "I_pass_uA": -200.2874,
+  "I_slice_each_nA": -29.14677
+ },
+ {
+  "corner": "TT",
+  "temp": 27,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 50,
+  "vout": 1.6058,
+  "vpg": 1.586067,
+  "I_pass_uA": -49.948550000000004,
+  "I_slice_each_nA": -29.08577
+ },
+ {
+  "corner": "TT",
+  "temp": 125,
+  "arch": "A 4mm",
+  "bleed_uA": 200,
+  "vout": 1.614034,
+  "vpg": 1.71246,
+  "I_pass_uA": -201.7543,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "TT",
+  "temp": 125,
+  "arch": "A 4mm",
+  "bleed_uA": 50,
+  "vout": 1.661387,
+  "vpg": 1.780585,
+  "I_pass_uA": -51.91835,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "TT",
+  "temp": 125,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 200,
+  "vout": 1.608218,
+  "vpg": 1.62808,
+  "I_pass_uA": -191.24300000000002,
+  "I_slice_each_nA": -1223.0330000000001
+ },
+ {
+  "corner": "TT",
+  "temp": 125,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 50,
+  "vout": 1.613966,
+  "vpg": 1.711992,
+  "I_pass_uA": -40.7106,
+  "I_slice_each_nA": -1215.731
+ },
+ {
+  "corner": "SF-like",
+  "temp": 27,
+  "arch": "A 4mm",
+  "bleed_uA": 200,
+  "vout": 1.607589,
+  "vpg": 1.644905,
+  "I_pass_uA": -200.9486,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "SF-like",
+  "temp": 27,
+  "arch": "A 4mm",
+  "bleed_uA": 50,
+  "vout": 1.609651,
+  "vpg": 1.699477,
+  "I_pass_uA": -50.30314,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "SF-like",
+  "temp": 27,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 200,
+  "vout": 1.605529,
+  "vpg": 1.578575,
+  "I_pass_uA": -199.7794,
+  "I_slice_each_nA": -113.9644
+ },
+ {
+  "corner": "SF-like",
+  "temp": 27,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 50,
+  "vout": 1.607315,
+  "vpg": 1.636641,
+  "I_pass_uA": -49.31895,
+  "I_slice_each_nA": -113.7034
+ },
+ {
+  "corner": "SF-like",
+  "temp": 125,
+  "arch": "A 4mm",
+  "bleed_uA": 200,
+  "vout": 1.652464,
+  "vpg": 1.759398,
+  "I_pass_uA": -206.558,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "SF-like",
+  "temp": 125,
+  "arch": "A 4mm",
+  "bleed_uA": 50,
+  "vout": 1.778674,
+  "vpg": 1.789812,
+  "I_pass_uA": -55.582640000000005,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "SF-like",
+  "temp": 125,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 200,
+  "vout": 1.613175,
+  "vpg": 1.682977,
+  "I_pass_uA": -175.70389999999998,
+  "I_slice_each_nA": -3242.866
+ },
+ {
+  "corner": "SF-like",
+  "temp": 125,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 50,
+  "vout": 1.687649,
+  "vpg": 1.77581,
+  "I_pass_uA": -28.981270000000002,
+  "I_slice_each_nA": -2969.7250000000004
+ },
+ {
+  "corner": "FF-like(Vth only)",
+  "temp": 27,
+  "arch": "A 4mm",
+  "bleed_uA": 200,
+  "vout": 1.607779,
+  "vpg": 1.64489,
+  "I_pass_uA": -200.9724,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "FF-like(Vth only)",
+  "temp": 27,
+  "arch": "A 4mm",
+  "bleed_uA": 50,
+  "vout": 1.609872,
+  "vpg": 1.699462,
+  "I_pass_uA": -50.308510000000005,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "FF-like(Vth only)",
+  "temp": 27,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 200,
+  "vout": 1.605689,
+  "vpg": 1.578563,
+  "I_pass_uA": -199.7998,
+  "I_slice_each_nA": -113.941
+ },
+ {
+  "corner": "FF-like(Vth only)",
+  "temp": 27,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 50,
+  "vout": 1.607501,
+  "vpg": 1.636627,
+  "I_pass_uA": -49.32499,
+  "I_slice_each_nA": -113.67620000000001
+ },
+ {
+  "corner": "FF-like(Vth only)",
+  "temp": 125,
+  "arch": "A 4mm",
+  "bleed_uA": 200,
+  "vout": 1.65288,
+  "vpg": 1.759359,
+  "I_pass_uA": -206.60930000000002,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "FF-like(Vth only)",
+  "temp": 125,
+  "arch": "A 4mm",
+  "bleed_uA": 50,
+  "vout": 1.778655,
+  "vpg": 1.789848,
+  "I_pass_uA": -55.582950000000004,
+  "I_slice_each_nA": null
+ },
+ {
+  "corner": "FF-like(Vth only)",
+  "temp": 125,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 200,
+  "vout": 1.613446,
+  "vpg": 1.682948,
+  "I_pass_uA": -175.7468,
+  "I_slice_each_nA": -3241.9440000000004
+ },
+ {
+  "corner": "FF-like(Vth only)",
+  "temp": 125,
+  "arch": "B 800um+8x130um off",
+  "bleed_uA": 50,
+  "vout": 1.687843,
+  "vpg": 1.775772,
+  "I_pass_uA": -28.994,
+  "I_slice_each_nA": -2968.889
+ }
+]

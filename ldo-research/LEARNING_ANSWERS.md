@@ -74,7 +74,7 @@ REF-A −38.2 dB；REF-B（5 片導通）−18.8 dB，差 19 dB。導通的 slic
 
 1. **主極點在 EA 輸出（ea 節點）**。Cc 從 Vout 跨到 ea，被第二級增益 A2 = A_SF·gm_p·R_o 放大（Miller），p1 ≈ G_ea·G_o/[Cc(G2+G_o)]。capless 時 CL 只有 100 pF–1 nF，若讓輸出當主極點，滿載 UGF ≈ β·A_EA·gm_p/CL 會到 GHz 級，內部節點跟不上。
 2. 非主極點 p2 ≈ (G2+G_o)/CL，弱反轉 gm_p ≈ I/(nU_T)，最輕載時最低；GBW ≈ β·gm1/Cc 幾乎不隨負載變 → 輕載時 p2/GBW 最小。數字：零載 p2 = 7.8 MHz、GBW = 2.6 MHz；10 mA 時 p2 = 270 MHz。
-3. 不一定。Miller 補償下 CL 大 → 要更大的 Cc 或洩放 → UGF 下降。模擬：100 ns 邊沿 236 mV（100 pF）vs 345 mV（1 nF）；只有 ≤10 ns 的快邊沿 1 nF 才贏（1 ns：742 vs 497 mV）。改 500 µA 洩放、Cc=10 pF 重比，趨勢不變（ANALYSIS.md 附錄）。
+3. 要看補償。純 Miller（無 Rz）時 CL 大 → 要更大的 Cc → UGF 下降：100 ns 邊沿 236 mV（100 pF）vs 345 mV（1 nF）。但加 nulling resistor（1 nF：Cc=8 pF、Rz=10 kΩ）後，1 nF 是 431/185/80 mV（1 ns/100 ns/1 µs），全面優於 100 pF 的 742/236/111 mV。這是第 1 輪審查推翻我原本說法的例子（REVIEW_LOG.md）。追問陷阱：Rz 的可用範圍很窄，Rz 太大時中載 PM 會崩（20 kΩ → 43°）。
 4. Triode。100 mA、Vsd=0.2 V：gm_p=347 mS、gds_p=260 mS，gm_p/gds_p=1.33。迴路增益 53→33.7 dB，PSRR@1 kHz −55→−33 dB。
 5. 定義：Vout 掉到「Vin 足夠高時的穩態值」的 99% 時的 Vin−Vout。REF-A 100 mA 時 94 mV、50 mA 時 48 mV；規格 200 mV → 餘裕約 100 mV，但沒有考慮 corner 與 pass 的金屬/封裝電阻（100 mA × 0.5 Ω = 50 mV [H]）。
 6. 必要：EA tail 20 µA、buffer ~50 µA、偏壓 20 µA；洩放 200 µA 是為了輕載穩定（Q4）。拿掉要換 adaptive bias（EA 電流隨負載）或其他補償；代價是設計複雜度與 adaptive 迴路自身的穩定性。

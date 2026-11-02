@@ -16,3 +16,4 @@
 - 2026-11-02 17:19:44 UTC — 第 1 輪 (b) 完成並修正 23 項；開 agent6（SerDes）。REVIEW_LOG.md 建立。
 - 2026-11-02 17:21:30 UTC — X5（SerDes 連結）：7 級 ring f0=764 MHz、Kvdd=440 MHz/V、平均 0.43 mA。Vin 10 mV@1 MHz：無 LDO 峰值 TIE 925 ps（解析 916），經 REF-A 335 ps（解析 339），手算 vs 模擬差 ≈1%。REF-A PSRR@1 MHz 只有 −8.6 dB、@10 MHz +1.3 dB（放大）。
 - 2026-11-02 17:28:43 UTC — agent5（HBM）完成：12 篇＋13 補充來源（專利/廠商/二手，只在 notes）。HBM 介面專用 LDO 只找到首爾大學三篇（HB05–07，皆僅摘要）。HBM rail 0.4–1.2 V，1.6 V 不是 HBM rail。結論：不改變 A 首選，改變的是評估方式（中高頻 PSRR、burst 負載）。開 agent7（中高頻 PSRR 增強）。literature.csv 66 列。
+- 2026-11-02 17:30:55 UTC — 第 1 輪 (a) 完成：REF-B 稻草人、1 nF 結論反轉（Rz）、SRE 移出首選；作者重現 s12_fairB（553/154/33 vs 499/127/27 mV 一致）、Rz 結果一致。CONCLUSION_DRAFT v2。

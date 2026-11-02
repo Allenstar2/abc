@@ -1,0 +1,60 @@
+[
+ {
+  "cfg": "B Wa=2400 win3-18 no droop",
+  "undershoot_100ns_mV": 153.7,
+  "p5": {
+   "mean": 1.6013,
+   "pp": 0.0,
+   "dcode": 0,
+   "code": 0
+  },
+  "p95": {
+   "mean": 1.6001,
+   "pp": 0.0,
+   "dcode": 0,
+   "code": 7
+  },
+  "p45": {
+   "mean": 1.6004,
+   "pp": 0.0,
+   "dcode": 0,
+   "code": 3
+  },
+  "p20": {
+   "mean": 1.6006,
+   "pp": 0.0,
+   "dcode": 0,
+   "code": 1
+  },
+  "all_plateaus_ok(|\u0394V|<10mV, pp<20mV)": true
+ },
+ {
+  "cfg": "B Wa=2400 win5-25 no droop",
+  "undershoot_100ns_mV": 153.7,
+  "p5": {
+   "mean": 1.6013,
+   "pp": 0.0,
+   "dcode": 0,
+   "code": 0
+  },
+  "p95": {
+   "mean": 1.6001,
+   "pp": 0.0,
+   "dcode": 0,
+   "code": 7
+  },
+  "p45": {
+   "mean": 1.5984,
+   "pp": 0.0,
+   "dcode": 0,
+   "code": 2
+  },
+  "p20": {
+   "mean": 1.6006,
+   "pp": 0.0,
+   "dcode": 0,
+   "code": 1
+  },
+  "all_plateaus_ok(|\u0394V|<10mV, pp<20mV)": true
+ }
+]

@@ -1,0 +1,57 @@
+{
+ "Wa_um": 2400,
+ "VH_3mA": 1.455,
+ "VL_18mA": 1.331,
+ "step": [
+  {
+   "edge_ns": 1.0,
+   "A_undershoot_mV": 498.9,
+   "B_fair_undershoot_mV": 552.9
+  },
+  {
+   "edge_ns": 100.0,
+   "A_undershoot_mV": 127.5,
+   "B_fair_undershoot_mV": 153.7
+  },
+  {
+   "edge_ns": 1000.0,
+   "A_undershoot_mV": 27.4,
+   "B_fair_undershoot_mV": 32.9
+  }
+ ],
+ "plateaus": [
+  {
+   "IL_mA": 20.0,
+   "code": 1,
+   "toggles": 0,
+   "vpp_mV": 0.0,
+   "vout": 1.6006
+  },
+  {
+   "IL_mA": 45.0,
+   "code": 3,
+   "toggles": 0,
+   "vpp_mV": 0.0,
+   "vout": 1.6004
+  },
+  {
+   "IL_mA": 70.0,
+   "code": 5,
+   "toggles": 0,
+   "vpp_mV": 0.0,
+   "vout": 1.6003
+  },
+  {
+   "IL_mA": 95.0,
+   "code": 7,
+   "toggles": 0,
+   "vpp_mV": 0.0,
+   "vout": 1.6001
+  }
+ ],
+ "psrr_1kHz_70mA": {
+  "A": -38.2,
+  "B_fair": -24.2,
+  "code": 5
+ }
+}

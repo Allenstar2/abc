@@ -15,7 +15,7 @@ Miller Cc=5 pF（Vout→EA 輸出），CL=100 pF，洩放 200 µA（R1=R2=4 kΩ�
 |---|---|---|---|
 | Q1 | Cc：5 pF → 2 pF、→ 10 pF | 零載 PM、零載 UGF、0→100 mA（100 ns 邊沿）undershoot 各往哪走？undershoot 會大幅改善嗎？ | `python3 learn.py Q1` |
 | Q2 | pass W：4 mm → 2 mm、→ 8 mm | dropout（100 mA）、滿載 DC 迴路增益、零載 PM、undershoot | `python3 learn.py Q2` |
-| Q3 | CL：100 pF → 1 nF，**但 Cc 不改** | 零載 PM 變多少？1 mA、100 mA 的 PM 呢？ | `python3 learn.py Q3` |
+| Q3 | CL：100 pF → 1 nF，**但 Cc 不改** | 零載 PM 變多少？1 mA、100 mA 的 PM 呢？（延伸：再加 Rz=10 kΩ、Cc=8 pF 會怎樣？見 ANALYSIS.md 附錄） | `python3 learn.py Q3` |
 | Q4 | 洩放電流：200 µA → 50 µA、→ 500 µA | 零載 PM 與 Iq | `python3 learn.py Q4` |
 | Q5 | EA tail 電流：20 µA → 10 µA、→ 40 µA | 零載 PM、UGF、undershoot | `python3 learn.py Q5` |
 | Q6 | 負載步階起點：0 → 1 mA → 10 mA（終點都 100 mA，1 ns 邊沿） | undershoot | `python3 learn.py Q6` |
