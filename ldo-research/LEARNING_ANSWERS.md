@@ -1,6 +1,6 @@
 # LEARNING_ANSWERS
 
-數字來源：`sim/results/learn_answers.json`（`python3 learn.py all`），全部為 [X]（PTM 180nm 模擬，只看趨勢）。
+數字來源：Part 1 的數字取自 `sim/results/learn_answers.json`（`python3 learn.py all`，[X]，PTM 180nm 只看趨勢）；Part 2 是推導 [D]（代入 [X] 的 OP 值）；Part 3 混合 [X]/[D]/[H] 與文獻摘要，各題分別註明。
 
 ## Part 1：10 題答案
 
@@ -52,7 +52,7 @@ REF-A −38.2 dB；REF-B（5 片導通）−18.8 dB，差 19 dB。導通的 slic
 - G_ea = 1.15 + 1.23 = 2.38 µS → gm1/G_ea = 77.3
 - A_SF = 918 / (918 + 22 + 65.6) = 0.913；G2 = 0.913 × 4.98 mS = 4.55 mS
 - G_o = 253 µS + 1/8 kΩ = 378 µS → gm_p/G_o = 13.2
-- **T0 = 0.5 × 77.3 × 0.913 × 13.2 = 465 → 53.3 dB**（模擬 53.0 dB，差 3%）
+- **T0 = 0.5 × 77.3 × 0.913 × 13.2 = 465 → 53.3 dB**（模擬 53.0 dB，線性差約 4%）
 - p2 ≈ (G2+G_o)/CL = 4.93 mS / 100 pF = 4.93×10⁷ rad/s → **7.84 MHz**
 - GBW ≈ β·gm1·G2 / [Cc(G2+G_ea+G_o)] = 0.5×184µ×4.55m / (5p×4.93m) = 1.68×10⁷ rad/s → **2.67 MHz**
 - 兩極點下 |T|=1：f·√(1+(f/7.84)²) = 2.67 → f ≈ 2.54 MHz；相位 −90° − atan(2.54/7.84) = −108° → PM ≈ 72°
@@ -62,7 +62,7 @@ REF-A −38.2 dB；REF-B（5 片導通）−18.8 dB，差 19 dB。導通的 slic
 - 開迴路：v_out = gds_p·v_in·R_o（pg 跟 Vin，所以 v_sg = 0）。閉迴路除以 (1+T0)：**PSRR ≈ gds_p·R_o/(1+T0)**。
 - 100 mA：R_o = 1/(0.26 + 0.000125) ≈ 1/gds_p → gds_p·R_o ≈ 1；T0 = 33.7 dB = 48.4 → PSRR ≈ 1/49.4 = **−33.9 dB**（模擬 −33.3 dB）。
 - 補充（第 1 輪審查）：pg 實際只跟到 Vin 的 α_pg = 0.948–0.994，精確式為 R_o·[gds_p + gm_p(1−α_pg)]/(1+T0)，近似式偏樂觀 0.6–2.2 dB。
-- 若 pg 跟著 ground：v_sg = v_in，注入電流變成 (gm_p+gds_p)·v_in → 多乘 (gm_p+gds_p)/gds_p：100 mA 時 = 2.33（**差 7.4 dB**）；零載時 gm_p/gds_p ≈ 19.7 → 乘 ~30 倍（**差 ~30 dB**）。這就是為什麼 PMOS pass 的驅動電路要「以 Vin 為參考」。
+- 若 pg 跟著 ground：v_sg = v_in，注入電流變成 (gm_p+gds_p)·v_in → 多乘 (gm_p+gds_p)/gds_p：100 mA 時 = 2.33（**差 7.4 dB**）；零載時 (gm_p+gds_p)/gds_p = (4.98+0.253)/0.253 ≈ 21 倍（**差約 26 dB**）。這就是為什麼 PMOS pass 的驅動電路要「以 Vin 為參考」。
 
 ### H3
 1. 穩定碼 k 需要 I_L − k·I_s ∈ [I_a(VH), I_a(VL)]（寬度 W）。k 每加 1，類比電流跳 I_s。若 W < I_s，序列 {I_L − k·I_s} 可能整個跳過窗口：每個長度 I_s 的週期裡有 (I_s − W) 長的負載區間沒有任何穩定碼 → 碼在相鄰兩值間來回 = limit cycle。
@@ -86,11 +86,11 @@ REF-A −38.2 dB；REF-B（5 片導通）−18.8 dB，差 19 dB。導通的 slic
 10. Source follower 把 pg 節點的阻抗降到 ~1/gm_b（~1 kΩ），pg 極點推到 20–30 MHz。**不對稱**：PMOS SF 往下拉靠 SF 電晶體（強），往上拉只靠 50 µA 電流源（50 µA/7.9 pF ≈ 6.3 V/µs），所以卸載 overshoot 回復慢。
 11. 不行。REF-A 100 mA 時 Vin=1.674 V 已掉 1%；1.62 V 時已在 dropout。要問教授 Vin 的來源與容差。
 12. 中頻（UGF 附近 1–3 MHz）最差，接近 0 dB；高頻靠 CL 分流，但滿載 gds_p/(2πCL) 轉折在 ~400 MHz，所以 10–100 MHz 都在 0 dB 附近。改善：增加 EA 增益與頻寬、feedforward ripple cancellation（Park 2014 的方向）、NMOS pass（需 charge pump）、加大 CL。
-13. 會。條件是窗口電流 > 一片電流（加比較器 offset 與溫漂餘裕），否則約一半負載範圍會 limit cycle（H3、X3a）。另外每次切換是一次 12 mA 的快速負載步階，造成 34–83 mV 尖峰（依 slice 邊沿）。
+13. 會。條件是窗口電流 > 一片電流（加比較器 offset 與溫漂餘裕），否則約一半負載範圍會 limit cycle（H3、X3a）；若加了 d 級同步器，還要每 d+1 個時脈才更新（`s13`）。另外每次切換是一次 12 mA 的快速負載步階，造成 34–83 mV 尖峰（依 slice 邊沿）。
 14. **未確認**。只讀到摘要：有「transient response is dictated by the digital portion」與數位逼近演算法等偏 C 線索，但穩態誰供電、DC 精度誰決定、數位穩態是否停止都沒寫。要讀全文或 Leduc 的碩士論文才能判定。
-15. 用閘級：雙向 thermometer shift register 每位元＝1 DFF＋3 AND2＋1 OR3（本次 XSPICE 就是這個結構）；比較器用連續比較器＋2 級 DFF 同步器；時脈從外部輸入。驗證：LTspice 電晶體級跑代表性情境（加片、減片、hold、上電）。XSPICE 沒有 metastability 與 setup/hold 違規，要另外用電晶體級檢查。
+15. 用閘級：雙向 thermometer shift register 每位元＝1 DFF＋3 AND2＋1 OR3（本次 XSPICE 就是這個結構）；比較器用連續比較器＋2 級 DFF 同步器，**而且 shift register 要每 3 個時脈才更新一次**（否則同步器延遲會造成 limit cycle：`s13` 電路級 11/31 負載點振盪 → 加 ÷3 後 0/31）；時脈從外部輸入。驗證：LTspice 電晶體級跑代表性情境（加片、減片、hold、上電）。XSPICE 沒有 metastability 與 setup/hold 違規，要另外用電晶體級檢查。
 16. 只能看趨勢。lmin=lmax=0.18 µm 代表 L≠0.18 µm 是外插；本次量到 gm/gds 隨 L 增加（NMOS 12→59→97）方向合理，但 Vth 對 L 不單調（0.41→0.50→0.45 V）。而且沒有 corner、沒有 mismatch 模型。下線前一定要換成平台的 PDK 重做。
 17. PMOS pass 只能「送」電流不能「吸」電流。卸載時多餘的電流只能靠洩放或 pass 關斷後的漏電慢慢放電：1 nF × 0.2 V / 200 µA = 1 µs；而且 Vout 可能直接衝到 Vin（本次 100 pF 時 overshoot 被 Vin 夾在 206 mV）。
-18. 不一定。本次 class-B 電容耦合 SRE：小訊號完全不變（PM、PSRR 相同），最佳參數下 undershoot 只改善 8–15%，某些參數下 100 ns 邊沿反而變差 20%（過度修正後振鈴）；第一版偏壓還因 PTM PMOS 的 DIBL 讓偵測管靜態導通，整顆 LDO 失效（LOG.md）。
+18. 不一定。本次 class-B 電容耦合 SRE：小訊號完全不變（PM、PSRR 相同），最佳參數下 undershoot 只改善 8–15%，參數掃描中 100 ns 邊沿最差從 236 惡化到 348 mV（+48%，過度修正後振鈴；`x4b_sre_sweep.json`）；第一版偏壓還因 PTM PMOS 的 DIBL 讓偵測管靜態導通，整顆 LDO 失效（LOG.md）。
 19. 要做：PDK 的 TT/FF/SS/FS/SF × −40/27/125 °C × Vin 範圍；mismatch Monte Carlo（EA offset → Vout 精度；hybrid 比較器 offset → 窗口）；佈局後寄生（pass device 的金屬電阻、pg 節點電容）；ESD 與 latch-up。本次只做了 Vth ±50 mV、Tox ±5%、溫度三點的粗略擾動，沒有 mismatch、沒有佈局。
 20. 誠實說：架構本身不新。可能的小貢獻是 GAPS.md G1——在同一顆 0.18 µm capless LDO 上，用片上可程式負載與片上監測 buffer，系統化量測 ΔV 對邊沿時間、起點電流、取出方式的依賴，說明 FoM 排名如何被量測條件改變。已有人做過兩種邊沿的比較（X. Wang CICC 2019），所以要定位為「量測方法學的整理」。

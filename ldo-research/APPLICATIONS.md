@@ -5,7 +5,7 @@
 
 ## 1. 一句話結論
 
-HBM 與 SerDes 都讓「LDO 的**中高頻 PSRR**（MHz～百 MHz）」比負載暫態 FoM 更重要，因為供電雜訊會經過 clock buffer/VCO 變成 jitter。
+HBM 與 SerDes 的 LDO 文獻同時在意兩件事：**droop/settling**（HBM 介面 LDO 的標題指標，HB05–HB07）與**中高頻供電雜訊造成的 jitter**（HB08–HB09、SD03、SD10）。對 SerDes 時脈而言，後者（MHz 級 PSRR＋低雜訊）是主要規格 [H，agent6 綜合 SD10、SD03]。
 這**不改變首選架構（A 純類比）**，但改變**評估指標與設計重點**：專題若要掛這兩個應用，應該把「PSRR 對頻率曲線」與「供電漣波 → jitter」列為主要量測，而不是只比 undershoot。
 
 ## 2. HBM（agent5，12 篇＋13 補充來源）
@@ -38,12 +38,12 @@ HBM 與 SerDes 都讓「LDO 的**中高頻 PSRR**（MHz～百 MHz）」比負載
 | 反面/限制 | regulator 吃 headroom（低壓先進製程）；LDO 耗功率面積；用 adaptive filter 取代 LDO（LPDDR5 clock，27.84→4.28 ps rms）；180 nm 補償電路不用 LDO | SD07、SD01、SD13、SD06 |
 
 ### 3.2 對專題的意義
-1. **SerDes 裡 LDO 的主要用途是換低 jitter（寬頻 PSRR＋低雜訊＋mW 級功耗），不是應付大負載暫態**（SD10、SD03；agent6 §1）。
+1. **SerDes 時脈 rail 的 LDO 主要用途是換低 jitter（寬頻 PSRR＋低雜訊＋mW 級功耗），不是應付大負載暫態** [H，agent6 依 SD10、SD03 摘要綜合；TX driver 的 LDO（SD02、SD11）另有擺幅設定用途]。
 2. **電流不匹配**：SerDes 時脈 rail 是 mW 級（SD10 ≤1 mW、SD09 320 µW），學生的 10–100 mA 比較像整個 TX/多 lane。建議 ring oscillator 只當數 mA 的示範負載，另放 10–100 mA 可程式負載 [H，agent6]。
 3. **不要包裝成「SerDes LDO」**：0.18 µm 例子都在 2.5 GHz 以下（SD14、SD15）。
 4. **headroom 批評在 0.18 µm 較弱**：SD07 的批評針對 ~1 V 製程；1.8→1.6 V 相對寬裕，但 200 mV、100 mA 需要大 PMOS（本專案 4 mm）。
 5. **「LDO 供電片上 RO、量 supply-induced spur」**：在 PLL 論文裡常見（regulator 屬於 PLL 的一部分）；以「獨立類比 LDO＋RO 當應用負載」為題最接近的是 SD04（180 nm，只有模擬）。2014 後**沒找到** 0.18 µm 實測——可當區隔點，但**不能宣稱首創**（只有摘要、搜尋 42 次）。→ GAPS.md G6。
-6. **與 X5 模擬一致**：窄頻區有/無 LDO 的 spur 差等於該頻率的 PSRR [D]；本次 X5 在 1 MHz 量到 TIE 比 925/335 ps ≈ 2.76 倍 = 8.8 dB，與 REF-A 在該負載的 PSRR −8.6 dB 一致 [X]。
+6. **與 X5 模擬的關係**：在窄頻 FM（調變指數 β = Kvdd·A/f_m ≪ 1）時，有/無 LDO 的 spur 差等於該頻率的 PSRR [D]。X5 在 1 MHz 的 β 已達 4.4（無 LDO）與 1.6（經 LDO），**不在窄頻區**，所以改用 TIE 比：925/335 ps ≈ 2.76 倍 = 8.8 dB，與該負載 PSRR −8.6 dB 一致（TIE 與漣波振幅成正比，不受 β 限制）[X]。要用 spur 量 PSRR，VCO 上的漣波需小到 β ≲ 0.2：1 MHz 時 < ~0.45 mV、100 kHz 時 < ~45 µV（Kvdd=440 MHz/V）[D]。
 
 ## 4. 本次模擬：供電漣波 → ring oscillator jitter（X5，`sim/scripts/s10_vco_supply.py`）
 
@@ -64,7 +64,7 @@ HBM 與 SerDes 都讓「LDO 的**中高頻 PSRR**（MHz～百 MHz）」比負載
 
 **解讀**：
 1. 手算與共模擬差 ~1%，說明「PSRR(f) × Kvdd → jitter」這條鏈可以用手算預測 [X/D]。
-2. 簡單 capless LDO（REF-A）在 1 MHz 只擋 8.6 dB、10 MHz 甚至放大——**正好落在 PLL 迴路頻寬以上、最需要 LDO 擋的頻段**（PLL 會壓制自身頻寬內的 VCO 擾動 [H]）。
+2. 簡單 capless LDO（REF-A）在 1 MHz 只擋 8.6 dB、10 MHz 甚至放大。**對迴路頻寬低於 ~1 MHz 的 PLL**，這正是 PLL 壓不住、最需要 LDO 擋的頻段 [H]；但高速 SerDes 的 ring PLL 頻寬可 >100 MHz（SD03，agent6 §4.2），那時關鍵頻段更高，0.18 µm 的類比 LDO 只能靠 CL 分流。
 3. 自由振盪 ring 的 335 ps TIE 對 764 MHz（週期 1.31 ns）是巨大的；實際 SerDes 有 PLL，數字只用來比較 LDO 的相對效果。
 4. **這是學生做得到的「應用示範」**：片上放一個由 LDO 供電的 ring oscillator（或 inverter delay line），量測時在 Vin 注入漣波、用頻譜儀看 spur 或用示波器量週期抖動，間接量到 LDO 在 MHz 的 PSRR。是否已有人做過、新穎性如何，見 §3 與 GAPS.md 更新。
 
@@ -74,7 +74,7 @@ HBM 與 SerDes 都讓「LDO 的**中高頻 PSRR**（MHz～百 MHz）」比負載
 |---|---|---|---|
 | 無特定應用（一般 SoC） | A | 輕載穩定、暫態（片上負載、3 檔邊沿） | 負載/線性暫態、PSRR、Iq、dropout |
 | HBM 介面 | A（＋可選類比 feedforward trigger） | 中高頻 PSRR、burst 負載 | PSRR 曲線、burst droop |
-| SerDes/clock | A＋PSR 增強（見 agent7 整理）；Imax 可降到數 mA–10 mA，換取更容易的高 PSRR | 1–100 MHz PSRR、輸出雜訊（SD10：40 dB 至 10 MHz、50 nV/√Hz） | PSRR 曲線、ring oscillator spur/TIE（有/無 LDO 對照） |
+| SerDes/clock | A＋PSR 增強（見 §6）；Imax 可降到數 mA–10 mA 以符合時脈 rail 的電流量級（注意：W 等比縮小時 PSRR 本身不變，`s8_sensitivity.json`；PSRR 要靠 PSR 技術或較大 dropout）[X/H] | 1–100 MHz PSRR、輸出雜訊（SD10：40 dB 至 10 MHz、50 nV/√Hz） | PSRR 曲線、ring oscillator spur/TIE（有/無 LDO 對照） |
 
 ## 6. 若教授以 PSRR 為主要指標：PSR 增強技術（agent7，12 篇：PS01–PS12）與本次驗證
 

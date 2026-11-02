@@ -160,7 +160,7 @@ Z_out,cl ≈ 1 / (gm_c · gm_p · R_X)
 **沒有 Verilog 能不能做？**（[D]，對照閘級 XSPICE）
 - 需要：2 個比較器（可用連續比較器＋同步器，不一定要 StrongARM）、8 個 DFF、32 個 2/3 輸入閘＋1 個 NOR、8 個 slice 驅動 inverter、時脈（外部輸入最簡單；片上可用 ring oscillator）、power-on reset。
 - 這和你做過的 DFF、除頻器是同一等級，可以手畫或用 PDK 的標準元件庫手拼（需確認平台有無 std cell [H]）。
-- XSPICE 模型與閘級實作的差距：d_dff 沒有 setup/hold 違規與 metastability（比較器輸出是非同步訊號，實作時要 2 級 DFF 同步器）。**但同步器會造成決策延遲**：第 1 輪審查 (c) 的行為模型指出延遲 d 個時脈時 limit cycle 分界點從 1 移到 d+1；作者電路級重現（`s13_hybrid_sync.py`，寬窗比值 1.23、31 個負載點）：無同步器 0/31、2 級同步器 **11/31**、2 級同步器＋shift register 用 ÷3 時脈（等效 blanking）0/31 [X]。→ 規則：**有 d 級同步器時，shift register 每 d+1 個時脈才更新一次**（÷(d+1) 計數器，正是你做過的除頻器）；比較器 offset 會讓窗口縮小（窗口要 > 3σ offset）；PTM 反相器 FO4 = 54–60 ps [X]，DFF 時脈到輸出約數倍 FO4 [H]，10–50 MHz 時脈沒有時序壓力。
+- XSPICE 模型與閘級實作的差距：d_dff 沒有 setup/hold 違規與 metastability（比較器輸出是非同步訊號，實作時要 2 級 DFF 同步器）。**但同步器會造成決策延遲**：第 1 輪審查 (c) 的行為模型指出延遲 d 個時脈時 limit cycle 分界點從 1 移到 d+1；作者電路級重現（`s13_hybrid_sync.py`，寬窗比值 1.23、31 個負載點）：無同步器 0/31、2 級同步器 **11/31**、2 級同步器＋shift register 用 ÷3 時脈（等效 blanking）0/31 [X]。→ 規則：**有 d 級同步器時，shift register 每 d+1 個時脈才更新一次**（÷(d+1) 計數器，正是你做過的除頻器）；比較器 offset 的影響見下一段「完整條件」；PTM 反相器 FO4 = 54–60 ps [X]，DFF 時脈到輸出約數倍 FO4 [H]，10–50 MHz 時脈沒有時序壓力。
 
 **limit cycle 的完整條件**（第 1 輪審查 (c) 行為模型＋作者電路驗證）：分界點 ≈ 1 ＋ 兩顆比較器 offset 之和（以片電流為單位）＋ 決策延遲 d（若不 blanking）；欠阻尼或比時脈慢的類比響應會再把分界點推高（1.05 到 >3.6，行為模型）[X/D]。
 
@@ -210,7 +210,7 @@ Z_out,cl ≈ 1 / (gm_c · gm_p · R_X)
 | 100 pF，I_min=500 µA，Cc=3 pF | 70.4° | 687 | 185 | 72 |
 | 100 pF，I_min=200 µA，Cc=5 pF（REF-A） | 66.4° | 742 | 236 | 111 |
 
-我原本只換了洩放電流，結論是「100 ns、1 µs 邊沿仍是 100 pF 較小」。**審查者 (a) 加了 Rz 就推翻了它**；作者重現（`learn`/s11 同參數）[X]：
+我原本只換了洩放電流，結論是「100 ns、1 µs 邊沿仍是 100 pF 較小」。**審查者 (a) 加了 Rz 就推翻了它**；作者重現（`s15_rz_loadreg.py`，存檔 `s15_rz_loadreg.json`）[X]：
 
 | 設計 | 各負載 PM（0/1/10/30/50/100 mA） | 1 ns | 100 ns | 1 µs |
 |---|---|---|---|---|
@@ -218,7 +218,7 @@ Z_out,cl ≈ 1 / (gm_c · gm_p · R_X)
 | 100 pF，Cc=3 pF，Rz=5 kΩ | 73.2/101.4/107.2/106.3/104.4/99.7° | 822 | 198 | 83 |
 | 100 pF，Cc=5 pF，Rz=0（REF-A） | 66.4/83.0/86.3/86.6/86.8/87.9° | 742 | 236 | 111 |
 
-修正後結論：**各自補償好之後，1 nF 在快邊沿明顯較好、慢邊沿相當**。但 Rz 的可用範圍窄：審查者掃描顯示 1 nF、Cc=8 pF 時 Rz=20 kΩ 會讓 50 mA 的 PM 掉到 43°、Rz=40 kΩ 掉到 −2°（`review/round1_a_files/res/r4b_rz.json`）——LHP zero 固定，而 p2 隨負載移動，Rz 必須跨負載與 corner 驗證 [X/D]。
+修正後結論：**各自補償好之後，1 nF 在快邊沿明顯較好、慢邊沿相當**。代價：100 pF 加 Rz 會讓 1 ns 邊沿 undershoot 從 742 變 822 mV（審查者另一組 872 mV）[X]。Rz 的可用範圍窄：審查者掃描（負載 0/0.2/1/10/100 mA）顯示 1 nF、Cc=8 pF 時 Rz=20 kΩ 會讓 **10 mA** 的 PM 掉到 43°、Rz=40 kΩ 掉到 −2°（`review/round1_a_files/res/r4b_rz.json`）——LHP zero 固定，而 p2 隨負載移動，Rz 必須跨負載與 corner 驗證 [X/D]。
 
 ## 附：規格敏感度（`s8_sensitivity.py`，0→Imax 步階 undershoot，mV）[X]
 
@@ -249,6 +249,7 @@ Z_out,cl ≈ 1 / (gm_c · gm_p · R_X)
 
 **修正後的 B 結論**：
 1. 「B 比 A 差 2.5 倍／19 dB」只描述 Wa=800 µm 的設計點；Wa 是 B 唯一的主要取捨旋鈕（小 → 暫態/PSRR 差；大 → 面積優勢消失）[X/D]。
-2. B 的真實優點：DC load regulation（0.5 mV vs A 12.8 mV＠0→100 mA）、高溫輕載漏電較不敏感（審查者：SF-like 125 °C 零載 B +9 mV vs A +46 mV，`review/round1_a_files/res/r3b_hot.json`）[X]。
+2. B 的真實優點：DC load regulation（**同條件 20→95 mA：公平 B 0.5 mV vs A 6.1 mV**；`s12_fairB.json`、`s15_rz_loadreg.json`）[X]；高溫輕載漏電較不敏感，但優勢隨 Wa 縮小而變大——SF-like 125 °C 零載：Wa=800 µm 的 B +9 mV、**公平 B（2.4 mm）+28 mV**、A +46 mV；A 把洩放加到 300 µA 即約 +26 mV（審查者 `r3b_hot.json`、`r7_bleed_bias.json`）[X]。
+5. **B 的降級模式**（審查者 (a) 的論點，原本漏記）：數位 reset（碼 0）後，公平 B 就是一顆 Wa=2.4 mm 的類比 LDO，Vout 掉 16 mV 以內可供 88.5 mA、PM 68°（`r8_fallback.json`）[X，審查者]——數位部分失效時仍可用，這是 B 降低下線風險的設計手法。
 3. 要讓 B 的暫態贏過 A，需要非同步 droop 路徑。審查者以 1 顆比較器＋DFF 非同步 set 鏈（8 個 AND2，無新時脈）實作，8 組閾值×關閉邊沿設定**全部**在某個負載平台失效（45–360 mV p-p 弛張振盪或 Vout 卡在 +97 mV）；唯一把 100 ns undershoot 壓到 122 mV（< A 的 127 mV）的設定在 20 mA 與 95 mA 振盪 [X，審查者；作者未獨立重現；審查者自承部分現象可能是 XSPICE 事件排序假象]。
 4. 1 ns 邊沿時任何數位路徑都來不及（比較器＋set 鏈 ≥2–4 ns），B 一律由類比 pass 寬度決定 [X/D]。

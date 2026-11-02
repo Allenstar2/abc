@@ -22,6 +22,7 @@ echo "[8d] 補充查核";                              python3 s11_misc_checks.p
 echo "[8e] 第 1 輪審查反例重現（公平 B）";             python3 s12_fairB.py | tee ../results/run_s12.txt
 echo "[8f] hybrid 同步器延遲 vs limit cycle";          python3 s13_hybrid_sync.py | tee ../results/run_s13.txt
 echo "[8g] 實驗 X6：feedforward PSRR 抵消 vs 負載";      python3 s14_ff_psrr.py | tee ../results/run_s14.txt
+echo "[8h] Rz 補償表與同條件 load regulation";     python3 s15_rz_loadreg.py | tee ../results/run_s15.txt
 echo "[9] LEARNING 實驗";                          python3 learn.py all > ../results/run_learn.txt
 if [ -d ../../ext/DLDO-survey ]; then
   echo "[7] DLDO 資料集統計";                        python3 s7_dataset_stats.py | tee ../results/run_s7.txt

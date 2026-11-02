@@ -14,7 +14,7 @@
 | G3 | 0.18 µm、1.8 V 下的 capless LDO PSR feedforward 抵消 | **已有**：A01 Park 2014 JSSC（0.18 µm、1.8 V，PSR 優於 −56 dB 至 4 MHz [摘要]）；A13 Joo 2017（0.18 µm PSR 模型）；A03 Lim 2018 | — | **刪除**（已有人做過） |
 | G4 | 電容耦合 SRE / FVF / SSF 的快速暫態 capless LDO | **已有**大量：A06、A07、A08、A09、F03、F04、D13 | — | **刪除**（已有人做過；本次模擬也顯示簡單 SRE 改善僅 8–15% [X]，不是容易的新貢獻） |
 | G5 | 大 PMOS pass 在高溫輕載的漏電使調節失效（本次 SF-like 125 °C 輕載 Vout +46 mV [X]）的系統研究 | 屬於教科書級的「最小負載電流」設計問題；不構成研究缺口 | 高 | **刪除**（不是研究缺口，是設計檢查項目） |
-| G6 | **0.18 µm 類比 capless LDO＋片上 ring oscillator 當應用負載，實測 supply-induced spur/TIE 對漣波頻率的曲線，並用「有/無 LDO 的 spur 差＝PSRR」當應用層級的 PSRR 量測** | 部分有：PLL 論文常注入 supply tone 量 spur（SD03、SD08、SD14），但 regulator 屬 PLL 一部分；獨立 LDO＋RO 最接近的是 SD04（180 nm，**只有模擬**）。2014 後 0.18 µm 實測未找到（agent6，摘要層級、42 次搜尋） | 高：RO 只要幾個 inverter；量測只需訊號源、bias-T、頻譜儀/示波器；本次 X5 已示範手算與模擬差 ~1% [X] | **保留（與 G1 合併成主推）**，定位為「應用示範＋量測方法」，不宣稱首創。未完整查證 |
+| G6 | **0.18 µm 類比 capless LDO＋片上 ring oscillator 當應用負載，實測 supply-induced spur/TIE 對漣波頻率的曲線，並用「有/無 LDO 的 spur 差＝PSRR」（只在窄頻 β≪1 時成立；否則改用 TIE 比）當應用層級的 PSRR 量測** | 部分有：PLL 論文常注入 supply tone 量 spur（SD03、SD08、SD14），但 regulator 屬 PLL 一部分；獨立 LDO＋RO 最接近的是 SD04（180 nm，**只有模擬**）。2014 後 0.18 µm 實測未找到（agent6，摘要層級、42 次搜尋） | 高：RO 只要幾個 inverter；量測只需訊號源、bias-T、頻譜儀/示波器；本次 X5 已示範手算與模擬差 ~1% [X] | **保留（與 G1 合併成主推）**，定位為「應用示範＋量測方法」，不宣稱首創。未完整查證 |
 
 ## G1＋G6 的具體做法（若教授同意）
 
