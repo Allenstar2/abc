@@ -1,0 +1,4 @@
+ext/
+__pycache__/
+*.raw
+sim/results/tmp/

@@ -1,0 +1,13 @@
+* Stage0 sanity: CMOS inverter DC transfer with PTM 180nm (CC BY 4.0 collection)
+.include ../models/180nm_bulk.pm
+VDD vdd 0 1.8
+VIN in 0 0
+M1 out in 0 0 NMOS W=1u L=0.18u
+M2 out in vdd vdd PMOS W=2u L=0.18u
+.control
+dc VIN 0 1.8 0.01
+meas dc vm when v(out)=0.9
+wrdata ../results/s0_inverter.txt v(out)
+quit
+.endc
+.end
