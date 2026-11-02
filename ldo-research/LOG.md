@@ -21,3 +21,4 @@
 - 2026-11-02 17:33:47 UTC — agent6（SerDes）完成 15 篇；APPLICATIONS §3、GAPS G6（LDO＋RO spur）更新；literature.csv 81 列。
 - 2026-11-02 17:36:53 UTC — 第 1 輪 (c) 完成；s13 電路級驗證同步器延遲：0/31、0/31（50 MHz）、11/31（sync2）、0/31（sync2+÷3）。第 1 輪三項全部完成。開第 2 輪 (c)。
 - 2026-11-02 17:38:28 UTC — ldo_hybrid.py 加 sync/reg_div 選項後做回歸：初版改法使 X3 數字微變（≤2%），改成 sync=0 時產生與原版完全相同的 netlist，重跑 x3_hybrid.json 位元相同；s13 結果不變。
+- 2026-11-02 17:42:07 UTC — agent7（PSR 增強）完成 12 篇；literature.csv 93 列。X6：理想 feedforward 注入顯示最佳 gff 隨負載變（0.06/0.1/≥1 mS），印證 α_pg=1+gds/gm 推導；1 MHz 需 1 mS 才改善 ~20 dB 且傷低頻。

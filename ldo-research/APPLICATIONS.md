@@ -75,3 +75,37 @@ HBM 與 SerDes 都讓「LDO 的**中高頻 PSRR**（MHz～百 MHz）」比負載
 | 無特定應用（一般 SoC） | A | 輕載穩定、暫態（片上負載、3 檔邊沿） | 負載/線性暫態、PSRR、Iq、dropout |
 | HBM 介面 | A（＋可選類比 feedforward trigger） | 中高頻 PSRR、burst 負載 | PSRR 曲線、burst droop |
 | SerDes/clock | A＋PSR 增強（見 agent7 整理）；Imax 可降到數 mA–10 mA，換取更容易的高 PSRR | 1–100 MHz PSRR、輸出雜訊（SD10：40 dB 至 10 MHz、50 nV/√Hz） | PSRR 曲線、ring oscillator spur/TIE（有/無 LDO 對照） |
+
+## 6. 若教授以 PSRR 為主要指標：PSR 增強技術（agent7，12 篇：PS01–PS12）與本次驗證
+
+### 6.1 文獻整理（僅摘要）
+| 技術 | 0.18 µm 證據 | 在 1.8→1.6 V、無 Verilog 下的可行性 |
+|---|---|---|
+| Feedforward／replica ripple 抵消（PMOS pass 不變） | A01（0.18 µm、1.8 V，優於 −56 dB 至 4 MHz @50 mA [M]）；PS04（0.18 µm，改善最高 40 dB，Iq 33 µA [S]） | 高：純類比、不吃 dropout [推論，agent7] |
+| Negative capacitance | PS09（0.18 µm，−76 dB @1 MHz [M]，電路未讀到） | 中：要讀全文 |
+| NMOS pass＋charge pump | A04、PS06（180 nm，−40 dB @1 MHz @100 mA） | 低-中：1.8→1.6 V 時閘極需高於 Vin，必須 charge pump；氧化層耐壓要查 PDK |
+| 兩級 pass | PS10（200 mV dropout，只報到 100 kHz） | 中：200 mV 要拆給兩顆 |
+| 限制 | PS03（Rincón-Mora 2021：series feedback 是最佳折衷）；PS06 PSR 隨負載變差 15 dB；PS11、A03 都要 adaptive | — |
+
+agent7 的建議：保留 PMOS pass，加 replica/feedforward（A01/PS04 型）＋依負載調整的 adaptive 偏壓。
+
+### 6.2 本次推導與理想行為級驗證（X6，`sim/scripts/s14_ff_psrr.py`）
+推導 [D]（由第 1 輪審查 (c) 的精確式延伸）：
+```
+PSRR_LF = R_o·[gds_p + gm_p·(1 − α_pg)] / (1+T0)   →   完全抵消需要 α_pg = 1 + gds_p/gm_p
+```
+REF-A 的 gds_p/gm_p：零載 0.051、10 mA 0.074、100 mA **0.75**（triode）[X，OP]。所以需要的「過追蹤」量隨負載變 15 倍——**在 200 mV dropout 的規格下，固定增益的 feedforward 不可能跨負載抵消**，這解釋了為什麼文獻都要 adaptive（PS01、PS11、A03）。
+
+驗證：在 pg 注入理想 VCCS I = gff·(Vin−1.8)（只有 AC），掃 gff [X]：
+| gff (mS) | 0 mA：1 kHz / 1 MHz | 10 mA：1 kHz / 1 MHz | 100 mA：1 kHz / 1 MHz |
+|---|---|---|---|
+| 0（REF-A） | −55.3 / −8.3 dB | −51.7 / −8.7 | −33.3 / −5.3 |
+| 0.06 | **−68.6** / −8.9 | −59.8 / −9.2 | −34.0 / −5.6 |
+| 0.1 | −57.8 / −9.3 | **−68.5** / −9.5 | −34.5 / −5.8 |
+| 1.0 | −31.2 / **−27.9** | −32.2 / **−29.0** | −46.0 / −12.7 |
+
+解讀：
+1. 低頻最佳 gff 隨負載移動（0 mA 在 0.06 mS、10 mA 在 0.1 mS、100 mA 要 ≥1 mS）——印證上面的推導 [X/D]。
+2. 1 MHz 要大很多的 gff（1 mS）才有 ~20 dB 改善，而且會讓輕載的 1 kHz 變差（過度抵消）。合理做法是讓 feedforward 路徑**只在迴路 UGF 以上作用（high-pass）**，低頻交給迴路增益 [D，未模擬]。
+3. 滿載 1 MHz 即使 gff=1 mS 也只有 −12.7 dB：triode 下的 gds_p 太大，是本規格的根本限制 [X]。
+4. 這是理想 VCCS，不是電路；實作要考慮 replica 的頻寬、匹配、Iq。**這組數字只用來說明方向，不是可達到的設計值。**

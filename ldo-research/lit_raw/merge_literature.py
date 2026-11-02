@@ -21,7 +21,7 @@ for r in rows:
         r["notes"] = f"[分類原註：{r['arch_class']}] " + r["notes"]; r["arch_class"] = "未確認"
     r["dup_of"] = ";".join(seen.get(r["id"], []))
     pref = r["id"][:2]
-    r["source_agent"] = {"HB": "agent5(HBM)", "SD": "agent6(SerDes)"}.get(pref) or {"H": "agent1", "A": "agent2", "D": "agent3", "F": "agent4"}[r["id"][0]]
+    r["source_agent"] = {"HB": "agent5(HBM)", "SD": "agent6(SerDes)", "PS": "agent7(PSR)"}.get(pref) or {"H": "agent1", "A": "agent2", "D": "agent3", "F": "agent4"}[r["id"][0]]
     out.append(r)
 out.append(dict(id="X01", first_author="M. Seok; Z. Wang; S. J. Kim", authors_short="Seok, Wang, Kim",
                 title="Digital Low-Dropout Voltage Regulator (DLDO) Survey (dataset, 58 rows, 2010–2020)",
