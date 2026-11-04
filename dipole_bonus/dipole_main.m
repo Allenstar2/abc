@@ -233,8 +233,8 @@ for a = angs
     if m > 2
         u  = pts(m+1,[1 3]) - pts(m-1,[1 3]); u = u/norm(u);   % 前進方向
         nv = [-u(2) u(1)];                                       % 法向量
-        c0 = pts(m,[1 3])/d; a = 0.16; b = 0.07;                % 箭頭長、半寬(以 d 為單位)
-        tri = [c0 + a/2*u; c0 - a/2*u + b*nv; c0 - a/2*u - b*nv];
+        c0 = pts(m,[1 3])/d; La = 0.16; Wa = 0.07;              % 箭頭長、半寬(以 d 為單位)
+        tri = [c0 + La/2*u; c0 - La/2*u + Wa*nv; c0 - La/2*u - Wa*nv];
         fill(tri(:,1), tri(:,2), 'k', 'EdgeColor', 'k');
     end
 end
