@@ -1,0 +1,40 @@
+=== Electric dipole: q = 1.0e-09 C, d = 0.010 m, p = 1.0e-11 C*m, k = 8.990e+09 ===
+
+--- Part 1: potential at 3 test points ---
+Pt     x[m]    y[m]    z[m] |     R[m] th[deg] ph[deg] | V_theory[V] V_matlab[V] |     err[V]   err[%]
+P0    0.000   0.000   0.020 |  0.02000    0.00    0.00 |   224.75000   239.73333 |  1.498e+01   6.2500
+P1    0.030   0.040   0.050 |  0.07071   45.00   53.13 |    12.71378    12.69772 |  1.606e-02   0.1265
+P2    0.120   0.160   0.150 |  0.25000   53.13   53.13 |     0.86304     0.86283 |  2.072e-04   0.0240
+
+--- Part 2: E = -grad(V) at the same 3 points ---
+Pt  |      |E_num|     |E_coul|      |E_far| |   err_num[%]   err_far[%]
+P0  |  25571.55571  25571.55556  22475.00000 |    6.044e-07      12.1094
+P1  |    402.13597    402.13597    402.04502 |    2.742e-08       0.5504
+P2  |      8.29643      8.29643      8.29796 |    6.913e-08       0.0480
+(E in V/m)
+
+--- Part 3: far-field error vs R/d (log-log slope fitted for R/d >= 10) ---
+theta[deg] |    fit slope |   theory slope | err% at R/d=10
+      0.00 |      -2.0000 |             -2 | 0.25059
+     50.00 |      -2.0008 |             -2 | 0.11743
+     80.00 |      -2.0002 |             -2 | 0.35725
+     39.23 |      -3.9999 |             -4 | 0.00034
+Worst case: error < 1% requires R/d >= 6.13 (near theta = 88.5 deg)
+Near theta = 39.23 deg the (d/R)^2 term vanishes, so the error is much smaller there.
+
+--- Part 4: angle between E and equipotential lines ---
+segments checked : 14252
+mean angle       : 89.8922 deg
+min angle        : 88.5912 deg
+mean |90 - angle|: 0.1078 deg
+segments within 1 deg of 90: 99.78 %
+
+--- Part 5: same R and theta, different phi ---
+phi[deg] |  V_matlab[V]
+       0 |  25.36264478
+      37 |  25.36264478
+      90 |  25.36264478
+     180 |  25.36264478
+     270 |  25.36264478
+
+Done. Figures saved as fig1~fig4 (PNG).
