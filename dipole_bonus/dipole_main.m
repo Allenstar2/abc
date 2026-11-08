@@ -2,8 +2,9 @@
 %  電偶極的電位與電場：手算理論值 vs MATLAB 數值驗證
 %  Electric dipole: hand-calculated theory vs. MATLAB verification
 %
-%  執行環境: MATLAB R2016b 以上，或 GNU Octave 6 以上
-%  執行方式: 把整個資料夾設為 Current Folder，輸入 dipole_main 後按 Enter
+%  執行環境: MATLAB R2016b 以上(檔案最後有兩個區域函數 coulombE、unitE)
+%  執行方式: 把本檔所在的資料夾設為 Current Folder，輸入 dipole_main 後按 Enter
+%            或在 Editor 開啟本檔後按 Run (F5)
 %  輸出: results.txt(所有數值結果)、table_points.csv、fig1~fig4 的 PNG 圖
 %
 %  座標設定(與課本圖相同):
@@ -239,7 +240,7 @@ for a = angs
     end
 end
 plot(0,  0.5, 'r+', 'MarkerSize', 12, 'LineWidth', 2.5);
-plot(0, -0.5, 'b_', 'MarkerSize', 12, 'LineWidth', 2.5);
+plot([-0.12 0.12], [-0.5 -0.5], 'b-', 'LineWidth', 2.5);   % -q 用短橫線表示
 text(0.15,  0.75, '+q', 'Color', 'r', 'FontWeight', 'bold');
 text(0.15, -0.75, '-q', 'Color', 'b', 'FontWeight', 'bold');
 axis equal; xlim([-L L]/d); ylim([-L L]/d); box on;
@@ -293,3 +294,23 @@ for phd = [0 37 90 180 270]
 end
 fprintf('\nDone. Figures saved as fig1~fig4 (PNG).\n');
 diary off;
+
+%% ---------------- 區域函數(local functions) ----------------
+% MATLAB R2016b 以後可以把函數寫在程式檔的最後面，只有這個檔案能呼叫。
+% coulombE 在 Part 2、Part 4 的電場線與垂直驗證共用到三次，所以寫成函數。
+% 它需要好幾行計算，不能寫成一行的匿名函數(@)。
+
+function E = coulombE(r, k, q, zp, zm)
+% 電偶極在位置 r = [x y z] 的電場(庫侖定律精確解)
+%   +q 在 (0,0,zp)，-q 在 (0,0,zm)
+%   E = kq (r - r+)/|r - r+|^3 - kq (r - r-)/|r - r-|^3
+    a = r - [0 0 zp];          % 從 +q 指向 r 的向量
+    b = r - [0 0 zm];          % 從 -q 指向 r 的向量
+    E = k*q*( a/norm(a)^3 - b/norm(b)^3 );
+end
+
+function u = unitE(r, k, q, zp, zm)
+% 電場方向的單位向量(畫電場線時沿著這個方向走)
+    E = coulombE(r, k, q, zp, zm);
+    u = E/norm(E);
+end
